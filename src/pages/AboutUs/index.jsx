@@ -2,11 +2,44 @@ import React from "react";
 
 import LandingPageHeader from "components/LandingPageHeader";
 import { Text, Img, List, Button, Input } from "components";
+import LandingPageNumberCount from "components/LandingPageNumberCount";
+import LandingPageBlogCard from "components/LandingPageBlogCard";
 import LandingPageFooter from "components/LandingPageFooter";
 import { useNavigate } from "react-router-dom";
 
 const AboutUsPage = () => {
   const navigate = useNavigate();
+
+  const landingPageNumberCountPropList = [
+    {
+      desc: (
+        <>
+          Owned from
+          <br />
+          Properties transactions
+        </>
+      ),
+      number: "$15.4M",
+    },
+    { desc: "Properties for Buy & sell Successfully", number: "25K+" },
+    { desc: "Daily completed transactions", number: "500" },
+  ];
+  const landingPageBlogCardPropList = [
+    {
+      blogCardTitle: "9 Easy-to-Ambitious DIY Projects to Improve Your Home",
+      blogCardImage: "images/img_image_350x384.png",
+    },
+    {
+      blogCardTitle:
+        "Serie Shophouse Launch In July, Opportunity For Investors",
+      blogCardImage: "images/img_image_6.png",
+    },
+    {
+      blogCardTitle:
+        "Looking for a New Place? Use This Time to Create Your Wishlist",
+      blogCardImage: "images/img_image_7.png",
+    },
+  ];
 
   return (
     <>
@@ -69,99 +102,20 @@ const AboutUsPage = () => {
               className="md:flex-1 sm:flex-col flex-row md:gap-10 gap-[100px] grid sm:grid-cols-1 md:grid-cols-2 grid-cols-3 w-[73%] md:w-full"
               orientation="horizontal"
             >
-              <div className="flex flex-col gap-[18px] items-start justify-start w-[225px]">
-                <Button className="bg-white_A700 flex h-[60px] items-center justify-center p-3.5 rounded-[50%] shadow-bs w-[60px]">
-                  <Img src="images/img_clock.svg" className="h-8" alt="clock" />
-                </Button>
-                <div className="flex flex-col gap-3.5 items-start justify-start w-full">
-                  <Text
-                    className="text-gray_900 text-left tracking-[-0.92px] w-auto"
-                    as="h2"
-                    variant="h2"
-                  >
-                    $15.4M
-                  </Text>
-                  <Text
-                    className="font-semibold leading-[140.00%] text-bluegray_600 text-left tracking-[-0.40px]"
-                    variant="body1"
-                  >
-                    <>
-                      Owned from
-                      <br />
-                      Properties transactions
-                    </>
-                  </Text>
-                </div>
-              </div>
-              <div className="flex flex-col gap-[18px] items-start justify-start w-[225px]">
-                <Button className="bg-white_A700 flex h-[60px] items-center justify-center p-3.5 rounded-[50%] shadow-bs w-[60px]">
-                  <Img
-                    src="images/img_arrowdown.svg"
-                    className="h-8"
-                    alt="arrowdown"
+              {landingPageNumberCountPropList.map((props, index) => (
+                <React.Fragment key={`LandingPageNumberCount${index}`}>
+                  <LandingPageNumberCount
+                    className="flex flex-col items-start justify-start w-[225px] sm:w-full"
+                    {...props}
                   />
-                </Button>
-                <div className="flex flex-col gap-3.5 items-start justify-start w-full">
-                  <Text
-                    className="text-gray_900 text-left tracking-[-0.92px] w-auto"
-                    as="h2"
-                    variant="h2"
-                  >
-                    25K+
-                  </Text>
-                  <Text
-                    className="font-semibold leading-[140.00%] max-w-[225px] md:max-w-full text-bluegray_600 text-left tracking-[-0.40px]"
-                    variant="body1"
-                  >
-                    Properties for Buy & sell Successfully
-                  </Text>
-                </div>
-              </div>
-              <div className="flex flex-col gap-[18px] items-start justify-start w-[225px]">
-                <Button className="bg-white_A700 flex h-[60px] items-center justify-center p-3.5 rounded-[50%] shadow-bs w-[60px]">
-                  <Img src="images/img_reply.svg" className="h-8" alt="reply" />
-                </Button>
-                <div className="flex flex-col gap-3.5 items-start justify-start w-full">
-                  <Text
-                    className="text-gray_900 text-left tracking-[-0.92px] w-auto"
-                    as="h2"
-                    variant="h2"
-                  >
-                    500
-                  </Text>
-                  <Text
-                    className="font-semibold leading-[140.00%] max-w-[225px] md:max-w-full text-bluegray_600 text-left tracking-[-0.40px]"
-                    variant="body1"
-                  >
-                    Daily completed transactions
-                  </Text>
-                </div>
-              </div>
+                </React.Fragment>
+              ))}
             </List>
-            <div className="flex flex-col gap-[18px] items-start justify-start w-[225px]">
-              <Button className="bg-white_A700 flex h-[60px] items-center justify-center p-3.5 rounded-[50%] shadow-bs w-[60px]">
-                <Img
-                  src="images/img_checkmark.svg"
-                  className="h-8"
-                  alt="checkmark"
-                />
-              </Button>
-              <div className="flex flex-col gap-3.5 items-start justify-start w-full">
-                <Text
-                  className="text-gray_900 text-left tracking-[-0.92px] w-auto"
-                  as="h2"
-                  variant="h2"
-                >
-                  600+
-                </Text>
-                <Text
-                  className="font-semibold text-bluegray_600 text-left tracking-[-0.40px] w-auto"
-                  variant="body1"
-                >
-                  Reagular Clients
-                </Text>
-              </div>
-            </div>
+            <LandingPageNumberCount
+              className="flex sm:flex-1 flex-col items-start justify-start w-[225px] sm:w-full"
+              number="600+"
+              desc="Reagular Clients"
+            />
           </div>
         </div>
         <div className="flex font-manrope items-center justify-center max-w-[1440px] pl-[120px] pr-[173px] md:px-10 sm:px-5 w-full">
@@ -624,94 +578,16 @@ const AboutUsPage = () => {
                 className="sm:flex-col flex-row gap-6 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-3 justify-start w-full"
                 orientation="horizontal"
               >
-                <div className="flex flex-1 flex-col gap-6 h-[487px] md:h-auto items-start justify-start w-full">
-                  <Img
-                    src="images/img_image_350x384.png"
-                    className="md:h-auto h-full object-cover rounded-[10px] w-full"
-                    alt="image"
-                  />
-                  <div className="flex flex-col gap-6 items-start justify-start w-full">
-                    <Text
-                      className="font-bold leading-[135.00%] md:max-w-full max-w-sm text-left text-white_A700 tracking-[-0.48px]"
-                      as="h5"
-                      variant="h5"
-                    >
-                      9 Easy-to-Ambitious DIY Projects to Improve Your Home
-                    </Text>
-                    <div className="flex flex-row gap-2 items-center justify-start w-full sm:w-full">
-                      <Text
-                        className="font-bold text-deep_orange_400 text-left w-auto"
-                        variant="body3"
-                      >
-                        Read the Article
-                      </Text>
-                      <Img
-                        src="images/img_arrowright_deep_orange_400.svg"
-                        className="h-6 w-6"
-                        alt="arrowright"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="flex flex-1 flex-col gap-6 h-[487px] md:h-auto items-start justify-start w-full">
-                  <Img
-                    src="images/img_image_6.png"
-                    className="md:h-auto h-full object-cover rounded-[10px] w-full"
-                    alt="image"
-                  />
-                  <div className="flex flex-col gap-6 items-start justify-start w-full">
-                    <Text
-                      className="font-bold leading-[135.00%] md:max-w-full max-w-sm text-left text-white_A700 tracking-[-0.48px]"
-                      as="h5"
-                      variant="h5"
-                    >
-                      Serie Shophouse Launch In July, Opportunity For Investors
-                    </Text>
-                    <div className="flex flex-row gap-2 items-center justify-start w-full sm:w-full">
-                      <Text
-                        className="font-bold text-deep_orange_400 text-left w-auto"
-                        variant="body3"
-                      >
-                        Read the Article
-                      </Text>
-                      <Img
-                        src="images/img_arrowright_deep_orange_400.svg"
-                        className="h-6 w-6"
-                        alt="arrowright"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="flex flex-1 flex-col gap-6 h-[487px] md:h-auto items-start justify-start w-full">
-                  <Img
-                    src="images/img_image_7.png"
-                    className="md:h-auto h-full object-cover rounded-[10px] w-full"
-                    alt="image"
-                  />
-                  <div className="flex flex-col gap-6 items-start justify-start w-full">
-                    <Text
-                      className="font-bold leading-[135.00%] md:max-w-full max-w-sm text-left text-white_A700 tracking-[-0.48px]"
-                      as="h5"
-                      variant="h5"
-                    >
-                      Looking for a New Place? Use This Time to Create Your
-                      Wishlist
-                    </Text>
-                    <div className="flex flex-row gap-2 items-center justify-start w-full sm:w-full">
-                      <Text
-                        className="font-bold text-deep_orange_400 text-left w-auto"
-                        variant="body3"
-                      >
-                        Read the Article
-                      </Text>
-                      <Img
-                        src="images/img_arrowright_deep_orange_400.svg"
-                        className="h-6 w-6"
-                        alt="arrowright"
-                      />
-                    </div>
-                  </div>
-                </div>
+                {landingPageBlogCardPropList.map((props, index) => (
+                  <React.Fragment key={`LandingPageBlogCard${index}`}>
+                    <LandingPageBlogCard
+                      className="flex flex-1 flex-col h-[487px] md:h-auto items-start justify-start w-full"
+                      blogCardButtonText="Read the Article"
+                      blogCardButtonIcon="images/img_arrowright_deep_orange_400.svg"
+                      {...props}
+                    />
+                  </React.Fragment>
+                ))}
               </List>
             </div>
             <div className="bg-gray_401 flex items-center justify-center md:px-10 sm:px-5 px-[100px] py-10 rounded-[10px] w-full">
