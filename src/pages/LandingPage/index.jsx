@@ -1,19 +1,18 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 
 import LandingPageHeader from "components/LandingPageHeader";
 import { Text, Button, Input, Img, List, CheckBox, Slider } from "components";
-import LandingPageAdvantageCard from "components/LandingPageAdvantageCard";
-import LandingPageNumberCount from "components/LandingPageNumberCount";
 import LandingPageCard from "components/LandingPageCard";
-import LandingPageBlogCard from "components/LandingPageBlogCard";
 import LandingPageFooter from "components/LandingPageFooter";
 import { useNavigate } from "react-router-dom";
 import CreateAccountModal from "modals/CreateAccount";
 
+import LandingPageCounter from "./components/LandingPageCounter";
+import LandingPageCarousel from "./components/LandingPageCarousel/LandingPageCarousel";
+
 const LandingPagePage = () => {
   const navigate = useNavigate();
-  const [isOpenCreateAccountModal, setCreateAccountModal] =
-    React.useState(false);
+  const [isOpenCreateAccountModal, setCreateAccountModal] = useState(false);
 
   function handleOpenCreateAccountModal() {
     setCreateAccountModal(true);
@@ -22,29 +21,6 @@ const LandingPagePage = () => {
     setCreateAccountModal(false);
   }
 
-  const landingPageAdvantageCardPropList = [
-    { cardText: "Search your location", cardImage: "images/img_refresh.svg" },
-    { cardText: "Visit Appointment", cardImage: "images/img_instagram.svg" },
-    { cardText: "Get your dream house", cardImage: "images/img_camera.svg" },
-    {
-      cardText: "Enjoy your Appointment",
-      cardImage: "images/img_instagram_orange_a700.svg",
-    },
-  ];
-  const landingPageNumberCountPropList = [
-    {
-      desc: (
-        <>
-          Owned from
-          <br />
-          Properties transactions
-        </>
-      ),
-      number: "$15.4M",
-    },
-    { desc: "Properties for Buy & sell Successfully", number: "25K+" },
-    { desc: "Daily completed transactions", number: "500" },
-  ];
   const landingPageCardPropList = [
     { image: "images/img_image_260x384.png" },
     { image: "images/img_image_1.png" },
@@ -53,24 +29,10 @@ const LandingPagePage = () => {
     { image: "images/img_image_4.png" },
     { image: "images/img_image_5.png" },
   ];
-  const sliderRef = React.useRef(null);
-  const [sliderState, setsliderState] = React.useState(0);
-  const landingPageBlogCardPropList = [
-    {
-      blogCardTitle: "9 Easy-to-Ambitious DIY Projects to Improve Your Home",
-      blogCardImage: "images/img_image_350x384.png",
-    },
-    {
-      blogCardTitle:
-        "Serie Shophouse Launch In July, Opportunity For Investors",
-      blogCardImage: "images/img_image_6.png",
-    },
-    {
-      blogCardTitle:
-        "Looking for a New Place? Use This Time to Create Your Wishlist",
-      blogCardImage: "images/img_image_7.png",
-    },
-  ];
+  const sliderRef = useRef(null);
+  const [sliderState, setsliderState] = useState(0);
+  const TABS = ["Buy", "Sell", "Rent"];
+  const [activeTab, setActiveTab] = useState(0);
 
   return (
     <>
@@ -102,16 +64,20 @@ const LandingPagePage = () => {
                 </div>
                 <div className="bg-white_A700 flex items-start justify-start p-6 sm:px-5 rounded-[16px] w-full">
                   <div className="flex flex-col gap-[38px] items-center justify-start w-full">
-                    <div className="flex sm:flex-col flex-row gap-4 items-center justify-center w-full">
-                      <Button className="bg-gray_900 cursor-pointer flex-1 font-bold sm:px-5 px-[31px] py-4 rounded-[10px] text-center text-lg text-white_A700 w-full">
-                        Buy
-                      </Button>
-                      <Button className="bg-gray_300 cursor-pointer flex-1 font-bold sm:px-5 px-[31px] py-4 rounded-[10px] text-center text-gray_900 text-lg w-full">
-                        Sell
-                      </Button>
-                      <Button className="bg-gray_300 cursor-pointer flex-1 font-bold sm:px-5 px-[26px] py-4 rounded-[10px] text-center text-gray_900 text-lg w-full">
-                        Rent
-                      </Button>
+                    <div className="flex flex-row gap-4 items-center justify-center w-full">
+                      {TABS.map((tab, index) => (
+                        <button
+                          key={index}
+                          className={`${
+                            activeTab === index
+                              ? "bg-gray_900 text-white_A700"
+                              : "bg-gray_300 text-gray_900"
+                          } cursor-pointer font-bold sm:px-5 px-[31px] py-4 rounded-[10px] text-center text-lg w-full`}
+                          onClick={() => setActiveTab(index)}
+                        >
+                          {tab}
+                        </button>
+                      ))}
                     </div>
                     <div className="flex flex-col gap-6 items-start justify-start w-full">
                       <div className="flex flex-col gap-5 items-start justify-start w-full">
@@ -155,9 +121,11 @@ const LandingPagePage = () => {
                           }
                         ></Input>
                       </div>
-                      <Button className="bg-gray_900 cursor-pointer font-bold sm:px-5 px-6 py-[21px] rounded-[10px] text-center text-lg text-white_A700 w-full">
+                      <button
+                        className={`bg-gray_900 cursor-pointer font-bold sm:px-5 px-6 py-[21px] rounded-[10px] text-center text-lg text-white_A700 w-full`}
+                      >
                         Search
-                      </Button>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -202,40 +170,75 @@ const LandingPagePage = () => {
             </div>
             <div className="flex flex-1 items-start justify-start w-full">
               <div className="sm:gap-5 gap-6 grid sm:grid-cols-1 grid-cols-2 justify-center min-h-[auto] w-full">
-                {landingPageAdvantageCardPropList.map((props, index) => (
-                  <React.Fragment key={`LandingPageAdvantageCard${index}`}>
-                    <LandingPageAdvantageCard
-                      className="bg-deep_orange_50 flex flex-1 flex-col h-[200px] md:h-auto items-start justify-center sm:px-5 px-[30px] py-6 rounded-[20px] w-full"
-                      {...props}
+                <div className="bg-deep_orange_50 flex flex-1 h-[200px] md:h-auto items-start justify-center sm:px-5 px-[30px] py-6 rounded-[20px] w-full">
+                  <div className="flex flex-col gap-5 items-start justify-start w-full">
+                    <Img
+                      src="images/img_refresh.svg"
+                      className="h-[30px] w-[30px]"
+                      alt="refresh"
                     />
-                  </React.Fragment>
-                ))}
+                    <Text
+                      className="leading-[135.00%] max-w-[222px] md:max-w-full text-gray_900 text-left tracking-[-0.56px]"
+                      as="h4"
+                      variant="h4"
+                    >
+                      Search your location
+                    </Text>
+                  </div>
+                </div>
+                <div className="bg-deep_orange_50 flex flex-1 h-[200px] md:h-auto items-start justify-center sm:px-5 px-[30px] py-6 rounded-[20px] w-full">
+                  <div className="flex flex-col gap-5 items-start justify-start w-full">
+                    <Img
+                      src="images/img_instagram.svg"
+                      className="h-[30px] w-[30px]"
+                      alt="instagram"
+                    />
+                    <Text
+                      className="leading-[135.00%] max-w-[222px] md:max-w-full text-gray_900 text-left tracking-[-0.56px]"
+                      as="h4"
+                      variant="h4"
+                    >
+                      Visit Appointment
+                    </Text>
+                  </div>
+                </div>
+                <div className="bg-deep_orange_50 flex flex-1 h-[200px] md:h-auto items-start justify-center sm:px-5 px-[30px] py-6 rounded-[20px] w-full">
+                  <div className="flex flex-col gap-5 items-start justify-start w-full">
+                    <Img
+                      src="images/img_camera.svg"
+                      className="h-[30px] w-[30px]"
+                      alt="camera"
+                    />
+                    <Text
+                      className="leading-[135.00%] max-w-[222px] md:max-w-full text-gray_900 text-left tracking-[-0.56px]"
+                      as="h4"
+                      variant="h4"
+                    >
+                      Get your dream house
+                    </Text>
+                  </div>
+                </div>
+                <div className="bg-deep_orange_50 flex flex-1 h-[200px] md:h-auto items-start justify-center sm:px-5 px-[30px] py-6 rounded-[20px] w-full">
+                  <div className="flex flex-col gap-5 items-start justify-start w-full">
+                    <Img
+                      src="images/img_instagram_orange_a700.svg"
+                      className="h-[30px] w-[30px]"
+                      alt="instagram"
+                    />
+                    <Text
+                      className="leading-[135.00%] max-w-[222px] md:max-w-full text-gray_900 text-left tracking-[-0.56px]"
+                      as="h4"
+                      variant="h4"
+                    >
+                      Enjoy your Appointment
+                    </Text>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="bg-gray_50 flex font-manrope items-start justify-start md:px-10 sm:px-5 px-[120px] py-[50px] w-full">
-          <div className="flex md:flex-col flex-row md:gap-10 gap-[100px] items-start justify-start max-w-[1200px] mx-auto w-full">
-            <List
-              className="md:flex-1 sm:flex-col flex-row md:gap-10 gap-[100px] grid sm:grid-cols-1 md:grid-cols-2 grid-cols-3 w-[73%] md:w-full"
-              orientation="horizontal"
-            >
-              {landingPageNumberCountPropList.map((props, index) => (
-                <React.Fragment key={`LandingPageNumberCount${index}`}>
-                  <LandingPageNumberCount
-                    className="flex flex-col items-start justify-start w-full"
-                    {...props}
-                  />
-                </React.Fragment>
-              ))}
-            </List>
-            <LandingPageNumberCount
-              className="flex flex-1 flex-col items-start justify-start w-full"
-              number="600+"
-              desc="Reagular Clients"
-            />
-          </div>
-        </div>
+        <LandingPageCounter />
         <div className="flex font-manrope items-center justify-center md:px-10 sm:px-5 px-[120px] w-full">
           <div className="flex flex-col md:gap-10 gap-[60px] md:h-auto items-start justify-start max-w-[1200px] mx-auto w-full">
             <div className="flex flex-col gap-6 items-start justify-start w-full">
@@ -415,100 +418,7 @@ const LandingPagePage = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col font-manrope gap-6 items-start justify-start w-full">
-          <div className="flex items-center justify-center md:px-10 sm:px-5 px-[215px] w-full">
-            <Slider
-              autoPlay
-              autoPlayInterval={2000}
-              activeIndex={sliderState}
-              responsive={{
-                0: { items: 1 },
-                550: { items: 1 },
-                1050: { items: 1 },
-              }}
-              onSlideChanged={(e) => {
-                setsliderState(e?.item);
-              }}
-              ref={sliderRef}
-              className="max-w-[1010px] mx-auto w-full"
-              items={[...Array(3)].map(() => (
-                <React.Fragment key={Math.random()}>
-                  <div className="flex md:flex-col flex-row md:gap-10 gap-[100px] items-start justify-start mx-2.5">
-                    <Img
-                      src="images/img_rectangle5591.png"
-                      className="flex-1 md:flex-none h-[344px] sm:h-auto object-cover rounded-lg w-full"
-                      alt="rectangle5591"
-                    />
-                    <div className="flex flex-1 items-start justify-start w-full">
-                      <div className="flex flex-col gap-[30px] items-start justify-start w-full">
-                        <div className="flex sm:flex-col flex-row sm:gap-10 gap-[73px] items-center justify-start w-full">
-                          <div className="flex flex-1 flex-col gap-1 items-start justify-start w-full">
-                            <Text
-                              className="text-gray_900 text-left tracking-[-0.56px] w-auto"
-                              as="h4"
-                              variant="h4"
-                            >
-                              Taylor Wilson
-                            </Text>
-                            <Text
-                              className="font-semibold text-gray_900 text-left w-auto"
-                              variant="body3"
-                            >
-                              Product Manager - Static Mania
-                            </Text>
-                          </div>
-                          <Img
-                            src="images/img_shape.svg"
-                            className="h-[51px] max-h-[51px] w-auto sm:w-auto"
-                            alt="shape"
-                          />
-                        </div>
-                        <Text
-                          className="font-semibold leading-[165.00%] max-w-[455px] md:max-w-full text-gray_700 text-left"
-                          as="h5"
-                          variant="h5"
-                        >
-                          Eget eu massa et consectetur. Mauris donec. Leo a, id
-                          sed duis proin sodales. Turpis viverra diam porttitor
-                          mattis morbi ac amet. Euismod commodo. We get you
-                          customer relationships that last.{" "}
-                        </Text>
-                      </div>
-                    </div>
-                  </div>
-                </React.Fragment>
-              ))}
-            />
-          </div>
-          <div className="flex flex-row gap-[30px] items-start justify-between pl-[770px] pr-[215px] md:px-10 sm:px-5 w-full">
-            <div className="flex flex-row gap-2 items-center justify-start self-stretch w-auto">
-              <Img
-                src="images/img_arrowleft.svg"
-                className="h-6 w-6"
-                alt="arrowleft"
-              />
-              <Text
-                className="font-bold text-gray_604 text-left w-auto"
-                variant="body3"
-              >
-                Previews
-              </Text>
-            </div>
-            <div className="flex flex-row gap-2 items-center justify-start self-stretch w-auto">
-              <Text
-                className="font-bold text-left text-orange_A700 w-auto"
-                variant="body3"
-              >
-                Next
-              </Text>
-              <Img
-                src="images/img_arrowright.svg"
-                className="h-6 w-6"
-                alt="arrowright"
-              />
-            </div>
-          </div>
-        </div>
+        <LandingPageCarousel />
         <div className="bg-gray_900 flex font-manrope items-center justify-center p-[120px] md:px-10 sm:px-5 w-full">
           <div className="flex flex-col md:gap-10 gap-[120px] items-center justify-start max-w-[1200px] mx-auto w-full">
             <div className="flex flex-col md:gap-10 gap-[60px] items-start justify-start w-full">
@@ -540,16 +450,94 @@ const LandingPagePage = () => {
                 className="sm:flex-col flex-row gap-6 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-3 justify-start w-full"
                 orientation="horizontal"
               >
-                {landingPageBlogCardPropList.map((props, index) => (
-                  <React.Fragment key={`LandingPageBlogCard${index}`}>
-                    <LandingPageBlogCard
-                      className="flex flex-1 flex-col h-[487px] md:h-auto items-start justify-start w-full"
-                      blogCardButtonText="Read the Article"
-                      blogCardButtonIcon="images/img_arrowright_deep_orange_400.svg"
-                      {...props}
-                    />
-                  </React.Fragment>
-                ))}
+                <div className="flex flex-1 flex-col gap-6 h-[487px] md:h-auto items-start justify-start w-full">
+                  <Img
+                    src="images/img_image_350x384.png"
+                    className="md:h-auto h-full object-cover rounded-[10px] w-full"
+                    alt="image"
+                  />
+                  <div className="flex flex-col gap-6 items-start justify-start w-full">
+                    <Text
+                      className="font-bold leading-[135.00%] md:max-w-full max-w-sm text-left text-white_A700 tracking-[-0.48px]"
+                      as="h5"
+                      variant="h5"
+                    >
+                      9 Easy-to-Ambitious DIY Projects to Improve Your Home
+                    </Text>
+                    <div className="flex flex-row gap-2 items-center justify-start w-full sm:w-full">
+                      <Text
+                        className="font-bold text-deep_orange_400 text-left w-auto"
+                        variant="body3"
+                      >
+                        Read the Article
+                      </Text>
+                      <Img
+                        src="images/img_arrowright_deep_orange_400.svg"
+                        className="h-6 w-6"
+                        alt="arrowright"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-1 flex-col gap-6 h-[487px] md:h-auto items-start justify-start w-full">
+                  <Img
+                    src="images/img_image_6.png"
+                    className="md:h-auto h-full object-cover rounded-[10px] w-full"
+                    alt="image"
+                  />
+                  <div className="flex flex-col gap-6 items-start justify-start w-full">
+                    <Text
+                      className="font-bold leading-[135.00%] md:max-w-full max-w-sm text-left text-white_A700 tracking-[-0.48px]"
+                      as="h5"
+                      variant="h5"
+                    >
+                      Serie Shophouse Launch In July, Opportunity For Investors
+                    </Text>
+                    <div className="flex flex-row gap-2 items-center justify-start w-full sm:w-full">
+                      <Text
+                        className="font-bold text-deep_orange_400 text-left w-auto"
+                        variant="body3"
+                      >
+                        Read the Article
+                      </Text>
+                      <Img
+                        src="images/img_arrowright_deep_orange_400.svg"
+                        className="h-6 w-6"
+                        alt="arrowright"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-1 flex-col gap-6 h-[487px] md:h-auto items-start justify-start w-full">
+                  <Img
+                    src="images/img_image_7.png"
+                    className="md:h-auto h-full object-cover rounded-[10px] w-full"
+                    alt="image"
+                  />
+                  <div className="flex flex-col gap-6 items-start justify-start w-full">
+                    <Text
+                      className="font-bold leading-[135.00%] md:max-w-full max-w-sm text-left text-white_A700 tracking-[-0.48px]"
+                      as="h5"
+                      variant="h5"
+                    >
+                      Looking for a New Place? Use This Time to Create Your
+                      Wishlist
+                    </Text>
+                    <div className="flex flex-row gap-2 items-center justify-start w-full sm:w-full">
+                      <Text
+                        className="font-bold text-deep_orange_400 text-left w-auto"
+                        variant="body3"
+                      >
+                        Read the Article
+                      </Text>
+                      <Img
+                        src="images/img_arrowright_deep_orange_400.svg"
+                        className="h-6 w-6"
+                        alt="arrowright"
+                      />
+                    </div>
+                  </div>
+                </div>
               </List>
             </div>
             <div className="bg-gray_401 flex items-center justify-center md:px-10 sm:px-5 px-[100px] py-10 rounded-[10px] w-full">
