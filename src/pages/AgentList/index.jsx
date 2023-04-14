@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import LandingPageHeader from "components/LandingPageHeader";
 import { Text, Input, Img, SelectBox, Button } from "components";
@@ -6,21 +6,81 @@ import AgentProfileCard from "components/AgentProfileCard";
 import LandingPageFooter from "components/LandingPageFooter";
 
 const AgentListPage = () => {
-  const agentProfileCardPropList = [
-    { agentProfilePic: "images/img_rectangle5615.png" },
-    { agentProfilePic: "images/img_rectangle5616.png" },
-    { agentProfilePic: "images/img_rectangle5614.png" },
-    { agentProfilePic: "images/img_rectangle5614_282x282.png" },
-    { agentProfilePic: "images/img_rectangle5617.png" },
-    { agentProfilePic: "images/img_rectangle5618.png" },
-    { agentProfilePic: "images/img_rectangle5619.png" },
-    { agentProfilePic: "images/img_rectangle5620.png" },
-    { agentProfilePic: "images/img_rectangle5621.png" },
-    { agentProfilePic: "images/img_rectangle5622.png" },
-    { agentProfilePic: "images/img_rectangle5623.png" },
-    { agentProfilePic: "images/img_rectangle5615_282x282.png" },
+  const [agentProfileCardPropList, setAgentProfileCardPropList] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [searchText, setSearchText] = useState("");
+  const totalPages = 5;
+  const [filteredAgents, setFilteredAgents] = useState(
+    agentProfileCardPropList
+  );
+  const [selectedOption, setSelectedOption] = useState(null);
+  const options1 = [
+    { value: "None", label: "None" },
+    { value: "High to Low", label: "High to Low" },
+    { value: "Low to High", label: "Low to High" },
   ];
 
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch(
+        "https://the-home-backend.onrender.com/api/agents/allagents"
+      );
+      const data = await response.json();
+      setAgentProfileCardPropList(data);
+    }
+    fetchData();
+  }, []);
+  function handleClick(page) {
+    setCurrentPage(page);
+  }
+
+  const SearchedAgents = agentProfileCardPropList.filter((agent) => {
+    const nameMatch = agent.name
+      .toLowerCase()
+      .includes(searchText.toLowerCase());
+    const addressMatch = agent.address
+      .toLowerCase()
+      .includes(searchText.toLowerCase());
+    return nameMatch || addressMatch;
+  });
+  const handleSelectChange = (selectedOption) => {
+    setSelectedOption(selectedOption);
+
+    if (selectedOption) {
+      const selectedValue = selectedOption.value;
+
+      // Apply the filter based on the selected value
+      if (selectedValue === "High to Low") {
+        setFilteredAgents(
+          agentProfileCardPropList.slice().sort((a, b) => b.rating - a.rating)
+        );
+      } else if (selectedValue === "Low to High") {
+        setFilteredAgents(
+          agentProfileCardPropList.slice().sort((a, b) => a.rating - b.rating)
+        );
+      } else {
+        setFilteredAgents(agentProfileCardPropList);
+      }
+    } else {
+      setFilteredAgents(agentProfileCardPropList);
+    }
+  };
+
+  const pageButtons = [];
+  for (let i = 1; i <= totalPages; i++) {
+    const isActive = currentPage === i;
+    pageButtons.push(
+      <Button
+        key={i}
+        className={`border ${
+          isActive ? "border-gray_700" : "border-bluegray_102"
+        } border-solid cursor-pointer font-semibold h-12 px-[18px] py-4 rounded-[10px] text-base text-center text-gray_900 w-12`}
+        onClick={() => handleClick(i)}
+      >
+        {i}
+      </Button>
+    );
+  }
   return (
     <>
       <div className="bg-gray_51 flex flex-col font-markoone sm:gap-10 md:gap-10 gap-[100px] items-start justify-start mx-auto self-stretch w-auto sm:w-full md:w-full">
@@ -49,6 +109,8 @@ const AgentListPage = () => {
                         alt="search"
                       />
                     }
+                    value={searchText}
+                    onChange={(event) => setSearchText(event.target.value)}
                   ></Input>
                 </div>
                 <SelectBox
@@ -56,6 +118,7 @@ const AgentListPage = () => {
                   placeholderClassName="text-gray_600"
                   name="dropdownlarge"
                   placeholder="Review"
+                  options={options1}
                   isSearchable={false}
                   isMulti={false}
                   indicator={
@@ -65,60 +128,54 @@ const AgentListPage = () => {
                       alt="arrow_down"
                     />
                   }
-                ></SelectBox>
-                <Button
-                  className="bg-gray_900 cursor-pointer flex items-center justify-center min-w-[128px] pl-5 pr-4 py-5 rounded-[10px] w-auto"
-                  rightIcon={
-                    <Img
-                      src="images/img_search_white_a700.svg"
-                      className="mt-px mb-[3px] ml-2.5"
-                      alt="search"
-                    />
-                  }
-                >
-                  <div className="font-bold hidden text-left text-lg text-white_A700">
-                    Search
-                  </div>
-                </Button>
+                  onChange={handleSelectChange}
+                />
               </div>
             </div>
           </div>
           <div className="flex flex-col font-manrope md:gap-10 gap-[60px] items-start justify-start md:px-10 sm:px-5 px-[120px] w-full">
             <div className="flex items-center justify-center max-w-[1200px] mx-auto w-full">
               <div className="md:gap-5 gap-6 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-4 justify-center min-h-[auto] w-full">
-                {agentProfileCardPropList.map((props, index) => (
-                  <React.Fragment key={`AgentProfileCard${index}`}>
-                    <AgentProfileCard
-                      className="flex flex-1 flex-col h-[431px] md:h-auto items-start justify-start w-full"
-                      agentName="Bruno Fernandes"
-                      agentReview="4.5 review"
-                      agentProfileViewButton="View Profile"
-                      {...props}
-                    />
-                  </React.Fragment>
-                ))}
+                {(searchText.trim() === ""
+                  ? agentProfileCardPropList
+                  : SearchedAgents
+                )
+                  .filter((agent) => {
+                    if (selectedOption) {
+                      const selectedValue = selectedOption.value;
+
+                      if (selectedValue === "High to Low") {
+                        return true;
+                      } else if (selectedValue === "Low to High") {
+                        return true;
+                      }
+                    }
+                    return true;
+                  })
+                  .map((props, index) => (
+                    <React.Fragment key={`AgentProfileCard${index}`}>
+                      <AgentProfileCard
+                        className="flex flex-1 flex-col h-[431px] md:h-auto items-start justify-start w-full"
+                        agentName={props.name}
+                        agentReview={props.review}
+                        agentProfileViewButton="View Profile"
+                        {...props}
+                      />
+                    </React.Fragment>
+                  ))}
               </div>
             </div>
+
             <div className="flex sm:flex-col flex-row gap-5 items-center justify-between max-w-[1200px] mx-auto w-full">
-              <div className="flex flex-row gap-[5px] items-start justify-start self-stretch w-auto">
-                <Button className="border border-gray_700 border-solid cursor-pointer font-semibold h-12 px-[18px] py-4 rounded-[10px] text-base text-center text-gray_900 w-12">
-                  1
-                </Button>
-                <Button className="border border-bluegray_102 border-solid cursor-pointer font-semibold h-12 px-[18px] py-4 rounded-[10px] text-base text-center text-gray_900 w-12">
-                  2
-                </Button>
-                <Button className="border border-bluegray_102 border-solid cursor-pointer font-semibold h-12 px-[18px] py-4 rounded-[10px] text-base text-center text-gray_900 w-12">
-                  3
-                </Button>
-                <Button className="border border-bluegray_102 border-solid cursor-pointer font-semibold h-12 px-[18px] py-4 rounded-[10px] text-base text-center text-gray_900 w-12">
-                  4
-                </Button>
-                <Button className="border border-bluegray_102 border-solid cursor-pointer font-semibold h-12 px-[18px] py-4 rounded-[10px] text-base text-center text-gray_900 w-12">
-                  5
-                </Button>
+              <div className="flex sm:flex-col flex-row gap-5 items-center justify-between max-w-[1200px] mx-auto w-full">
+                <div className="flex flex-row gap-[5px] items-start justify-start self-stretch w-auto">
+                  {pageButtons}
+                </div>
               </div>
               <Button
                 className="border border-bluegray_102 border-solid cursor-pointer flex items-center justify-center min-w-[134px] px-[18px] py-4 rounded-[10px] w-auto"
+                disabled={currentPage === totalPages}
+                onClick={() => handleClick(currentPage + 1)}
                 rightIcon={
                   <Img
                     src="images/img_arrowright_gray_900.svg"
@@ -136,6 +193,7 @@ const AgentListPage = () => {
         </div>
         <LandingPageFooter className="bg-white_A700 flex items-center justify-center md:px-5 px-[120px] py-20 w-full" />
       </div>
+      {console.log("page changed")}
     </>
   );
 };

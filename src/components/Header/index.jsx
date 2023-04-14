@@ -82,20 +82,6 @@ const Header = (props) => {
             </Text>
           </div>
           <div className="flex flex-row gap-10 h-[42px] md:h-auto sm:hidden items-center justify-start w-[228px]">
-            <Button
-              className="bg-transparent cursor-pointer flex items-center justify-center min-w-[94px] w-auto"
-              leftIcon={
-                <Img
-                  src="images/img_search.svg"
-                  className="mb-px mr-2"
-                  alt="search"
-                />
-              }
-            >
-              <div className="font-bold font-manrope text-gray_900 text-left text-lg">
-                Search
-              </div>
-            </Button>
             <Button className="bg-gray_900 cursor-pointer font-manrope font-semibold sm:px-5 px-6 py-[13px] rounded-[10px] text-base text-center text-white_A700 w-full">
               Log in
             </Button>

@@ -5,6 +5,11 @@ import { useNavigate } from "react-router-dom";
 
 const AgentProfileCard = (props) => {
   const navigate = useNavigate();
+  const reviewScore = parseFloat(props?.agentReview);
+
+  // Calculate the number of filled and empty stars based on the review score
+  const filledStars = Math.floor(reviewScore);
+  const emptyStars = 5 - filledStars;
 
   return (
     <>
@@ -24,27 +29,22 @@ const AgentProfileCard = (props) => {
             </Text>
             <div className="flex flex-row gap-3.5 items-center justify-start w-full">
               <div className="flex flex-row items-center justify-evenly w-2/5">
-                <Img src="images/img_star.svg" className="h-4 w-4" alt="star" />
-                <Img
-                  src="images/img_star.svg"
-                  className="h-4 w-4"
-                  alt="star_One"
-                />
-                <Img
-                  src="images/img_star.svg"
-                  className="h-4 w-4"
-                  alt="star_Two"
-                />
-                <Img
-                  src="images/img_star.svg"
-                  className="h-4 w-4"
-                  alt="star_Three"
-                />
-                <Img
-                  src="images/img_star_gray_600.svg"
-                  className="h-4 w-4"
-                  alt="star_Four"
-                />
+                {[...Array(filledStars)].map((_, index) => (
+                  <Img
+                    key={index}
+                    src="images/img_star.svg"
+                    className="h-4 w-4"
+                    alt={`star_${index}`}
+                  />
+                ))}
+                {[...Array(emptyStars)].map((_, index) => (
+                  <Img
+                    key={index}
+                    src="images/img_star_gray_600.svg"
+                    className="h-4 w-4"
+                    alt={`star_${index + filledStars}`}
+                  />
+                ))}
               </div>
               <Text
                 className="flex-1 font-manrope font-semibold text-gray_900 text-left w-auto"
@@ -69,7 +69,7 @@ const AgentProfileCard = (props) => {
 AgentProfileCard.defaultProps = {
   agentProfilePic: "images/img_rectangle5615.png",
   agentName: "Bruno Fernandes",
-  agentReview: "4.5 review",
+  agentReview: "4.5",
   agentProfileViewButton: "View Profile",
 };
 

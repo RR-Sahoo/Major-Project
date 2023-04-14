@@ -36,7 +36,7 @@ const ProjectRoutes = () => {
           <Route path="/faq" element={<FAQ />} />
           <Route path="/privacypolicy" element={<PrivacyPolicy />} />
           <Route path="/license" element={<License />} />
-          <Route path="/dhiwise-dashboard" element={<Home />} />
+          <Route path="/dashboard" element={<Home />} />
         </Routes>
       </Router>
     </React.Suspense>
