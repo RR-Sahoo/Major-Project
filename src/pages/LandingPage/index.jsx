@@ -51,7 +51,7 @@ const LandingPagePage = () => {
                     <>
                       Find a perfect property
                       <br />
-                      Where you&#39;ll love to live
+                      Where you'll love to live
                     </>
                   </Text>
                   <Text
@@ -62,7 +62,7 @@ const LandingPagePage = () => {
                     ad production and delivery.
                   </Text>
                 </div>
-                <div className="bg-white_A700 flex items-start justify-start p-6 sm:px-5 rounded-[16px] w-full">
+                {/*<div className="bg-white_A700 flex items-start justify-start p-6 sm:px-5 rounded-[16px] w-full">
                   <div className="flex flex-col gap-[38px] items-center justify-start w-full">
                     <div className="flex flex-row gap-4 items-center justify-center w-full">
                       {TABS.map((tab, index) => (
@@ -128,7 +128,7 @@ const LandingPagePage = () => {
                       </button>
                     </div>
                   </div>
-                </div>
+                        </div>*/}
               </div>
               <div className="flex md:flex-1 items-center justify-start w-[47%] md:w-full">
                 <Img
