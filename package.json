@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@googlemaps/react-wrapper": "^1.1.25",
-    "@react-oauth/google": "^0.2.6",
+    "@react-oauth/google": "^0.9.0",
     "@tailwindcss/forms": "0.4.0",
     "@tanstack/react-table": "^8.5.30",
     "@testing-library/jest-dom": "^5.15.1",
