@@ -22,7 +22,7 @@ const LandingPageCard = (props) => {
                 className="flex-1 font-manrope font-semibold text-gray_900 text-left w-auto"
                 variant="body4"
               >
-                {props?.p286162ndaveoaklOne}
+                {props?.address}
               </Text>
             </div>
             <div className="flex flex-col gap-[21px] items-start justify-start w-full">
@@ -37,7 +37,7 @@ const LandingPageCard = (props) => {
                     className="flex-1 font-manrope font-semibold text-gray_700 text-left w-auto"
                     variant="body4"
                   >
-                    {props?.p3bedroom}
+                    {props?.bedroom}
                   </Text>
                 </div>
                 <div className="flex flex-1 flex-row gap-3 items-center justify-start w-full">
@@ -50,7 +50,7 @@ const LandingPageCard = (props) => {
                     className="font-manrope font-semibold text-gray_700 text-left w-auto"
                     variant="body4"
                   >
-                    {props?.bathcounter}
+                    {props?.bathroom}
                   </Text>
                 </div>
               </div>

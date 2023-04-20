@@ -1,5 +1,6 @@
-import React from "react";
-
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import "./Listing.css";
 import LandingPageHeader from "components/LandingPageHeader";
 import {
   Text,
@@ -14,16 +15,42 @@ import LandingPageCard from "components/LandingPageCard";
 import LandingPageFooter from "components/LandingPageFooter";
 
 const ListingPage = () => {
-  const landingPageCardPropList = [
-    { image: "images/img_image_260x384.png" },
-    { image: "images/img_image_1.png" },
-    { image: "images/img_image_3.png" },
-    { image: "images/img_image_4.png" },
-    { image: "images/img_image_5.png" },
-    { image: "images/img_image_2.png" },
-    { image: "images/img_image_1.png" },
-    { image: "images/img_image_3.png" },
-  ];
+  const [propertyData, setPropertyData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [searchTerm, setSearchTerm] = useState("");
+  const totalPages = 5;
+  useEffect(() => {
+    axios
+      .get(
+        "https://the-home-backend.onrender.com/api/properties/all-properties"
+      )
+      .then((response) => setPropertyData(response.data))
+      .catch((error) => console.log(error));
+  }, []);
+  const handleSearchTermChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+  const filteredProperties = propertyData.filter((property) =>
+    property.Location.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  const pageButtons = [];
+  for (let i = 1; i <= totalPages; i++) {
+    const isActive = currentPage === i;
+    pageButtons.push(
+      <Button
+        key={i}
+        className={`border ${
+          isActive ? "border-gray_700" : "border-bluegray_102"
+        } border-solid cursor-pointer font-semibold h-12 px-[18px] py-4 rounded-[10px] text-base text-center text-gray_900 w-12`}
+        onClick={() => handleClick(i)}
+      >
+        {i}
+      </Button>
+    );
+  }
+  function handleClick(page) {
+    setCurrentPage(page);
+  }
 
   return (
     <>
@@ -41,9 +68,12 @@ const ListingPage = () => {
               </Text>
               <div className="flex flex-col gap-3 items-start justify-start w-full">
                 <div className="flex md:flex-col flex-row gap-5 items-start justify-start w-full">
-                  <div className="bg-white_A700 border border-bluegray_100 border-solid flex flex-1 h-[60px] md:h-auto items-start justify-start px-4 py-3.5 rounded-[10px] w-full">
+                  <div
+                    className="bg-white_A700 border border-bluegray_100 border-solid flex flex-1 h-[60px] md:h-auto items-start justify-start px-4 py-3.5 rounded-[10px] w-full"
+                    style={{}}
+                  >
                     <Input
-                      wrapClassName="flex w-auto sm:w-full"
+                      wrapClassName="flex w-auto sm:w-full listing-search"
                       className="font-semibold p-0 placeholder:text-gray_700 self-stretch text-gray_700 text-left text-lg w-full"
                       name="frame1000001565"
                       placeholder="Enter your address"
@@ -54,6 +84,7 @@ const ListingPage = () => {
                           alt="search"
                         />
                       }
+                      onChange={handleSearchTermChange}
                     ></Input>
                   </div>
                   <div className="flex sm:flex-1 items-start justify-start self-stretch w-auto sm:w-full">
@@ -221,108 +252,22 @@ const ListingPage = () => {
                     alt="group1000001533"
                   />
                 </div>
-                <div className="absolute bg-white_A700 border border-gray_600 border-solid flex h-max inset-y-[0] items-center justify-start left-[7%] my-auto px-4 py-6 rounded-lg w-[308px]">
-                  <div className="flex flex-col gap-[21.66px] items-start justify-start w-full">
-                    <div className="flex flex-row gap-[9.63px] items-center justify-start w-full">
-                      <Img
-                        src="images/img_eye.svg"
-                        className="h-[19px] w-[19px]"
-                        alt="eye"
-                      />
-                      <Text
-                        className="flex-1 text-gray_900 text-left w-auto"
-                        variant="body6"
-                      >
-                        2861 62nd Ave, Oakland, CA 94605
-                      </Text>
-                    </div>
-                    <List
-                      className="flex-col gap-[16.84px] grid items-start w-full"
-                      orientation="vertical"
-                    >
-                      <div className="flex flex-1 flex-row gap-[32.08px] items-center justify-between my-0 w-full">
-                        <div className="flex flex-1 flex-row gap-[9.63px] items-center justify-start w-full">
-                          <Img
-                            src="images/img_bookmark.svg"
-                            className="h-4 w-4"
-                            alt="bookmark"
-                          />
-                          <Text
-                            className="flex-1 text-gray_700 text-left w-auto"
-                            variant="body6"
-                          >
-                            3 Bed Room
-                          </Text>
-                        </div>
-                        <div className="flex flex-1 flex-row gap-[9.63px] items-center justify-start w-full">
-                          <Img
-                            src="images/img_ticket.svg"
-                            className="h-4 w-4"
-                            alt="ticket"
-                          />
-                          <Text
-                            className="text-gray_700 text-left w-auto"
-                            variant="body6"
-                          >
-                            1 Bath
-                          </Text>
-                        </div>
-                      </div>
-                      <div className="flex flex-1 flex-row gap-[32.08px] items-center justify-between my-0 w-full">
-                        <div className="flex flex-1 flex-row gap-[9.63px] items-center justify-start w-full">
-                          <Img
-                            src="images/img_icon.svg"
-                            className="h-4 w-4"
-                            alt="icon"
-                          />
-                          <Text
-                            className="flex-1 text-gray_700 text-left w-auto"
-                            variant="body6"
-                          >
-                            1,032 sqft
-                          </Text>
-                        </div>
-                        <div className="flex flex-1 flex-row gap-[9.63px] items-center justify-start w-full">
-                          <Img
-                            src="images/img_iocnmenu.svg"
-                            className="h-4 w-4"
-                            alt="iocnmenu"
-                          />
-                          <Text
-                            className="text-gray_700 text-left w-auto"
-                            variant="body6"
-                          >
-                            Family
-                          </Text>
-                        </div>
-                      </div>
-                    </List>
-                    <div className="flex items-center justify-start w-full">
-                      <Text
-                        className="text-gray_900 text-left tracking-[-0.39px] w-auto"
-                        variant="body2"
-                      >
-                        $649,900
-                      </Text>
-                    </div>
-                  </div>
-                </div>
               </div>
               <div className="flex flex-1 flex-col md:gap-10 gap-[60px] items-start justify-start w-full">
                 <div className="flex items-start justify-start w-full">
                   <div className="md:gap-5 gap-6 grid md:grid-cols-1 grid-cols-2 justify-center min-h-[auto] w-full">
-                    {landingPageCardPropList.map((props, index) => (
+                    {filteredProperties.map((property, index) => (
                       <React.Fragment key={`LandingPageCard${index}`}>
                         <LandingPageCard
                           className="flex flex-1 flex-col h-[512px] md:h-auto items-start justify-start w-full"
-                          p286162ndaveoaklOne="2861 62nd Ave, Oakland, CA 94605"
-                          p3bedroom="3 Bed Room"
-                          bathcounter="1 Bath"
-                          sqftcounter="1,032 sqft"
+                          address={property.Location}
+                          bedroom={`${property.Bedrooms} Bed Room`}
+                          bathroom={`${property.Bathrooms} Bath`}
+                          sqftcounter={`${property.property_size} sqft`}
                           p1bath="Family"
                           viewDetails="View Details"
-                          price="$649,900"
-                          {...props}
+                          price={`₹${property.price}`}
+                          image={property.image}
                         />
                       </React.Fragment>
                     ))}
@@ -330,24 +275,12 @@ const ListingPage = () => {
                 </div>
                 <div className="flex sm:flex-col flex-row gap-5 items-center justify-between w-full">
                   <div className="flex flex-row gap-[5px] items-start justify-start self-stretch w-auto">
-                    <Button className="border border-gray_700 border-solid cursor-pointer font-semibold h-12 px-[18px] py-4 rounded-[10px] text-base text-center text-gray_900 w-12">
-                      1
-                    </Button>
-                    <Button className="border border-bluegray_102 border-solid cursor-pointer font-semibold h-12 px-[18px] py-4 rounded-[10px] text-base text-center text-gray_900 w-12">
-                      2
-                    </Button>
-                    <Button className="border border-bluegray_102 border-solid cursor-pointer font-semibold h-12 px-[18px] py-4 rounded-[10px] text-base text-center text-gray_900 w-12">
-                      3
-                    </Button>
-                    <Button className="border border-bluegray_102 border-solid cursor-pointer font-semibold h-12 px-[18px] py-4 rounded-[10px] text-base text-center text-gray_900 w-12">
-                      4
-                    </Button>
-                    <Button className="border border-bluegray_102 border-solid cursor-pointer font-semibold h-12 px-[18px] py-4 rounded-[10px] text-base text-center text-gray_900 w-12">
-                      5
-                    </Button>
+                    {pageButtons}
                   </div>
                   <Button
                     className="border border-bluegray_102 border-solid cursor-pointer flex items-center justify-center min-w-[134px] px-[18px] py-4 rounded-[10px] w-auto"
+                    disabled={currentPage === totalPages}
+                    onClick={() => handleClick(currentPage + 1)}
                     rightIcon={
                       <Img
                         src="images/img_arrowright_gray_900.svg"

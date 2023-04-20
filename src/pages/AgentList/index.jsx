@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import axios from "axios";
 import LandingPageHeader from "components/LandingPageHeader";
 import { Text, Input, Img, SelectBox, Button } from "components";
 import AgentProfileCard from "components/AgentProfileCard";
@@ -22,10 +22,10 @@ const AgentListPage = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch(
+      const response = await axios.get(
         "https://the-home-backend.onrender.com/api/agents/allagents"
       );
-      const data = await response.json();
+      const data = response.data;
       setAgentProfileCardPropList(data);
     }
     fetchData();
@@ -158,6 +158,7 @@ const AgentListPage = () => {
                         className="flex flex-1 flex-col h-[431px] md:h-auto items-start justify-start w-full"
                         agentName={props.name}
                         agentReview={props.review}
+                        agentProfilePic={props.profilePic}
                         agentProfileViewButton="View Profile"
                         {...props}
                       />
