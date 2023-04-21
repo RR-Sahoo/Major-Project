@@ -16,8 +16,8 @@ const AgentListPage = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const options1 = [
     { value: "None", label: "None" },
-    { value: "High to Low", label: "High to Low" },
     { value: "Low to High", label: "Low to High" },
+    { value: "High to Low", label: "High to Low" },
   ];
 
   useEffect(() => {
@@ -34,7 +34,10 @@ const AgentListPage = () => {
     setCurrentPage(page);
   }
 
-  const SearchedAgents = agentProfileCardPropList.filter((agent) => {
+  const matchesSearchText = (agent) => {
+    if (searchText.trim() === "") {
+      return true;
+    }
     const nameMatch = agent.name
       .toLowerCase()
       .includes(searchText.toLowerCase());
@@ -42,29 +45,20 @@ const AgentListPage = () => {
       .toLowerCase()
       .includes(searchText.toLowerCase());
     return nameMatch || addressMatch;
-  });
-  const handleSelectChange = (selectedOption) => {
-    setSelectedOption(selectedOption);
+  };
 
-    if (selectedOption) {
-      const selectedValue = selectedOption.value;
-
-      // Apply the filter based on the selected value
-      if (selectedValue === "High to Low") {
-        setFilteredAgents(
-          agentProfileCardPropList.slice().sort((a, b) => b.rating - a.rating)
-        );
-      } else if (selectedValue === "Low to High") {
-        setFilteredAgents(
-          agentProfileCardPropList.slice().sort((a, b) => a.rating - b.rating)
-        );
-      } else {
-        setFilteredAgents(agentProfileCardPropList);
-      }
+  const sortByReview = (a, b) => {
+    if (selectedOption === "Low to High") {
+      return a.review - b.review;
+    } else if (selectedOption === "High to Low") {
+      return b.review - a.review;
     } else {
-      setFilteredAgents(agentProfileCardPropList);
+      return 0;
     }
   };
+  console.log(selectedOption);
+
+  const SearchedAgents = agentProfileCardPropList.filter(matchesSearchText);
 
   const pageButtons = [];
   for (let i = 1; i <= totalPages; i++) {
@@ -128,7 +122,8 @@ const AgentListPage = () => {
                       alt="arrow_down"
                     />
                   }
-                  onChange={handleSelectChange}
+                  value={selectedOption}
+                  onChange={setSelectedOption}
                 />
               </div>
             </div>
@@ -136,22 +131,12 @@ const AgentListPage = () => {
           <div className="flex flex-col font-manrope md:gap-10 gap-[60px] items-start justify-start md:px-10 sm:px-5 px-[120px] w-full">
             <div className="flex items-center justify-center max-w-[1200px] mx-auto w-full">
               <div className="md:gap-5 gap-6 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-4 justify-center min-h-[auto] w-full">
-                {(searchText.trim() === ""
-                  ? agentProfileCardPropList
-                  : SearchedAgents
+                {(selectedOption && selectedOption.value !== "None"
+                  ? SearchedAgents
+                  : agentProfileCardPropList
                 )
-                  .filter((agent) => {
-                    if (selectedOption) {
-                      const selectedValue = selectedOption.value;
-
-                      if (selectedValue === "High to Low") {
-                        return true;
-                      } else if (selectedValue === "Low to High") {
-                        return true;
-                      }
-                    }
-                    return true;
-                  })
+                  .filter(matchesSearchText)
+                  .sort(sortByReview)
                   .map((props, index) => (
                     <React.Fragment key={`AgentProfileCard${index}`}>
                       <AgentProfileCard
