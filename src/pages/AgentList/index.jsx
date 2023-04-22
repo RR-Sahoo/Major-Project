@@ -9,7 +9,8 @@ const AgentListPage = () => {
   const [agentProfileCardPropList, setAgentProfileCardPropList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchText, setSearchText] = useState("");
-  const totalPages = 5;
+  const itemsPerPage = 12;
+  const totalPages = Math.ceil(agentProfileCardPropList.length / itemsPerPage);
   const [filteredAgents, setFilteredAgents] = useState(
     agentProfileCardPropList
   );
@@ -59,6 +60,14 @@ const AgentListPage = () => {
   console.log(selectedOption);
 
   const SearchedAgents = agentProfileCardPropList.filter(matchesSearchText);
+  const getPaginatedData = () => {
+    const start = (currentPage - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    return SearchedAgents.slice(start, end);
+  };
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
 
   const pageButtons = [];
   for (let i = 1; i <= totalPages; i++) {
@@ -69,7 +78,7 @@ const AgentListPage = () => {
         className={`border ${
           isActive ? "border-gray_700" : "border-bluegray_102"
         } border-solid cursor-pointer font-semibold h-12 px-[18px] py-4 rounded-[10px] text-base text-center text-gray_900 w-12`}
-        onClick={() => handleClick(i)}
+        onClick={() => handlePageChange(i)}
       >
         {i}
       </Button>
@@ -133,7 +142,7 @@ const AgentListPage = () => {
               <div className="md:gap-5 gap-6 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-4 justify-center min-h-[auto] w-full">
                 {(selectedOption && selectedOption.value !== "None"
                   ? SearchedAgents
-                  : agentProfileCardPropList
+                  : getPaginatedData()
                 )
                   .filter(matchesSearchText)
                   .sort(sortByReview)
