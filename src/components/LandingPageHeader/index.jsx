@@ -38,69 +38,71 @@ const LandingPageHeader = (props) => {
               <div></div>
             </div>
           </div>
-          <div className="flex sm:flex-1 sm:flex-col flex-row sm:hidden items-center justify-between w-[492px] sm:w-full">
-            <List
-              className="sm:flex-col flex-row gap-10 grid grid-cols-3 w-auto"
-              orientation="horizontal"
-            >
-              <div className="flex flex-row gap-1.5 items-start justify-start w-[77px]">
-                <Text
-                  className="common-pointer font-manrope font-semibold text-gray_900 text-left w-auto"
-                  variant="body4"
-                  onClick={() => navigate("/")}
-                >
-                  Home
-                </Text>
-                <Img
-                  src="images/img_arrowdown_gray_600.svg"
-                  className="h-4 hidden w-4"
-                  alt="arrowdown"
-                />
-              </div>
-              <div className="flex flex-row gap-1.5 items-start justify-start w-[77px]">
-                <Text
-                  className="common-pointer font-manrope font-semibold text-gray_900 text-left w-auto"
-                  variant="body4"
-                  onClick={() => navigate("/listing")}
-                >
-                  Listing
-                </Text>
-                <Img
-                  src="images/img_arrowdown_gray_600.svg"
-                  className="h-4 hidden w-4"
-                  alt="arrowdown"
-                />
-              </div>
-              <div className="flex flex-row gap-1.5 items-start justify-start w-[77px]">
-                <Text
-                  className="common-pointer font-manrope font-semibold text-gray_900 text-left w-auto"
-                  variant="body4"
-                  onClick={() => navigate("/agentlist")}
-                >
-                  Agents
-                </Text>
-                <Img
-                  src="images/img_arrowdown_gray_600.svg"
-                  className="h-4 hidden w-4"
-                  alt="arrowdown"
-                />
-              </div>
-            </List>
-            <Text
-              className="common-pointer font-manrope font-semibold text-center text-gray_900 w-auto"
-              variant="body4"
-              onClick={() => navigate("/listingmapview")}
-            >
-              Property{" "}
-            </Text>
-            <Text
-              className="common-pointer font-manrope font-semibold text-gray_900 text-left w-auto"
-              variant="body4"
-              onClick={() => navigate("/blogpage")}
-            >
-              Blog
-            </Text>
-          </div>
+          {props.loggedIn !== false && (
+            <div className="flex sm:flex-1 sm:flex-col flex-row sm:hidden items-center justify-between w-[492px] sm:w-full">
+              <List
+                className="sm:flex-col flex-row gap-10 grid grid-cols-3 w-auto"
+                orientation="horizontal"
+              >
+                <div className="flex flex-row gap-1.5 items-start justify-start w-[77px]">
+                  <Text
+                    className="common-pointer font-manrope font-semibold text-gray_900 text-left w-auto"
+                    variant="body4"
+                    onClick={() => navigate("/")}
+                  >
+                    Home
+                  </Text>
+                  <Img
+                    src="images/img_arrowdown_gray_600.svg"
+                    className="h-4 hidden w-4"
+                    alt="arrowdown"
+                  />
+                </div>
+                <div className="flex flex-row gap-1.5 items-start justify-start w-[77px]">
+                  <Text
+                    className="common-pointer font-manrope font-semibold text-gray_900 text-left w-auto"
+                    variant="body4"
+                    onClick={() => navigate("/listing")}
+                  >
+                    Listing
+                  </Text>
+                  <Img
+                    src="images/img_arrowdown_gray_600.svg"
+                    className="h-4 hidden w-4"
+                    alt="arrowdown"
+                  />
+                </div>
+                <div className="flex flex-row gap-1.5 items-start justify-start w-[77px]">
+                  <Text
+                    className="common-pointer font-manrope font-semibold text-gray_900 text-left w-auto"
+                    variant="body4"
+                    onClick={() => navigate("/agentlist")}
+                  >
+                    Agents
+                  </Text>
+                  <Img
+                    src="images/img_arrowdown_gray_600.svg"
+                    className="h-4 hidden w-4"
+                    alt="arrowdown"
+                  />
+                </div>
+              </List>
+              <Text
+                className="common-pointer font-manrope font-semibold text-center text-gray_900 w-auto"
+                variant="body4"
+                onClick={() => navigate("/listingmapview")}
+              >
+                Property{" "}
+              </Text>
+              <Text
+                className="common-pointer font-manrope font-semibold text-gray_900 text-left w-auto"
+                variant="body4"
+                onClick={() => navigate("/blogpage")}
+              >
+                Blog
+              </Text>
+            </div>
+          )}
           <div className="flex flex-row gap-10 h-[42px] md:h-auto sm:hidden items-center justify-start w-[228px]">
             <Button
               className="common-pointer bg-gray_900 cursor-pointer font-manrope font-semibold sm:px-5 px-6 py-[13px] rounded-[10px] text-base text-center text-white_A700 w-full"

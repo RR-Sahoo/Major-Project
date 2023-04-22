@@ -50,7 +50,7 @@ const AgentListPage = () => {
   const sortByReview = (a, b) => {
     if (selectedOption === "Low to High") {
       return a.review - b.review;
-    } else if (selectedOption === "High to Low") {
+    } else if (selectedOption?.value === "High to Low") {
       return b.review - a.review;
     } else {
       return 0;
