@@ -24,7 +24,9 @@ const AgentProfilePage = () => {
             </div>
             <div className="flex flex-1 flex-col gap-[58px] items-center justify-start mt-[-46px] mx-auto w-full z-[1]">
               <AgentProfileHeader />
-              <AgentTabSection />
+              <section className="h-[1100px] w-full">
+                <AgentTabSection />
+              </section>
             </div>
           </div>
         </div>

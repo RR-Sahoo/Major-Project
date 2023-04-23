@@ -19,13 +19,18 @@ const ListingPage = () => {
   const [propertyData, setPropertyData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     axios
       .get(
         "https://the-home-backend.onrender.com/api/properties/all-properties"
       )
-      .then((response) => setPropertyData(response.data))
+      .then((response) => {
+        setPropertyData(response.data);
+        setIsLoading(false);
+      })
       .catch((error) => console.log(error));
   }, []);
   const handleSearchTermChange = (event) => {
@@ -133,67 +138,71 @@ const ListingPage = () => {
               Area
             </button>
           </div>
-
-          <div className="flex font-manrope items-center justify-center md:px-10 sm:px-5 px-[120px] w-full">
-            <div className="flex md:flex-col flex-row gap-6 items-start justify-center max-w-[1200px] mx-auto w-full">
-              <div className="h-[511px] relative w-[32%] md:w-full">
-                <div className="h-[511px] m-auto w-full">
-                  <GoogleMap
-                    className="h-[511px] m-auto rounded-[10px] w-full"
-                    showMarker={false}
-                  ></GoogleMap>
-                  <Img
-                    src="images/img_group1000001533.svg"
-                    className="absolute h-[427px] inset-y-[0] my-auto right-[6%] w-auto"
-                    alt="group1000001533"
-                  />
-                </div>
-              </div>
-              <div className="flex flex-1 flex-col md:gap-10 gap-[60px] items-start justify-start w-full">
-                <div className="flex items-start justify-start w-full">
-                  <div className="md:gap-5 gap-6 grid md:grid-cols-1 grid-cols-2 justify-center min-h-[auto] w-full">
-                    {getPaginatedData().map((property, index) => (
-                      <React.Fragment key={`LandingPageCard${index}`}>
-                        <LandingPageCard
-                          className="flex flex-1 flex-col h-[512px] md:h-auto items-start justify-start w-full"
-                          address={property.Location}
-                          bedroom={`${property.Bedrooms} Bed Room`}
-                          bathroom={`${property.Bathrooms} Bath`}
-                          sqftcounter={`${property.property_size} sqft`}
-                          tag={property.tag}
-                          p1bath="Family"
-                          viewDetails="View Details"
-                          price={`₹${property.price}`}
-                          image={property.image}
-                        />
-                      </React.Fragment>
-                    ))}
+          {/* Conditional rendering of loader */}
+          {isLoading ? (
+            <div>Loading...</div>
+          ) : (
+            <div className="flex font-manrope items-center justify-center md:px-10 sm:px-5 px-[120px] w-full">
+              <div className="flex md:flex-col flex-row gap-6 items-start justify-center max-w-[1200px] mx-auto w-full">
+                <div className="h-[511px] relative w-[32%] md:w-full">
+                  <div className="h-[511px] m-auto w-full">
+                    <GoogleMap
+                      className="h-[511px] m-auto rounded-[10px] w-full"
+                      showMarker={false}
+                    ></GoogleMap>
+                    <Img
+                      src="images/img_group1000001533.svg"
+                      className="absolute h-[427px] inset-y-[0] my-auto right-[6%] w-auto"
+                      alt="group1000001533"
+                    />
                   </div>
                 </div>
-                <div className="flex sm:flex-col flex-row gap-5 items-center justify-between w-full">
-                  <div className="flex flex-row gap-[5px] items-start justify-start self-stretch w-auto">
-                    {pageButtons}
-                  </div>
-                  <Button
-                    className="border border-bluegray_102 border-solid cursor-pointer flex items-center justify-center min-w-[134px] px-[18px] py-4 rounded-[10px] w-auto"
-                    disabled={currentPage === totalPages}
-                    onClick={() => handlePageChange(currentPage + 1)}
-                    rightIcon={
-                      <Img
-                        src="images/img_arrowright_gray_900.svg"
-                        className="mt-px mb-[5px] ml-1"
-                        alt="arrow_right"
-                      />
-                    }
-                  >
-                    <div className="font-semibold text-base text-gray_900 text-left">
-                      Next Page
+                <div className="flex flex-1 flex-col md:gap-10 gap-[60px] items-start justify-start w-full">
+                  <div className="flex items-start justify-start w-full">
+                    <div className="md:gap-5 gap-6 grid md:grid-cols-1 grid-cols-2 justify-center min-h-[auto] w-full">
+                      {getPaginatedData().map((property, index) => (
+                        <React.Fragment key={`LandingPageCard${index}`}>
+                          <LandingPageCard
+                            className="flex flex-1 flex-col h-[512px] md:h-auto items-start justify-start w-full"
+                            address={property.Location}
+                            bedroom={`${property.Bedrooms} Bed Room`}
+                            bathroom={`${property.Bathrooms} Bath`}
+                            sqftcounter={`${property.property_size} sqft`}
+                            tag={property.tag}
+                            p1bath="Family"
+                            viewDetails="View Details"
+                            price={`₹${property.price}`}
+                            image={property.image}
+                          />
+                        </React.Fragment>
+                      ))}
                     </div>
-                  </Button>
+                  </div>
+                  <div className="flex sm:flex-col flex-row gap-5 items-center justify-between w-full">
+                    <div className="flex flex-row gap-[5px] items-start justify-start self-stretch w-auto">
+                      {pageButtons}
+                    </div>
+                    <Button
+                      className="border border-bluegray_102 border-solid cursor-pointer flex items-center justify-center min-w-[134px] px-[18px] py-4 rounded-[10px] w-auto"
+                      disabled={currentPage === totalPages}
+                      onClick={() => handlePageChange(currentPage + 1)}
+                      rightIcon={
+                        <Img
+                          src="images/img_arrowright_gray_900.svg"
+                          className="mt-px mb-[5px] ml-1"
+                          alt="arrow_right"
+                        />
+                      }
+                    >
+                      <div className="font-semibold text-base text-gray_900 text-left">
+                        Next Page
+                      </div>
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
         <LandingPageFooter className="bg-white_A700 flex items-center justify-center md:px-5 px-[120px] py-20 w-full" />
       </div>

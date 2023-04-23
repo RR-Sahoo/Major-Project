@@ -21,6 +21,8 @@ const AgentListPage = () => {
     { value: "High to Low", label: "High to Low" },
   ];
 
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     async function fetchData() {
       const response = await axios.get(
@@ -28,9 +30,14 @@ const AgentListPage = () => {
       );
       const data = response.data;
       setAgentProfileCardPropList(data);
+      setIsLoading(false);
     }
     fetchData();
   }, []);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
   function handleClick(page) {
     setCurrentPage(page);
   }
