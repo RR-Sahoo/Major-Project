@@ -34,6 +34,38 @@ const ListingPage = () => {
   const filteredProperties = propertyData.filter((property) =>
     property.Location.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  function property() {
+    const sortedData = [...propertyData].sort((a, b) => a.price - b.price);
+    setPropertyData(sortedData);
+  }
+
+  function sortedProperties() {
+    const sortedData = [...propertyData].sort((a, b) => {
+      if (a.Location < b.Location) return -1;
+      if (a.Location > b.Location) return 1;
+      return 0;
+    });
+    setPropertyData(sortedData);
+  }
+  function sortedBedrooms() {
+    const sortedData = [...propertyData].sort(
+      (a, b) => b.Bedrooms - a.Bedrooms
+    );
+    setPropertyData(sortedData);
+  }
+  function sortedBathrooms() {
+    const sortedData = [...propertyData].sort(
+      (a, b) => b.Bathrooms - a.Bathrooms
+    );
+    setPropertyData(sortedData);
+  }
+  function sortedPropertySize() {
+    const sortedData = [...propertyData].sort(
+      (a, b) => a.property_size - b.property_size
+    );
+    setPropertyData(sortedData);
+  }
   const itemsPerPage = 6;
   const totalPages = Math.ceil(filteredProperties.length / itemsPerPage);
   const getPaginatedData = () => {
@@ -69,6 +101,39 @@ const ListingPage = () => {
         <div className="flex flex-col md:gap-10 gap-[60px] items-center justify-center w-full">
           <LandingPageHeader className="bg-white_A700 flex h-20 md:h-auto items-center justify-between md:px-5 px-[120px] py-[19px] w-full" />
           <ListingHeader handleSearchTermChange={handleSearchTermChange} />
+          <div className="flex flex-row gap-2 my-4">
+            <button
+              onClick={property}
+              className="bg-orange_A700 hover:bg-orange_A700 text-white font-normal py-2 px-4 rounded uppercase  w-1/2"
+            >
+              price
+            </button>
+            <button
+              onClick={sortedProperties}
+              className="bg-blue-500 hover:bg-blue-700 text-white font-normal py-2 px-4 rounded uppercase w-1/2"
+            >
+              Location
+            </button>
+            <button
+              onClick={sortedBedrooms}
+              className="bg-orange_A700 hover:bg-blue-700 text-white font-normal py-2 px-4 rounded uppercase"
+            >
+              Bedrooms
+            </button>
+            <button
+              onClick={sortedBathrooms}
+              className="bg-blue-500 hover:bg-blue-700 text-white font-normal py-2 px-4 rounded uppercase w-1/2"
+            >
+              Bathrooms
+            </button>
+            <button
+              onClick={sortedPropertySize}
+              className="bg-orange_A700 hover:bg-blue-700 text-white font-normal py-2 px-4 rounded uppercase"
+            >
+              Area
+            </button>
+          </div>
+
           <div className="flex font-manrope items-center justify-center md:px-10 sm:px-5 px-[120px] w-full">
             <div className="flex md:flex-col flex-row gap-6 items-start justify-center max-w-[1200px] mx-auto w-full">
               <div className="h-[511px] relative w-[32%] md:w-full">
