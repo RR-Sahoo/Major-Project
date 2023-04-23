@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Img, Text, Button } from "components";
 import { useNavigate } from "react-router-dom";
 
@@ -9,11 +8,21 @@ const LandingPageCard = (props) => {
   return (
     <>
       <div className={props.className}>
-        <Img
-          src={props?.image}
-          className="h-[260px] sm:h-auto object-cover rounded-bl-none rounded-br-none rounded-tl-[10px] rounded-tr-[10px] w-full"
-          alt="image"
-        />
+        <div className="relative">
+          <Img
+            src={props?.image}
+            className="h-[260px] sm:h-auto object-cover rounded-bl-none rounded-br-none rounded-tl-[10px] rounded-tr-[10px] w-full"
+            alt="image"
+          />
+          <div
+            className={`absolute top-0 left-0 m-4 p-2 ${
+              props?.isRent ? "bg-green-500" : "bg-red-500"
+            } text-white font-semibold rounded-full m-4 py-1 px-3`}
+          >
+            {props?.isRent ? "Rent" : "Sell"}
+          </div>
+        </div>
+
         <div className="bg-gray_51 border border-red_101 border-solid flex items-start justify-start px-5 py-[30px] rounded-bl-[10px] rounded-br-[10px] rounded-tl-none rounded-tr-none w-full">
           <div className="flex flex-col gap-[27px] items-start justify-start w-full">
             <div className="flex flex-row gap-3 items-center justify-start w-full">
