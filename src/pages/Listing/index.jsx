@@ -95,6 +95,7 @@ const ListingPage = () => {
                           bedroom={`${property.Bedrooms} Bed Room`}
                           bathroom={`${property.Bathrooms} Bath`}
                           sqftcounter={`${property.property_size} sqft`}
+                          tag={property.tag}
                           p1bath="Family"
                           viewDetails="View Details"
                           price={`₹${property.price}`}

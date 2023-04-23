@@ -4,11 +4,12 @@ import { useNavigate } from "react-router-dom";
 
 const LandingPageCard = (props) => {
   const navigate = useNavigate();
+  const isRent = props.tag === "rent" ? true : false;
 
   return (
     <>
       <div className={props.className}>
-        <div className="relative">
+        <div className="relative w-full">
           <Img
             src={props?.image}
             className="h-[260px] sm:h-auto object-cover rounded-bl-none rounded-br-none rounded-tl-[10px] rounded-tr-[10px] w-full"
@@ -16,10 +17,10 @@ const LandingPageCard = (props) => {
           />
           <div
             className={`absolute top-0 left-0 m-4 p-2 ${
-              props?.isRent ? "bg-green-500" : "bg-red-500"
+              isRent ? "bg-green-500" : "bg-red-500"
             } text-white font-semibold rounded-full m-4 py-1 px-3`}
           >
-            {props?.isRent ? "Rent" : "Sell"}
+            {isRent ? "Rent" : "Sell"}
           </div>
         </div>
 
