@@ -13,8 +13,8 @@ const ListingHeader = (props) => {
           Find Property
         </Text>
         <div className="flex flex-col md:flex-row gap-3 items-start justify-start w-full">
-          <div className="w-full md:w-auto">
-            <div className="bg-white_A700 border border-bluegray_100 border-solid flex h-[60px] items-start justify-start px-4 py-3.5 rounded-[10px] w-full">
+          <div className="w-full md:w-auto flex flex-row gap-4 items-center">
+            <div className="flex bg-white_A700 border border-bluegray_100 border-solid h-[60px] items-start justify-start px-4 py-3.5 rounded-[10px] w-full">
               <Input
                 wrapClassName="flex w-auto sm:w-full listing-search"
                 className="font-semibold p-0 placeholder:text-gray_700 self-stretch text-gray_700 text-left text-lg w-full"
