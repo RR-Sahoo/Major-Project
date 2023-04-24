@@ -2,7 +2,7 @@ import React from "react";
 
 import Header from "components/Header";
 import { Text, Input, Img, List, Line } from "components";
-import { CloseSVG } from "../../assets/images";
+import { CloseSVG } from "../../assets/images/close";
 
 const FAQPage = () => {
   function handleNavigate1() {

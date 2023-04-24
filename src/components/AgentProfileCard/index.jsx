@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Img, Text, Button } from "components";
 import { useNavigate } from "react-router-dom";
 
@@ -10,6 +9,10 @@ const AgentProfileCard = (props) => {
   // Calculate the number of filled and empty stars based on the review score
   const filledStars = Math.floor(reviewScore);
   const emptyStars = 5 - filledStars;
+
+  const handleClick = () => {
+    navigate(`/agentprofile/${props.agentId}`);
+  };
 
   return (
     <>
@@ -55,7 +58,7 @@ const AgentProfileCard = (props) => {
             </div>
             <Button
               className="common-pointer border border-bluegray_100 border-solid cursor-pointer font-manrope font-semibold sm:px-5 px-6 py-4 rounded-[10px] text-base text-center text-gray_900 w-full"
-              onClick={() => navigate("/agentprofile")}
+              onClick={handleClick}
             >
               {props?.agentProfileViewButton}
             </Button>
@@ -71,6 +74,7 @@ AgentProfileCard.defaultProps = {
   agentName: "Bruno Fernandes",
   agentReview: "4.5",
   agentProfileViewButton: "View Profile",
+  agentId: 0,
 };
 
 export default AgentProfileCard;

@@ -1,6 +1,13 @@
 import React from "react";
 import { Img, Text, Button } from "components";
-const AgentProfileHeader = () => {
+const AgentProfileHeader = ({ agent }) => {
+  const reviewScore = agent?.review;
+  // const filledStars = Math.floor(reviewScore);
+  // const emptyStars = 5 - filledStars;
+  // console.log(reviewScore);
+  // console.log("filledStars", filledStars);
+  // console.log("emptyStars", emptyStars);
+
   return (
     <div className="flex md:flex-col flex-row gap-[30px] items-end justify-start md:px-10 sm:px-5 px-[140px] w-full">
       <Img
@@ -16,37 +23,32 @@ const AgentProfileHeader = () => {
               as="h5"
               variant="h5"
             >
-              Bruno Fernandes
+              {agent?.name}
             </Text>
             <div className="flex flex-row gap-3.5 items-center justify-start w-full">
               <div className="flex flex-row items-center justify-evenly w-1/4">
-                <Img src="images/img_star.svg" className="h-4 w-4" alt="star" />
-                <Img
-                  src="images/img_star.svg"
-                  className="h-4 w-4"
-                  alt="star_One"
-                />
-                <Img
-                  src="images/img_star.svg"
-                  className="h-4 w-4"
-                  alt="star_Two"
-                />
-                <Img
-                  src="images/img_star.svg"
-                  className="h-4 w-4"
-                  alt="star_Three"
-                />
-                <Img
-                  src="images/img_star_gray_600.svg"
-                  className="h-4 w-4"
-                  alt="star_Four"
-                />
+                {/* {[...Array(filledStars)].map((_, index) => (
+                  <Img
+                    key={index}
+                    src="images/img_star.svg"
+                    className="h-4 w-4"
+                    alt={`star_${index}`}
+                  />
+                ))}
+                {[...Array(emptyStars)].map((_, index) => (
+                  <Img
+                    key={index}
+                    src="images/img_star_gray_600.svg"
+                    className="h-4 w-4"
+                    alt={`star_${index + filledStars}`}
+                  />
+                ))} */}
               </div>
               <Text
                 className="flex-1 font-semibold text-gray_900 text-left w-auto"
                 variant="body4"
               >
-                4.5 review
+                {agent?.review} review
               </Text>
             </div>
           </div>
@@ -61,7 +63,7 @@ const AgentProfileHeader = () => {
                 className="flex-1 font-semibold text-gray_900 text-left w-auto"
                 variant="body3"
               >
-                (123) 456-7890
+                {agent?.phone}
               </Text>
             </div>
             <div className="flex flex-row gap-3 items-center justify-start w-full">
@@ -74,7 +76,7 @@ const AgentProfileHeader = () => {
                 className="font-semibold text-gray_900 text-left w-auto"
                 variant="body3"
               >
-                bruno@relasto .com
+                {agent?.email}
               </Text>
             </div>
           </div>

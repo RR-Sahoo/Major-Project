@@ -1,7 +1,7 @@
 import React from "react";
 import { Img, Text, Button } from "components";
 
-const AgentProfileAbout = () => {
+const AgentProfileAbout = ({ agent }) => {
   return (
     <div className="flex font-manrope items-start justify-start md:px-10 sm:px-5 px-[120px] w-full">
       <div className="bg-white_A700 border border-bluegray_100 border-solid flex items-center justify-center max-w-[1200px] mx-auto p-[42px] md:px-5 rounded-[10px] w-full">
@@ -21,7 +21,7 @@ const AgentProfileAbout = () => {
                       as="h5"
                       variant="h5"
                     >
-                      Bruno Fernandes
+                      {agent?.name}
                     </Text>
                     <div className="flex flex-row gap-3.5 items-center justify-start w-full">
                       <div className="flex flex-row items-center justify-evenly w-[31%]">
@@ -55,7 +55,7 @@ const AgentProfileAbout = () => {
                         className="flex-1 font-semibold text-gray_900 text-left w-auto"
                         variant="body4"
                       >
-                        4.5 review
+                        {agent?.review} review
                       </Text>
                     </div>
                     <div className="flex flex-row gap-3 items-center justify-start w-full">
@@ -68,7 +68,7 @@ const AgentProfileAbout = () => {
                         className="flex-1 font-semibold text-gray_900 text-left w-auto"
                         variant="body3"
                       >
-                        (123) 456-7890
+                        {agent?.phone}
                       </Text>
                     </div>
                     <div className="flex flex-row gap-3 items-center justify-start w-full">
@@ -81,7 +81,7 @@ const AgentProfileAbout = () => {
                         className="font-semibold text-gray_900 text-left w-auto"
                         variant="body3"
                       >
-                        bruno@relasto .com
+                        {agent?.mail}
                       </Text>
                     </div>
                   </div>

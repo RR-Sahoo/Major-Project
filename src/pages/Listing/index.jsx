@@ -196,11 +196,11 @@ const ListingPage = () => {
             <div>
               <form>
                 <select
-                  placeholder="Area"
+                  placeholder="Size"
                   className="font-manrope uppercase text-sm font-medium"
                   onChange={(e) => sortedPropertySize(e.target.value)}
                 >
-                  <option>Area</option>
+                  <option>Size</option>
                   <option value="lowToHigh">low to high</option>
                   <option value="highToLow">high to low</option>
                 </select>

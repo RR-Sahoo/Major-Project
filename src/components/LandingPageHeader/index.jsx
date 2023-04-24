@@ -44,7 +44,7 @@ const LandingPageHeader = (props) => {
                 className="sm:flex-col flex-row gap-10 grid grid-cols-4 w-auto"
                 orientation="horizontal"
               >
-                <div className="flex flex-row gap-1.5 items-start justify-start w-[77px]">
+                <div className="flex flex-row gap-1.5 items-start justify-center w-[77px]">
                   <Text
                     className="common-pointer font-manrope font-semibold text-gray_900 text-left w-auto"
                     variant="body4"
@@ -58,7 +58,7 @@ const LandingPageHeader = (props) => {
                     alt="arrowdown"
                   />
                 </div>
-                <div className="flex flex-row gap-1.5 items-start justify-start w-[77px]">
+                <div className="flex flex-row gap-1.5 items-start justify-center w-[77px]">
                   <Text
                     className="common-pointer font-manrope font-semibold text-gray_900 text-left w-auto"
                     variant="body4"
@@ -72,7 +72,7 @@ const LandingPageHeader = (props) => {
                     alt="arrowdown"
                   />
                 </div>
-                <div className="flex flex-row gap-1.5 items-start justify-start w-[77px]">
+                <div className="flex flex-row gap-1.5 items-start justify-center w-[77px]">
                   <Text
                     className="common-pointer font-manrope font-semibold text-gray_900 text-left w-auto"
                     variant="body4"
@@ -81,13 +81,15 @@ const LandingPageHeader = (props) => {
                     Agents
                   </Text>
                 </div>
-                <Text
-                  className="common-pointer font-manrope font-semibold text-gray_900 text-left w-auto"
-                  variant="body4"
-                  onClick={() => navigate("/blogpage")}
-                >
-                  Blog
-                </Text>
+                <div className="flex flex-row gap-1.5 items-start justify-center w-[77px]">
+                  <Text
+                    className="common-pointer font-manrope font-semibold text-gray_900 text-left w-auto"
+                    variant="body4"
+                    onClick={() => navigate("/blogpage")}
+                  >
+                    Blog
+                  </Text>
+                </div>
               </List>
             </div>
           )}

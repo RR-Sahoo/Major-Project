@@ -17,7 +17,7 @@ function TabButton({ label, active, onClick }) {
   );
 }
 
-const AgentTabSection = () => {
+const AgentTabSection = ({ agent }) => {
   const [activeTab, setActiveTab] = useState("rent");
 
   const handleTabClick = (tab) => {
@@ -35,7 +35,7 @@ const AgentTabSection = () => {
     },
     {
       tab: "about",
-      component: <AgentProfileAbout />,
+      component: <AgentProfileAbout agent={agent} />,
     },
     {
       tab: "review",

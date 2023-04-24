@@ -28,7 +28,7 @@ const ProjectRoutes = () => {
           <Route path="/listing" element={<Listing />} />
           <Route path="/propertydetails" element={<PropertyDetails />} />
           <Route path="/agentlist" element={<AgentList />} />
-          <Route path="/agentprofile" element={<AgentProfile />} />
+          <Route path="/agentprofile/:id" element={<AgentProfile />} />
           <Route path="/contactpage" element={<ContactPage />} />
           <Route path="/blogpage" element={<BlogPage />} />
           <Route path="/blogdetails" element={<BlogDetails />} />

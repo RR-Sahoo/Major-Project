@@ -26,7 +26,7 @@ const AgentListPage = () => {
   useEffect(() => {
     async function fetchData() {
       const response = await axios.get(
-        "https://the-home-backend.onrender.com/api/agents/allagents"
+        "https://the-home-backend.onrender.com/api/agents/all-agents"
       );
       const data = response.data;
       setAgentProfileCardPropList(data);
@@ -160,6 +160,7 @@ const AgentListPage = () => {
                         agentName={props.name}
                         agentReview={props.review}
                         agentProfilePic={props.profilePic}
+                        agentId={props._id}
                         agentProfileViewButton="View Profile"
                         {...props}
                       />
