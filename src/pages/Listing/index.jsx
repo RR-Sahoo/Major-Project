@@ -14,6 +14,7 @@ import {
 import LandingPageCard from "components/LandingPageCard";
 import LandingPageFooter from "components/LandingPageFooter";
 import ListingHeader from "./Components/ListingHeader";
+import { ArrowIcon } from "components/Icones";
 
 const ListingPage = () => {
   const [propertyData, setPropertyData] = useState([]);
@@ -40,35 +41,68 @@ const ListingPage = () => {
     property.Location.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  function property() {
-    const sortedData = [...propertyData].sort((a, b) => a.price - b.price);
+  function property(order) {
+    let sortedData;
+    if (order === "lowToHigh") {
+      sortedData = [...propertyData].sort((a, b) => a.price - b.price);
+    } else if (order === "highToLow") {
+      sortedData = [...propertyData].sort((a, b) => b.price - a.price);
+    } else {
+      sortedData = propertyData;
+    }
     setPropertyData(sortedData);
   }
 
-  function sortedProperties() {
-    const sortedData = [...propertyData].sort((a, b) => {
-      if (a.Location < b.Location) return -1;
-      if (a.Location > b.Location) return 1;
-      return 0;
-    });
+  function sortedProperties(order) {
+    let sortedData;
+    if (order === "ascending") {
+      sortedData = [...propertyData].sort((a, b) =>
+        a.Location.localeCompare(b.Location)
+      );
+    } else if (order === "descending") {
+      sortedData = [...propertyData].sort((a, b) =>
+        b.Location.localeCompare(a.Location)
+      );
+    } else {
+      sortedData = propertyData;
+    }
     setPropertyData(sortedData);
   }
-  function sortedBedrooms() {
-    const sortedData = [...propertyData].sort(
-      (a, b) => b.Bedrooms - a.Bedrooms
-    );
+  function sortedBedrooms(order) {
+    let sortedData;
+    if (order === "lowToHigh") {
+      sortedData = [...propertyData].sort((a, b) => a.Bedrooms - b.Bedrooms);
+    } else if (order === "highToLow") {
+      sortedData = [...propertyData].sort((a, b) => b.Bedrooms - a.Bedrooms);
+    } else {
+      sortedData = propertyData;
+    }
     setPropertyData(sortedData);
   }
-  function sortedBathrooms() {
-    const sortedData = [...propertyData].sort(
-      (a, b) => b.Bathrooms - a.Bathrooms
-    );
+  function sortedBathrooms(order) {
+    let sortedData;
+    if (order === "lowToHigh") {
+      sortedData = [...propertyData].sort((a, b) => a.Bathrooms - b.Bathrooms);
+    } else if (order === "highToLow") {
+      sortedData = [...propertyData].sort((a, b) => b.Bathrooms - a.Bathrooms);
+    } else {
+      sortedData = propertyData;
+    }
     setPropertyData(sortedData);
   }
-  function sortedPropertySize() {
-    const sortedData = [...propertyData].sort(
-      (a, b) => a.property_size - b.property_size
-    );
+  function sortedPropertySize(order) {
+    let sortedData;
+    if (order === "lowToHigh") {
+      sortedData = [...propertyData].sort(
+        (a, b) => a.property_size - b.property_size
+      );
+    } else if (order === "highToLow") {
+      sortedData = [...propertyData].sort(
+        (a, b) => b.property_size - a.property_size
+      );
+    } else {
+      sortedData = propertyData;
+    }
     setPropertyData(sortedData);
   }
   const itemsPerPage = 6;
@@ -106,37 +140,72 @@ const ListingPage = () => {
         <div className="flex flex-col md:gap-10 gap-[60px] items-center justify-center w-full">
           <LandingPageHeader className="bg-white_A700 flex h-20 md:h-auto items-center justify-between md:px-5 px-[120px] py-[19px] w-full" />
           <ListingHeader handleSearchTermChange={handleSearchTermChange} />
-          <div className="flex flex-row gap-2 my-4">
-            <button
-              onClick={property}
-              className="bg-orange_A700 hover:bg-orange_A700 text-white font-normal py-2 px-4 rounded uppercase  w-1/2"
-            >
-              price
-            </button>
-            <button
-              onClick={sortedProperties}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-normal py-2 px-4 rounded uppercase w-1/2"
-            >
-              Location
-            </button>
-            <button
-              onClick={sortedBedrooms}
-              className="bg-orange_A700 hover:bg-blue-700 text-white font-normal py-2 px-4 rounded uppercase"
-            >
-              Bedrooms
-            </button>
-            <button
-              onClick={sortedBathrooms}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-normal py-2 px-4 rounded uppercase w-1/2"
-            >
-              Bathrooms
-            </button>
-            <button
-              onClick={sortedPropertySize}
-              className="bg-orange_A700 hover:bg-blue-700 text-white font-normal py-2 px-4 rounded uppercase"
-            >
-              Area
-            </button>
+          <div className="flex flex-row gap-8 my-4">
+            <div>
+              <form>
+                <select
+                  placeholder="Price"
+                  className="font-manrope uppercase text-sm font-medium"
+                  onChange={(e) => property(e.target.value)}
+                >
+                  <option>Price</option>
+                  <option value="lowToHigh">low to high</option>
+                  <option value="highToLow">high to low</option>
+                </select>
+              </form>
+            </div>
+            <div>
+              <form>
+                <select
+                  placeholder="Location"
+                  className="font-manrope uppercase text-sm font-medium"
+                  onChange={(e) => sortedProperties(e.target.value)}
+                >
+                  <option>Location</option>
+                  <option value="ascending">Ascending</option>
+                  <option value="descending">Descending</option>
+                </select>
+              </form>
+            </div>
+            <div>
+              <form>
+                <select
+                  placeholder="Bedrooms"
+                  className="font-manrope uppercase text-sm font-medium"
+                  onChange={(e) => sortedBedrooms(e.target.value)}
+                >
+                  <option>Bedrooms</option>
+                  <option value="lowToHigh">low to high</option>
+                  <option value="highToLow">high to low</option>
+                </select>
+              </form>
+            </div>
+            <div>
+              <form>
+                <select
+                  placeholder="Bathrooms"
+                  className="font-manrope uppercase text-sm font-medium"
+                  onChange={(e) => sortedBathrooms(e.target.value)}
+                >
+                  <option>Bathrooms</option>
+                  <option value="lowToHigh">low to high</option>
+                  <option value="highToLow">high to low</option>
+                </select>
+              </form>
+            </div>
+            <div>
+              <form>
+                <select
+                  placeholder="Area"
+                  className="font-manrope uppercase text-sm font-medium"
+                  onChange={(e) => sortedPropertySize(e.target.value)}
+                >
+                  <option>Area</option>
+                  <option value="lowToHigh">low to high</option>
+                  <option value="highToLow">high to low</option>
+                </select>
+              </form>
+            </div>
           </div>
           {/* Conditional rendering of loader */}
           {isLoading ? (

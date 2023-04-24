@@ -41,7 +41,7 @@ const LandingPageHeader = (props) => {
           {props.loggedIn !== false && (
             <div className="flex sm:flex-1 sm:flex-col flex-row sm:hidden items-center justify-between w-[492px] sm:w-full">
               <List
-                className="sm:flex-col flex-row gap-10 grid grid-cols-3 w-auto"
+                className="sm:flex-col flex-row gap-10 grid grid-cols-4 w-auto"
                 orientation="horizontal"
               >
                 <div className="flex flex-row gap-1.5 items-start justify-start w-[77px]">
@@ -80,27 +80,15 @@ const LandingPageHeader = (props) => {
                   >
                     Agents
                   </Text>
-                  <Img
-                    src="images/img_arrowdown_gray_600.svg"
-                    className="h-4 hidden w-4"
-                    alt="arrowdown"
-                  />
                 </div>
+                <Text
+                  className="common-pointer font-manrope font-semibold text-gray_900 text-left w-auto"
+                  variant="body4"
+                  onClick={() => navigate("/blogpage")}
+                >
+                  Blog
+                </Text>
               </List>
-              <Text
-                className="common-pointer font-manrope font-semibold text-center text-gray_900 w-auto"
-                variant="body4"
-                onClick={() => navigate("/listingmapview")}
-              >
-                Property{" "}
-              </Text>
-              <Text
-                className="common-pointer font-manrope font-semibold text-gray_900 text-left w-auto"
-                variant="body4"
-                onClick={() => navigate("/blogpage")}
-              >
-                Blog
-              </Text>
             </div>
           )}
           <div className="flex flex-row gap-10 h-[42px] md:h-auto sm:hidden items-center justify-start w-[228px]">

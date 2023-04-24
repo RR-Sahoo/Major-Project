@@ -13,7 +13,6 @@ const ContactPage = React.lazy(() => import("pages/ContactPage"));
 const AgentProfile = React.lazy(() => import("pages/AgentProfile"));
 const AgentList = React.lazy(() => import("pages/AgentList"));
 const PropertyDetails = React.lazy(() => import("pages/PropertyDetails"));
-const ListingMapView = React.lazy(() => import("pages/ListingMapView"));
 const Listing = React.lazy(() => import("pages/Listing"));
 const AboutUs = React.lazy(() => import("pages/AboutUs"));
 const LandingPage = React.lazy(() => import("pages/LandingPage"));
@@ -27,7 +26,6 @@ const ProjectRoutes = () => {
           <Route path="*" element={<NotFound />} />
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/listing" element={<Listing />} />
-          <Route path="/listingmapview" element={<ListingMapView />} />
           <Route path="/propertydetails" element={<PropertyDetails />} />
           <Route path="/agentlist" element={<AgentList />} />
           <Route path="/agentprofile" element={<AgentProfile />} />
