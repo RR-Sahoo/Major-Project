@@ -1,9 +1,102 @@
-import React from "react";
+import React, { useState } from "react";
 import ModalProvider from "react-modal";
+import LogInModal from "modals/LogIn";
 
 import { Text, Img, Input, CheckBox, Button, Line } from "components";
-
+import axios from "axios";
 const CreateAccountModal = (props) => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [usernameError, setUsernameError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [confirmPasswordError, setConfirmPasswordError] = useState("");
+  const [isChecked, setIsChecked] = useState(false);
+  const [isOpenLogInModal, setLogInModal] = useState(false);
+
+  function handleOpenLogInModal() {
+    setLogInModal(true);
+  }
+  function handleCloseLogInModal() {
+    setLogInModal(false);
+  }
+
+  const handleUsernameChange = (event) => {
+    setUsername(event.target.value);
+    if (!event.target.value) {
+      setUsernameError("Username is required");
+    } else if (event.target.value.length < 3) {
+      setUsernameError("Username must be at least 3 characters long");
+    } else {
+      setUsernameError("");
+    }
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+    if (!event.target.value) {
+      setPasswordError("Password is required");
+    } else if (event.target.value.length < 8) {
+      setPasswordError("Password must be at least 8 characters long");
+    } else {
+      setPasswordError("");
+    }
+  };
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+    if (!event.target.value) {
+      setEmailError("Email is required");
+    } else if (!/\S+@\S+\.\S+/.test(event.target.value)) {
+      setEmailError("Invalid email address");
+    } else {
+      setEmailError("");
+    }
+  };
+
+  const handleConfirmPasswordChange = (event) => {
+    setConfirmPassword(event.target.value);
+    if (!event.target.value) {
+      setConfirmPasswordError("Confirm password is required");
+    } else if (event.target.value !== password) {
+      setConfirmPasswordError("Passwords do not match");
+    } else {
+      setConfirmPasswordError("");
+    }
+  };
+
+  const isFormValid = () => {
+    return (
+      username !== "" &&
+      password !== "" &&
+      email !== "" &&
+      confirmPassword !== "" &&
+      password === confirmPassword
+    );
+  };
+  const createUser = () => {
+    const userData = {
+      name: username,
+      email: email,
+      password: password,
+    };
+    console.log(username, email, password);
+
+    axios
+      .post(
+        "https://the-home-backend.onrender.com/api/users/register",
+        userData
+      )
+      .then((response) => {
+        console.log("User created successfully!", response);
+      })
+      .catch((error) => {
+        console.error("Error creating user:", error);
+      });
+  };
+
   return (
     <>
       <ModalProvider
@@ -35,11 +128,13 @@ const CreateAccountModal = (props) => {
                   <div className="flex md:flex-col flex-row gap-5 items-start justify-start w-full">
                     <div className="flex flex-1 flex-col gap-5 items-start justify-start w-full">
                       <Input
-                        wrapClassName="bg-white_A700 border border-bluegray_100 border-solid flex px-4 py-3.5 rounded-[10px] w-full"
+                        wrapClassName={`bg-white_A700 border border-bluegray_100 border-solid flex px-4 py-3.5 rounded-[10px] w-full ${
+                          usernameError ? "border-red-500" : ""
+                        }`}
                         className="font-semibold p-0 placeholder:text-gray_600 text-gray_600 text-left text-lg w-full"
-                        type="email"
+                        type="text"
                         name="textfieldlarge"
-                        placeholder="user / email address"
+                        placeholder="User Name"
                         prefix={
                           <Img
                             src="images/img_user.svg"
@@ -47,9 +142,20 @@ const CreateAccountModal = (props) => {
                             alt="user"
                           />
                         }
+                        onChange={handleUsernameChange}
+                        value={username}
                       ></Input>
+                      {usernameError && (
+                        <p className="text-red-500 text-xs italic">
+                          {usernameError}
+                        </p>
+                      )}
+                    </div>
+                    <div className="flex flex-1 flex-col gap-5 items-start justify-start w-full">
                       <Input
-                        wrapClassName="bg-white_A700 border border-bluegray_100 border-solid flex px-4 py-3.5 rounded-[10px] w-full"
+                        wrapClassName={`bg-white_A700 border border-bluegray_100 border-solid flex px-4 py-3.5 rounded-[10px] w-full ${
+                          passwordError ? "border-red-500" : ""
+                        }`}
                         className="font-semibold p-0 placeholder:text-gray_600 text-gray_600 text-left text-lg w-full"
                         type="password"
                         name="textfieldlarge_One"
@@ -68,15 +174,27 @@ const CreateAccountModal = (props) => {
                             alt="airplane"
                           />
                         }
+                        onChange={handlePasswordChange}
+                        value={password}
                       ></Input>
+                      {passwordError && (
+                        <p className="text-red-500 text-xs italic">
+                          {passwordError}
+                        </p>
+                      )}
                     </div>
+                  </div>
+
+                  <div className="flex md:flex-col flex-row gap-5 items-start justify-start w-full">
                     <div className="flex flex-1 flex-col gap-5 items-start justify-start w-full">
                       <Input
-                        wrapClassName="bg-white_A700 border border-bluegray_100 border-solid flex px-4 py-3.5 rounded-[10px] w-full"
+                        wrapClassName={`bg-white_A700 border border-bluegray_100 border-solid flex px-4 py-3.5 rounded-[10px] w-full ${
+                          emailError ? "border-red-500" : ""
+                        }`}
                         className="font-semibold p-0 placeholder:text-gray_600 text-gray_600 text-left text-lg w-full"
                         type="email"
                         name="textfieldlarge_Two"
-                        placeholder="user / email address"
+                        placeholder="Email Address"
                         prefix={
                           <Img
                             src="images/img_user.svg"
@@ -84,13 +202,24 @@ const CreateAccountModal = (props) => {
                             alt="user"
                           />
                         }
-                      ></Input>
+                        onChange={handleEmailChange}
+                        value={email}
+                      />
+                      {emailError && (
+                        <p className="text-red-500 text-xs italic">
+                          {emailError}
+                        </p>
+                      )}
+                    </div>
+                    <div className="flex flex-1 flex-col gap-5 items-start justify-start w-full">
                       <Input
-                        wrapClassName="bg-white_A700 border border-bluegray_100 border-solid flex px-4 py-3.5 rounded-[10px] w-full"
+                        wrapClassName={`bg-white_A700 border border-bluegray_100 border-solid flex px-4 py-3.5 rounded-[10px] w-full ${
+                          confirmPasswordError ? "border-red-500" : ""
+                        }`}
                         className="font-semibold p-0 placeholder:text-gray_600 text-gray_600 text-left text-lg w-full"
                         type="password"
                         name="textfieldlarge_Three"
-                        placeholder="Password"
+                        placeholder="Confirm Password"
                         prefix={
                           <Img
                             src="images/img_user_gray_600.svg"
@@ -105,7 +234,14 @@ const CreateAccountModal = (props) => {
                             alt="airplane"
                           />
                         }
-                      ></Input>
+                        onChange={handleConfirmPasswordChange}
+                        value={confirmPassword}
+                      />
+                      {confirmPasswordError && (
+                        <p className="text-red-500 text-xs italic">
+                          {confirmPasswordError}
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -116,26 +252,21 @@ const CreateAccountModal = (props) => {
                     name="iagreetoallterm_One"
                     id="iagreetoallterm_One"
                     label="I agree to all Terms & Conditions"
+                    onClick={() => setIsChecked(!isChecked)}
                   ></CheckBox>
                 </div>
               </div>
               <div className="flex flex-col gap-[18px] items-start justify-start w-full">
-                <Button className="bg-gray_900 cursor-pointer font-bold sm:px-5 px-6 py-5 rounded-[10px] text-center text-lg text-white_A700 w-full">
-                  Create Account
-                </Button>
                 <Button
-                  className="bg-white_A700 border border-gray_600 border-solid cursor-pointer flex items-center justify-center min-w-[620px] md:min-w-full px-6 py-5 rounded-[10px] w-auto"
-                  leftIcon={
-                    <Img
-                      src="images/img_refresh_gray_900.svg"
-                      className="mb-[5px] mr-2.5"
-                      alt="refresh"
-                    />
-                  }
+                  className={`${
+                    !isFormValid() || !isChecked
+                      ? "opacity-50 cursor-not-allowed"
+                      : ""
+                  } bg-gray_900 cursor-pointer font-bold sm:px-5 px-6 py-5 rounded-[10px] text-center text-lg text-white_A700 w-full`}
+                  disabled={!isFormValid() || !isChecked}
+                  onClick={createUser}
                 >
-                  <div className="font-bold sm:px-5 text-gray_900 text-left text-lg">
-                    Create Account with Google
-                  </div>
+                  Create Account
                 </Button>
               </div>
               <Line className="bg-bluegray_100 h-px w-full" />
@@ -147,8 +278,9 @@ const CreateAccountModal = (props) => {
                   Have an account?
                 </Text>
                 <Text
-                  className="font-semibold text-gray_900 text-left tracking-[-0.40px] w-auto"
+                  className="font-semibold text-gray_900 text-left tracking-[-0.40px] w-auto cursor-pointer"
                   variant="body1"
+                  onClick={handleOpenLogInModal}
                 >
                   Log in
                 </Text>
@@ -157,6 +289,12 @@ const CreateAccountModal = (props) => {
           </div>
         </div>
       </ModalProvider>
+      {isOpenLogInModal ? (
+        <LogInModal
+          isOpen={isOpenLogInModal}
+          onRequestClose={handleCloseLogInModal}
+        />
+      ) : null}
     </>
   );
 };

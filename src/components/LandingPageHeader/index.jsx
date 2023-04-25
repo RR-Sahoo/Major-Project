@@ -39,12 +39,12 @@ const LandingPageHeader = (props) => {
             </div>
           </div>
           {props.loggedIn !== false && (
-            <div className="flex sm:flex-1 sm:flex-col flex-row sm:hidden items-center justify-between w-[492px] sm:w-full">
+            <div className="flex sm:flex-1 sm:flex-col  sm:hidden items-center justify-center w-full sm:w-full">
               <List
-                className="sm:flex-col flex-row gap-10 grid grid-cols-4 w-auto"
+                className="sm:flex-col flex gap-14"
                 orientation="horizontal"
               >
-                <div className="flex flex-row gap-1.5 items-start justify-center w-[77px]">
+                <div className="flex flex-row gap-1.5 items-start justify-start w-[77px]">
                   <Text
                     className="common-pointer font-manrope font-semibold text-gray_900 text-left w-auto"
                     variant="body4"
@@ -58,7 +58,7 @@ const LandingPageHeader = (props) => {
                     alt="arrowdown"
                   />
                 </div>
-                <div className="flex flex-row gap-1.5 items-start justify-center w-[77px]">
+                <div className="flex flex-row gap-1.5 items-start justify-start w-[77px]">
                   <Text
                     className="common-pointer font-manrope font-semibold text-gray_900 text-left w-auto"
                     variant="body4"
@@ -72,7 +72,7 @@ const LandingPageHeader = (props) => {
                     alt="arrowdown"
                   />
                 </div>
-                <div className="flex flex-row gap-1.5 items-start justify-center w-[77px]">
+                <div className="flex flex-row gap-1.5 items-start justify-start w-[77px]">
                   <Text
                     className="common-pointer font-manrope font-semibold text-gray_900 text-left w-auto"
                     variant="body4"
@@ -81,7 +81,16 @@ const LandingPageHeader = (props) => {
                     Agents
                   </Text>
                 </div>
-                <div className="flex flex-row gap-1.5 items-start justify-center w-[77px]">
+                <div className="flex flex-row gap-1.5 items-start justify-start w-[77px]">
+                  <Text
+                    className="common-pointer font-manrope font-semibold text-gray_900 text-left w-auto"
+                    variant="body4"
+                    onClick={() => navigate("/aboutus")}
+                  >
+                    About Us
+                  </Text>
+                </div>
+                <div className="flex flex-row gap-1.5 items-start justify-start w-[77px]">
                   <Text
                     className="common-pointer font-manrope font-semibold text-gray_900 text-left w-auto"
                     variant="body4"
