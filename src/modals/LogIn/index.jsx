@@ -58,6 +58,10 @@ const LogInModal = (props) => {
       .post("https://the-home-backend.onrender.com/api/users/login", userData)
       .then((response) => {
         console.log("User logged in successfully!", response);
+        const token = response.data.token;
+        localStorage.setItem("token", token);
+        console.log("Token stored:", token);
+        window.location.reload();
       })
       .catch((error) => {
         console.error("Error logging in:", error);
@@ -172,6 +176,7 @@ const LogInModal = (props) => {
                   disabled={!isFormValid()}
                   onClick={() => {
                     loginUser();
+                    props.onRequestClose();
                     handleCloseCreateAccountModal();
                     setIsLoggedIn(true);
                     notify();

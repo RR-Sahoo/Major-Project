@@ -6,7 +6,7 @@ import LandingPageCard from "components/LandingPageCard";
 import LandingPageFooter from "components/LandingPageFooter";
 import { useNavigate } from "react-router-dom";
 import CreateAccountModal from "modals/CreateAccount";
-
+import LoginHeader from "components/LoginHeader";
 import LandingPageCounter from "./components/LandingPageCounter";
 import LandingPageCarousel from "./components/LandingPageCarousel/LandingPageCarousel";
 import axios from "axios";
@@ -70,12 +70,25 @@ const LandingPagePage = () => {
   const [sliderState, setsliderState] = useState(0);
   const TABS = ["Buy", "Sell", "Rent"];
   const [activeTab, setActiveTab] = useState(0);
+  const [loggedin, setLoggedin] = useState(false);
 
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      setLoggedin(false);
+    } else {
+      setLoggedin(true);
+    }
+  }, []);
+  console.log(loggedin);
   return (
     <>
       <div className="bg-white_A700 flex flex-col font-markoone sm:gap-10 md:gap-10 gap-[100px] items-center justify-start mx-auto self-stretch w-auto sm:w-full md:w-full">
         <div className="flex flex-col items-start justify-start w-full">
-          <LandingPageHeader className="bg-white_A700 flex h-20 md:h-auto items-center justify-between md:px-5 px-[120px] py-[19px] w-full" />
+          {loggedin ? (
+            <LoginHeader />
+          ) : (
+            <LandingPageHeader className="bg-white_A700 flex h-20 md:h-auto items-center justify-between md:px-5 px-[120px] py-[19px] w-full" />
+          )}
           <div className="bg-yellow_50 flex font-manrope items-start justify-start md:pl-10 sm:pl-5 pl-[120px] py-[50px] w-full">
             <div className="flex md:flex-col flex-row md:gap-10 gap-[100px] items-center justify-start ml-auto w-full">
               <div className="flex flex-1 flex-col gap-10 items-start justify-start w-full">
