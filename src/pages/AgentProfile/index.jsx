@@ -6,6 +6,7 @@ import { Img } from "components";
 import LandingPageFooter from "components/LandingPageFooter";
 import AgentProfileHeader from "./Components/AgentProfileHeader";
 import AgentTabSection from "./Components/AgentTabSection";
+import coverImage from "../../assets/images/img_coverimage.png";
 
 const AgentProfilePage = () => {
   const { id } = useParams();
@@ -33,7 +34,7 @@ const AgentProfilePage = () => {
           <div className="flex flex-col font-manrope md:px-5 relative w-full">
             <div className="flex flex-1 items-center justify-start mx-auto w-full">
               <Img
-                src="images/img_coverimage.png"
+                src={coverImage}
                 className="h-[250px] sm:h-auto object-cover w-full"
                 alt="coverimage"
               />

@@ -1,16 +1,62 @@
-import React from "react";
+import React, { useState } from "react";
 import ModalProvider from "react-modal";
-
+import axios from "axios";
+import CreateAccountModal from "modals/CreateAccount";
 import { Text, Img, Input, CheckBox, Button, Line } from "components";
-import { useGoogleLogin } from "@react-oauth/google";
 
 const LogInModal = (props) => {
-  const googleSignIn = useGoogleLogin({
-    onSuccess: (res) => {
-      console.log("res", res);
-      alert("Login successfull. 😍");
-    },
-  });
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [isOpenCreateAccountModal, setCreateAccountModal] = useState(false);
+
+  function handleOpenCreateAccountModal() {
+    setCreateAccountModal(true);
+  }
+  function handleCloseCreateAccountModal() {
+    setCreateAccountModal(false);
+  }
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+    if (!event.target.value) {
+      setPasswordError("Password is required");
+    } else if (event.target.value.length < 8) {
+      setPasswordError("Password must be at least 8 characters long");
+    } else {
+      setPasswordError("");
+    }
+  };
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+    if (!event.target.value) {
+      setEmailError("Email is required");
+    } else if (!/\S+@\S+\.\S+/.test(event.target.value)) {
+      setEmailError("Invalid email address");
+    } else {
+      setEmailError("");
+    }
+  };
+  const isFormValid = () => {
+    return password !== "" && email !== "";
+  };
+  const loginUser = () => {
+    const userData = {
+      email: email,
+      password: password,
+    };
+    console.log(email, password);
+
+    axios
+      .post("https://the-home-backend.onrender.com/api/users/login", userData)
+      .then((response) => {
+        console.log("User logged in successfully!", response);
+      })
+      .catch((error) => {
+        console.error("Error logging in:", error);
+      });
+  };
 
   return (
     <>
@@ -42,11 +88,13 @@ const LogInModal = (props) => {
                   </div>
                   <div className="flex flex-col gap-3 items-start justify-start w-full">
                     <Input
-                      wrapClassName="bg-white_A700 border border-bluegray_100 border-solid flex px-4 py-3.5 rounded-[10px] w-full"
+                      wrapClassName={`bg-white_A700 border border-bluegray_100 border-solid flex px-4 py-3.5 rounded-[10px] w-full ${
+                        emailError ? "border-red-500" : ""
+                      }`}
                       className="font-semibold p-0 placeholder:text-gray_600 text-gray_600 text-left text-lg w-full"
                       type="email"
-                      name="textfieldlarge"
-                      placeholder="user / email address"
+                      name="textfieldlarge_Two"
+                      placeholder="Email Address"
                       prefix={
                         <Img
                           src="images/img_user.svg"
@@ -54,9 +102,18 @@ const LogInModal = (props) => {
                           alt="user"
                         />
                       }
-                    ></Input>
+                      onChange={handleEmailChange}
+                      value={email}
+                    />
+                    {emailError && (
+                      <p className="text-red-500 text-xs italic">
+                        {emailError}
+                      </p>
+                    )}
                     <Input
-                      wrapClassName="bg-white_A700 border border-bluegray_100 border-solid flex px-4 py-3.5 rounded-[10px] w-full"
+                      wrapClassName={`bg-white_A700 border border-bluegray_100 border-solid flex px-4 py-3.5 rounded-[10px] w-full ${
+                        passwordError ? "border-red-500" : ""
+                      }`}
                       className="font-semibold p-0 placeholder:text-gray_600 text-gray_600 text-left text-lg w-full"
                       type="password"
                       name="textfieldlarge_One"
@@ -75,7 +132,14 @@ const LogInModal = (props) => {
                           alt="airplane"
                         />
                       }
+                      onChange={handlePasswordChange}
+                      value={password}
                     ></Input>
+                    {passwordError && (
+                      <p className="text-red-500 text-xs italic">
+                        {passwordError}
+                      </p>
+                    )}
                   </div>
                 </div>
                 <div className="flex flex-row gap-5 items-center justify-between w-full">
@@ -95,23 +159,14 @@ const LogInModal = (props) => {
                 </div>
               </div>
               <div className="flex flex-col gap-[18px] items-start justify-start w-full">
-                <Button className="bg-gray_900 cursor-pointer font-bold sm:px-5 px-6 py-5 rounded-[10px] text-center text-lg text-white_A700 w-full">
-                  Log in
-                </Button>
                 <Button
-                  className="common-pointer bg-white_A700 border border-gray_600 border-solid cursor-pointer flex items-center justify-center min-w-[420px] sm:min-w-full px-6 py-5 rounded-[10px] w-auto"
-                  onClick={() => googleSignIn()}
-                  leftIcon={
-                    <Img
-                      src="images/img_refresh_gray_900.svg"
-                      className="mb-[5px] mr-2.5"
-                      alt="refresh"
-                    />
-                  }
+                  className={`${
+                    !isFormValid() ? "opacity-50 cursor-not-allowed" : ""
+                  } bg-gray_900 cursor-pointer font-bold sm:px-5 px-6 py-5 rounded-[10px] text-center text-lg text-white_A700 w-full`}
+                  disabled={!isFormValid()}
+                  onClick={loginUser}
                 >
-                  <div className="font-bold sm:px-5 text-gray_900 text-left text-lg">
-                    Log in with Google
-                  </div>
+                  Log in
                 </Button>
               </div>
               <Line className="bg-bluegray_100 h-px w-full" />
@@ -123,8 +178,9 @@ const LogInModal = (props) => {
                   Don’t have an account?
                 </Text>
                 <Text
-                  className="font-semibold text-gray_900 text-left tracking-[-0.40px] w-auto"
+                  className="font-semibold text-gray_900 text-left tracking-[-0.40px] w-auto cursor-pointer"
                   variant="body1"
+                  onClick={handleOpenCreateAccountModal}
                 >
                   Create Account
                 </Text>
@@ -133,6 +189,12 @@ const LogInModal = (props) => {
           </div>
         </div>
       </ModalProvider>
+      {isOpenCreateAccountModal ? (
+        <CreateAccountModal
+          isOpen={isOpenCreateAccountModal}
+          onRequestClose={handleCloseCreateAccountModal}
+        />
+      ) : null}
     </>
   );
 };
