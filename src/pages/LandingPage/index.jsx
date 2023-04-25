@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import LandingPageHeader from "components/LandingPageHeader";
 import { Text, Button, Input, Img, List, CheckBox, Slider } from "components";
@@ -9,10 +9,47 @@ import CreateAccountModal from "modals/CreateAccount";
 
 import LandingPageCounter from "./components/LandingPageCounter";
 import LandingPageCarousel from "./components/LandingPageCarousel/LandingPageCarousel";
+import axios from "axios";
 
 const LandingPagePage = () => {
   const navigate = useNavigate();
   const [isOpenCreateAccountModal, setCreateAccountModal] = useState(false);
+  const [propertyData, setPropertyData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+    axios
+      .get(
+        "https://the-home-backend.onrender.com/api/properties/all-properties"
+      )
+      .then((response) => {
+        setPropertyData(response.data);
+        setIsLoading(false);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+  const handleSearchTermChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+  const filteredProperties = propertyData.filter((property) =>
+    property.Location.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  const itemsPerPage = 6;
+  const totalPages = Math.ceil(filteredProperties.length / itemsPerPage);
+  const getPaginatedData = () => {
+    const filteredData = filteredProperties.filter((property) =>
+      property.Location.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    const start = (currentPage - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    return filteredData.slice(start, end);
+  };
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
 
   function handleOpenCreateAccountModal() {
     setCreateAccountModal(true);
@@ -283,18 +320,20 @@ const LandingPagePage = () => {
             </div>
             <div className="flex items-start justify-start w-full">
               <div className="md:gap-5 gap-6 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-3 justify-center min-h-[auto] w-full">
-                {landingPageCardPropList.map((props, index) => (
+                {getPaginatedData().map((property, index) => (
                   <React.Fragment key={`LandingPageCard${index}`}>
                     <LandingPageCard
-                      className="flex flex-1 flex-col h-full items-start justify-start w-full"
-                      p286162ndaveoaklOne="2861 62nd Ave, Oakland, CA 94605"
-                      p3bedroom="3 Bed Room"
-                      bathcounter="1 Bath"
-                      sqftcounter="1,032 sqft"
+                      className="flex flex-1 flex-col h-[512px] md:h-auto items-start justify-start w-full"
+                      address={property.Location}
+                      bedroom={`${property.Bedrooms} Bed Room`}
+                      bathroom={`${property.Bathrooms} Bath`}
+                      sqftcounter={`${property.property_size} sqft`}
+                      tag={property.tag}
                       p1bath="Family"
                       viewDetails="View Details"
-                      price="$649,900"
-                      {...props}
+                      price={`₹${property.price}`}
+                      image={property.image}
+                      id={property._id}
                     />
                   </React.Fragment>
                 ))}

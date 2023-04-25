@@ -96,7 +96,7 @@ const LandingPageCard = (props) => {
             <div className="flex flex-row gap-[31px] items-center justify-start w-full">
               <Button
                 className="common-pointer bg-gray_900 cursor-pointer flex-1 font-manrope font-semibold sm:px-5 px-6 py-4 rounded-[10px] text-base text-center text-white_A700 w-full"
-                onClick={() => navigate("/propertydetails")}
+                onClick={() => navigate(`/properties/${props.id}`)}
               >
                 {props?.viewDetails}
               </Button>

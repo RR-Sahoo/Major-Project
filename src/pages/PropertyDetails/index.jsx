@@ -1,17 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import LandingPageHeader from "components/LandingPageHeader";
 import { Img, Button, Text, GoogleMap, List, Input } from "components";
 import LandingPageCard from "components/LandingPageCard";
 import LandingPageFooter from "components/LandingPageFooter";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import { UserIcon } from "@heroicons/react/outline";
+import {
+  ArrowIcon,
+  DateIcon,
+  MailIcon,
+  PhoneIcon,
+  RightArrowIcon,
+} from "components/Icones";
 
-const PropertyDetailsPage = () => {
-  const landingPageCardPropList = [
-    { image: "images/img_image_260x384.png" },
-    { image: "images/img_image_1.png" },
-    { image: "images/img_image_2.png" },
-  ];
+const PropertyDetailsPage = (props) => {
+  const [propertyDetails, setPropertyDetails] = useState([]);
+  const { id } = useParams();
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `https://the-home-backend.onrender.com/api/properties/${id}`
+        );
+        setPropertyDetails(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, [id]);
   return (
     <>
       <div className="bg-gray_51 flex flex-col font-markoone sm:gap-10 md:gap-10 gap-[100px] items-start justify-start mx-auto self-stretch w-auto sm:w-full md:w-full">
@@ -22,7 +43,7 @@ const PropertyDetailsPage = () => {
               <div className="flex md:flex-col flex-row gap-6 items-center justify-center max-w-[1200px] mx-auto w-full">
                 <div className="flex flex-1 items-center justify-start w-full">
                   <Img
-                    src="images/img_rectangle5610.png"
+                    src={propertyDetails.photos}
                     className="h-[550px] md:h-auto object-cover rounded-[10px] w-full"
                     alt="rectangle5610"
                   />
@@ -48,15 +69,12 @@ const PropertyDetailsPage = () => {
                           alt="mail"
                         />
                       }
-                    >
-                      <div className="font-bold text-gray_900 text-left text-lg">
-                        3 more
-                      </div>
-                    </Button>
+                    ></Button>
                   </div>
                 </div>
               </div>
             </div>
+
             <div className="flex font-manrope items-center justify-center md:px-10 sm:px-5 px-[120px] w-full">
               <div className="flex md:flex-col flex-row gap-6 items-start justify-center max-w-[1200px] mx-auto w-full">
                 <div className="flex flex-1 flex-col gap-6 items-start justify-start w-full">
@@ -69,8 +87,7 @@ const PropertyDetailsPage = () => {
                             as="h4"
                             variant="h4"
                           >
-                            Trovilla Plan in Sereno Canyon - Estate Collection
-                            by Toll Brothers
+                            {propertyDetails.name_of_property}
                           </Text>
                           <Text
                             className="font-semibold text-gray_900 text-left tracking-[-0.40px] w-auto"
@@ -79,50 +96,13 @@ const PropertyDetailsPage = () => {
                             2861 62nd Ave, Oakland, CA 94605
                           </Text>
                         </div>
-                        <div className="flex sm:flex-col flex-row gap-4 items-start justify-start md:pr-10 sm:pr-5 pr-[180px] w-full">
-                          <div className="bg-white_A700 border border-gray_600 border-solid flex flex-1 items-center justify-center sm:px-5 px-6 py-[7px] rounded-[10px] w-full">
-                            <div className="flex flex-col gap-1 items-start justify-start w-full">
-                              <Text
-                                className="font-bold text-gray_900 text-left tracking-[-0.48px] w-auto"
-                                as="h5"
-                                variant="h5"
-                              >
-                                $649,900
-                              </Text>
-                              <Text
-                                className="text-gray_600 text-left w-auto"
-                                variant="body7"
-                              >
-                                Online / Cash Payment
-                              </Text>
-                            </div>
-                          </div>
-                          <div className="bg-white_A700 border border-bluegray_100 border-solid flex flex-1 items-center justify-center sm:px-5 px-6 py-[7px] rounded-[10px] w-full">
-                            <div className="flex flex-col gap-1 items-start justify-start w-full">
-                              <Text
-                                className="font-bold text-gray_900 text-left tracking-[-0.48px] w-auto"
-                                as="h5"
-                                variant="h5"
-                              >
-                                $850 / month
-                              </Text>
-                              <Text
-                                className="text-gray_600 text-left w-auto"
-                                variant="body7"
-                              >
-                                0% EMI for 6 Months
-                              </Text>
-                            </div>
-                          </div>
-                        </div>
                       </div>
                       <div className="flex flex-col gap-4 items-start justify-start w-full">
                         <Text
                           className="font-semibold text-gray_900 text-left tracking-[-0.40px] w-auto"
                           variant="body1"
                         >
-                          Well-constructed 1562 Sq Ft Home Is Now Offering To
-                          You In Uttara For Sale
+                          {propertyDetails.property_desc}
                         </Text>
                         <Text
                           className="font-normal leading-[180.00%] max-w-[712px] md:max-w-full not-italic text-gray_600 text-left"
@@ -420,11 +400,7 @@ const PropertyDetailsPage = () => {
                           name="textfieldlarge"
                           placeholder="Full Name"
                           prefix={
-                            <Img
-                              src="images/img_user.svg"
-                              className="mt-auto mb-px mr-3.5"
-                              alt="user"
-                            />
+                            <UserIcon className="h-6 items-center mr-2" />
                           }
                         ></Input>
                         <Input
@@ -433,13 +409,7 @@ const PropertyDetailsPage = () => {
                           type="email"
                           name="textfieldlarge_One"
                           placeholder="Email Address"
-                          prefix={
-                            <Img
-                              src="images/img_mail_gray_600_24x24.svg"
-                              className="mt-auto mb-px mr-3.5"
-                              alt="mail"
-                            />
-                          }
+                          prefix={<MailIcon className="mr-2 h-6" />}
                         ></Input>
                         <Input
                           wrapClassName="bg-white_A700 border border-bluegray_100 border-solid flex px-4 py-3.5 rounded-[10px] w-full"
@@ -447,26 +417,14 @@ const PropertyDetailsPage = () => {
                           type="number"
                           name="textfieldlarge_Two"
                           placeholder="Phone Number"
-                          prefix={
-                            <Img
-                              src="images/img_call.svg"
-                              className="mt-auto mb-px mr-3.5"
-                              alt="call"
-                            />
-                          }
+                          prefix={<PhoneIcon className="mr-2 h-6" />}
                         ></Input>
                         <Input
                           wrapClassName="bg-white_A700 border border-bluegray_100 border-solid flex px-4 py-3.5 rounded-[10px] w-full"
                           className="font-semibold p-0 placeholder:text-gray_600 text-gray_600 text-left text-lg w-full"
                           name="textfieldlarge_Three"
                           placeholder="Date"
-                          prefix={
-                            <Img
-                              src="images/img_calendar.svg"
-                              className="mt-auto mb-px mr-3.5"
-                              alt="calendar"
-                            />
-                          }
+                          prefix={<DateIcon className="mr-2 h-6" />}
                         ></Input>
                         <div className="bg-white_A700 border border-bluegray_100 border-solid flex h-[152px] md:h-auto items-start justify-start px-[19px] py-3.5 rounded-[10px] w-full">
                           <Text
@@ -498,13 +456,7 @@ const PropertyDetailsPage = () => {
                 </Text>
                 <Button
                   className="bg-transparent cursor-pointer flex items-center justify-center min-w-[124px] w-auto"
-                  rightIcon={
-                    <Img
-                      src="images/img_arrowright.svg"
-                      className="mb-[3px] ml-2"
-                      alt="arrow_right"
-                    />
-                  }
+                  rightIcon={<RightArrowIcon />}
                 >
                   <div className="font-bold text-left text-lg text-orange_A700">
                     Explore All
@@ -515,7 +467,7 @@ const PropertyDetailsPage = () => {
                 className="sm:flex-col flex-row gap-6 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-3 justify-start w-full"
                 orientation="horizontal"
               >
-                {landingPageCardPropList.map((props, index) => (
+                {/*{landingPageCardPropList.map((props, index) => (
                   <React.Fragment key={`LandingPageCard${index}`}>
                     <LandingPageCard
                       className="flex flex-1 flex-col h-full items-start justify-start w-full"
@@ -529,7 +481,7 @@ const PropertyDetailsPage = () => {
                       {...props}
                     />
                   </React.Fragment>
-                ))}
+                ))}*/}
               </List>
             </div>
           </div>

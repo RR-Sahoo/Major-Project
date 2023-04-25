@@ -15,6 +15,7 @@ import LandingPageCard from "components/LandingPageCard";
 import LandingPageFooter from "components/LandingPageFooter";
 import ListingHeader from "./Components/ListingHeader";
 import { ArrowIcon } from "components/Icones";
+import { Link } from "react-router-dom";
 
 const ListingPage = () => {
   const [propertyData, setPropertyData] = useState([]);
@@ -242,6 +243,7 @@ const ListingPage = () => {
                             viewDetails="View Details"
                             price={`₹${property.price}`}
                             image={property.image}
+                            id={property._id}
                           />
                         </React.Fragment>
                       ))}
