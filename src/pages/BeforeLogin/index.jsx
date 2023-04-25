@@ -9,10 +9,12 @@ import CreateAccountModal from "modals/CreateAccount";
 
 import LandingPageCounter from "../LandingPage/components/LandingPageCounter";
 import LandingPageCarousel from "../LandingPage/components/LandingPageCarousel/LandingPageCarousel";
+import LoginHeader from "components/LoginHeader";
 
 const BeforeLogin = () => {
   const navigate = useNavigate();
   const [isOpenCreateAccountModal, setCreateAccountModal] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   function handleOpenCreateAccountModal() {
     setCreateAccountModal(true);
@@ -38,10 +40,15 @@ const BeforeLogin = () => {
     <>
       <div className="bg-white_A700 flex flex-col font-markoone sm:gap-10 md:gap-10 gap-[100px] items-center justify-start mx-auto self-stretch w-auto sm:w-full md:w-full">
         <div className="flex flex-col items-start justify-start w-full">
-          <LandingPageHeader
-            className="bg-white_A700 flex h-20 md:h-auto items-center justify-between md:px-5 px-[120px] py-[19px] w-full"
-            loggedIn={false}
-          />
+          {loggedIn ? (
+            <LandingPageHeader
+              className="bg-white_A700 flex h-20 md:h-auto items-center justify-between md:px-5 px-[120px] py-[19px] w-full"
+              loggedIn={false}
+            />
+          ) : (
+            <LoginHeader />
+          )}
+
           <div className="bg-yellow_50 flex font-manrope items-start justify-start md:pl-10 sm:pl-5 pl-[120px] py-[50px] w-full">
             <div className="flex md:flex-col flex-row md:gap-10 gap-[100px] items-center justify-start ml-auto w-full">
               <div className="flex flex-1 flex-col gap-10 items-start justify-start w-full">

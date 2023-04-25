@@ -3,6 +3,8 @@ import ModalProvider from "react-modal";
 import axios from "axios";
 import CreateAccountModal from "modals/CreateAccount";
 import { Text, Img, Input, CheckBox, Button, Line } from "components";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const LogInModal = (props) => {
   const [password, setPassword] = useState("");
@@ -10,12 +12,16 @@ const LogInModal = (props) => {
   const [passwordError, setPasswordError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [isOpenCreateAccountModal, setCreateAccountModal] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const notify = () => toast("Logged in successfully");
 
   function handleOpenCreateAccountModal() {
     setCreateAccountModal(true);
   }
   function handleCloseCreateAccountModal() {
     setCreateAccountModal(false);
+    console.log("hello");
   }
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
@@ -164,7 +170,12 @@ const LogInModal = (props) => {
                     !isFormValid() ? "opacity-50 cursor-not-allowed" : ""
                   } bg-gray_900 cursor-pointer font-bold sm:px-5 px-6 py-5 rounded-[10px] text-center text-lg text-white_A700 w-full`}
                   disabled={!isFormValid()}
-                  onClick={loginUser}
+                  onClick={() => {
+                    loginUser();
+                    handleCloseCreateAccountModal();
+                    setIsLoggedIn(true);
+                    notify();
+                  }}
                 >
                   Log in
                 </Button>
