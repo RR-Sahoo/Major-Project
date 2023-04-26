@@ -177,7 +177,6 @@ const LogInModal = (props) => {
                   onClick={() => {
                     loginUser();
                     props.onRequestClose();
-                    handleCloseCreateAccountModal();
                     setIsLoggedIn(true);
                     notify();
                   }}
