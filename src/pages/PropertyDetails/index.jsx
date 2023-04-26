@@ -16,8 +16,30 @@ import {
 } from "components/Icones";
 
 const PropertyDetailsPage = (props) => {
+  const [showMap, setShowMap] = useState(true);
+  const [showVideo, setShowVideo] = useState(false);
+  const [showPhotos, setShowPhotos] = useState(false);
+
   const [propertyDetails, setPropertyDetails] = useState([]);
   const { id } = useParams();
+
+  const handleMapClick = () => {
+    setShowMap(true);
+    setShowVideo(false);
+    setShowPhotos(false);
+  };
+
+  const handleVideoClick = () => {
+    setShowMap(false);
+    setShowVideo(true);
+    setShowPhotos(false);
+  };
+
+  const handlePhotosClick = () => {
+    setShowMap(false);
+    setShowVideo(false);
+    setShowPhotos(true);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,20 +65,20 @@ const PropertyDetailsPage = (props) => {
               <div className="flex md:flex-col flex-row gap-6 items-center justify-center max-w-[1200px] mx-auto w-full">
                 <div className="flex flex-1 items-center justify-start w-full">
                   <Img
-                    src={propertyDetails.photos}
+                    src={propertyDetails.photos[0]}
                     className="h-[550px] md:h-auto object-cover rounded-[10px] w-full"
                     alt="rectangle5610"
                   />
                 </div>
                 <div className="flex sm:flex-1 flex-col gap-6 h-[550px] md:h-auto items-start justify-start self-stretch w-auto sm:w-full">
                   <Img
-                    src="images/img_rectangle5611.png"
+                    src={propertyDetails.photos[1]}
                     className="h-[263px] sm:h-auto object-cover rounded-[10px] w-full"
                     alt="rectangle5611"
                   />
                   <div className="h-[263px] relative w-96 sm:w-full">
                     <Img
-                      src="images/img_rectangle5612.png"
+                      src={propertyDetails.photos[2]}
                       className="h-[263px] m-auto object-cover rounded-[10px] w-full"
                       alt="rectangle5612"
                     />
@@ -93,7 +115,7 @@ const PropertyDetailsPage = (props) => {
                             className="font-semibold text-gray_900 text-left tracking-[-0.40px] w-auto"
                             variant="body1"
                           >
-                            2861 62nd Ave, Oakland, CA 94605
+                            {propertyDetails.Location}
                           </Text>
                         </div>
                       </div>
@@ -127,30 +149,59 @@ const PropertyDetailsPage = (props) => {
                             Local Information
                           </Text>
                           <div className="gap-3 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-4 items-center justify-start md:pr-10 sm:pr-5 pr-[200px] w-full">
-                            <Button className="border border-bluegray_100 border-solid cursor-pointer flex-1 font-semibold sm:px-5 px-6 py-3.5 rounded-[10px] text-base text-center text-gray_900 w-full">
+                            <Button
+                              className="border border-bluegray_100 border-solid cursor-pointer flex-1 font-semibold sm:px-5 px-6 py-3.5 rounded-[10px] hover:bg-gray-800 hover:text-white_A700 text-base text-center text-gray_900 w-full"
+                              onClick={handleMapClick}
+                            >
                               Map
                             </Button>
-                            <Button className="bg-gray_900 cursor-pointer flex-1 font-semibold sm:px-5 px-6 py-3.5 rounded-[10px] text-base text-center text-white_A700 w-full">
-                              Schools
+                            <Button
+                              className="border border-bluegray_100 border-solid cursor-pointer flex-1 font-semibold sm:px-5 px-6 py-3.5 rounded-[10px] hover:bg-gray-800 hover:text-white_A700 text-base text-center text-gray_900 w-full"
+                              onClick={handleVideoClick}
+                            >
+                              Video
                             </Button>
-                            <Button className="border border-bluegray_100 border-solid cursor-pointer flex-1 font-semibold sm:px-5 px-6 py-3.5 rounded-[10px] text-base text-center text-gray_900 w-full">
-                              Crime
+                            <Button
+                              className="border border-bluegray_100 border-solid cursor-pointer flex-1 font-semibold sm:px-5 px-6 py-3.5 rounded-[10px] hover:bg-gray-800 hover:text-white_A700 text-base text-center text-gray_900 w-full"
+                              onClick={handlePhotosClick}
+                            >
+                              360 view
                             </Button>
-                            <Button className="border border-bluegray_100 border-solid cursor-pointer flex-1 font-semibold px-4 py-3.5 rounded-[10px] text-base text-center text-gray_900 w-full">
-                              Shop & Eat
+                            <Button className="border border-bluegray_100 border-solid cursor-pointer flex-1 font-semibold px-4 py-3.5 rounded-[10px] hover:bg-gray-800 hover:text-white_A700 text-base text-center text-gray_900 w-full">
+                              Photos
                             </Button>
                           </div>
                         </div>
                         <div className="h-[400px] relative w-full">
-                          <GoogleMap
-                            className="h-[400px] m-auto rounded-[10px] w-full"
-                            showMarker={false}
-                          ></GoogleMap>
-                          <Img
-                            src="images/img_frame1000001425.svg"
-                            className="absolute h-[54px] inset-[0] m-auto w-[389px]"
-                            alt="frame1000001425"
-                          />
+                          {showMap && (
+                            <div className="h-[400px] relative w-full">
+                              <GoogleMap
+                                className="h-[400px] m-auto rounded-[10px] w-full"
+                                showMarker={false}
+                              ></GoogleMap>
+                              <Img
+                                src="/images/img_frame1000001425.svg"
+                                className="absolute h-[54px] inset-[0] m-auto w-[389px]"
+                                alt="frame1000001425"
+                              />
+                            </div>
+                          )}
+                          {showVideo && (
+                            <div className="h-[400px] relative w-full">
+                              <iframe
+                                width="700"
+                                height="415"
+                                src="https://www.youtube.com/embed/watch?v=2b8xuMS1tc4"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen
+                              />
+                            </div>
+                          )}
+                          {showPhotos && (
+                            <div className="h-[400px] relative w-full">
+                              <img photos={propertyDetails.photos} />
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -176,14 +227,14 @@ const PropertyDetailsPage = (props) => {
                                 className="flex-1 font-normal not-italic text-gray_600 text-left w-auto"
                                 variant="body3"
                               >
-                                Parking
+                                Type
                               </Text>
                             </div>
                             <Text
                               className="flex-1 font-semibold text-gray_900 text-right w-auto"
                               variant="body3"
                             >
-                              No Info
+                              {propertyDetails.Property_type}
                             </Text>
                           </div>
                           <div className="flex flex-row gap-[47px] items-start justify-start w-full">
@@ -193,14 +244,14 @@ const PropertyDetailsPage = (props) => {
                                 className="flex-1 font-normal not-italic text-gray_600 text-left w-auto"
                                 variant="body3"
                               >
-                                Outdoor
+                                Bathrooms
                               </Text>
                             </div>
                             <Text
                               className="flex-1 font-semibold text-gray_900 text-right w-auto"
                               variant="body3"
                             >
-                              No Info
+                              {propertyDetails.Bathrooms}
                             </Text>
                           </div>
                           <div className="flex flex-row gap-[85px] items-start justify-start w-full">
@@ -210,14 +261,14 @@ const PropertyDetailsPage = (props) => {
                                 className="flex-1 font-normal not-italic text-gray_600 text-left w-auto"
                                 variant="body3"
                               >
-                                A/C
+                                Bedrooms
                               </Text>
                             </div>
                             <Text
                               className="flex-1 font-semibold text-gray_900 text-right w-auto"
                               variant="body3"
                             >
-                              No Info
+                              {propertyDetails.Bedrooms}
                             </Text>
                           </div>
                           <div className="flex flex-row gap-10 items-start justify-start w-full">
@@ -234,7 +285,7 @@ const PropertyDetailsPage = (props) => {
                               className="flex-1 font-semibold text-gray_900 text-right w-auto"
                               variant="body3"
                             >
-                              2021
+                              {propertyDetails.BuiltYear}
                             </Text>
                           </div>
                         </div>
@@ -246,14 +297,14 @@ const PropertyDetailsPage = (props) => {
                                 className="flex-1 font-normal not-italic text-gray_600 text-left w-auto"
                                 variant="body3"
                               >
-                                HOA
+                                Owner
                               </Text>
                             </div>
                             <Text
                               className="flex-1 font-semibold text-gray_900 text-right w-auto"
                               variant="body3"
                             >
-                              None
+                              {propertyDetails.developer_name}
                             </Text>
                           </div>
                           <div className="flex flex-row gap-8 items-start justify-start w-full">
@@ -270,7 +321,7 @@ const PropertyDetailsPage = (props) => {
                               className="flex-1 font-semibold text-gray_900 text-right w-auto"
                               variant="body3"
                             >
-                              $560
+                              {propertyDetails.property_size}
                             </Text>
                           </div>
                           <div className="flex flex-row gap-[66px] items-start justify-start w-full">

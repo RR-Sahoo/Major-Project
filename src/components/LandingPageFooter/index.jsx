@@ -17,7 +17,7 @@ const LandingPageFooter = (props) => {
                 onClick={() => navigate("/")}
               >
                 <Img
-                  src="images/img_home.svg"
+                  src="/images/img_home.svg"
                   className="h-10 w-10"
                   alt="home_One"
                 />
@@ -56,31 +56,31 @@ const LandingPageFooter = (props) => {
                 <div className="flex flex-row gap-3 items-start justify-start w-full">
                   <div className="flex h-[30px] items-center justify-start w-[30px]">
                     <Img
-                      src="images/img_plus.svg"
+                      src="/images/img_plus.svg"
                       className="h-[30px] w-[30px]"
                       alt="plus"
                     />
                   </div>
                   <div className="flex h-[30px] items-center justify-start w-[30px]">
                     <Img
-                      src="images/img_twitter.svg"
+                      src="/images/img_twitter.svg"
                       className="h-[30px] w-[30px]"
                       alt="twitter"
                     />
                   </div>
                   <Img
-                    src="images/img_instagram_orange_a700_30x30.svg"
+                    src="/images/img_instagram_orange_a700_30x30.svg"
                     className="h-[30px] w-[30px]"
                     alt="instagram"
                   />
                   <Img
-                    src="images/img_linkedin.svg"
+                    src="/images/img_linkedin.svg"
                     className="h-[30px] w-[30px]"
                     alt="linkedin"
                   />
                   <div className="flex h-[30px] items-center justify-start w-[30px]">
                     <Img
-                      src="images/img_clock_orange_a700.svg"
+                      src="/images/img_clock_orange_a700.svg"
                       className="h-[30px] w-[30px]"
                       alt="clock"
                     />
