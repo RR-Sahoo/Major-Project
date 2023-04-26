@@ -20,7 +20,7 @@ const PropertyDetailsPage = (props) => {
   const [showMap, setShowMap] = useState(true);
   const [showVideo, setShowVideo] = useState(false);
   const [showPhotos, setShowPhotos] = useState(false);
-
+  const [show360, setShow360] = useState(false);
   const [propertyDetails, setPropertyDetails] = useState([]);
   const { id } = useParams();
 
@@ -28,18 +28,27 @@ const PropertyDetailsPage = (props) => {
     setShowMap(true);
     setShowVideo(false);
     setShowPhotos(false);
+    setShow360(false);
   };
 
   const handleVideoClick = () => {
     setShowMap(false);
     setShowVideo(true);
     setShowPhotos(false);
+    setShow360(false);
   };
 
   const handlePhotosClick = () => {
     setShowMap(false);
     setShowVideo(false);
     setShowPhotos(true);
+    setShow360(false);
+  };
+  const handle360Click = () => {
+    setShowMap(false);
+    setShowVideo(false);
+    setShowPhotos(false);
+    setShow360(true);
   };
 
   useEffect(() => {
@@ -64,7 +73,7 @@ const PropertyDetailsPage = (props) => {
             <LoginHeader />
             <div className="flex font-manrope items-center justify-center md:px-10 sm:px-5 px-[120px] w-full">
               <div className="flex md:flex-col flex-row gap-6 items-center justify-center max-w-[1200px] mx-auto w-full">
-                <div className="flex flex-1 items-center justify-start w-full">
+                {/* <div className="flex flex-1 items-center justify-start w-full">
                   <Img
                     src="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iNIfKpJ7Z_M0/v1/1200x-1.jpg"
                     className="h-[550px] md:h-auto object-cover rounded-[10px] w-full"
@@ -94,7 +103,7 @@ const PropertyDetailsPage = (props) => {
                       }
                     ></Button>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
 
@@ -164,11 +173,14 @@ const PropertyDetailsPage = (props) => {
                             </Button>
                             <Button
                               className="border border-bluegray_100 border-solid cursor-pointer flex-1 font-semibold sm:px-5 px-6 py-3.5 rounded-[10px] hover:bg-gray-800 hover:text-white_A700 text-base text-center text-gray_900 w-full"
-                              onClick={handlePhotosClick}
+                              onClick={handle360Click}
                             >
                               360 view
                             </Button>
-                            <Button className="border border-bluegray_100 border-solid cursor-pointer flex-1 font-semibold px-4 py-3.5 rounded-[10px] hover:bg-gray-800 hover:text-white_A700 text-base text-center text-gray_900 w-full">
+                            <Button
+                              className="border border-bluegray_100 border-solid cursor-pointer flex-1 font-semibold px-4 py-3.5 rounded-[10px] hover:bg-gray-800 hover:text-white_A700 text-base text-center text-gray_900 w-full"
+                              onClick={handlePhotosClick}
+                            >
                               Photos
                             </Button>
                           </div>
@@ -196,6 +208,17 @@ const PropertyDetailsPage = (props) => {
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowfullscreen
                               />
+                            </div>
+                          )}
+                          {show360 && (
+                            <div className="h-[400px] relative w-full">
+                              <iframe
+                                style={{ width: "100%", height: "100%" }}
+                                src="https://my.matterport.com/show/?m=roWLLMMmPL8"
+                                className="vr-view"
+                                allowFullScreen
+                                allow="xr-spatial-tracking;"
+                              ></iframe>
                             </div>
                           )}
                           {showPhotos && (
