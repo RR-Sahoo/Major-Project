@@ -1,7 +1,11 @@
 import React from "react";
 import { Img, Text, Button } from "components";
-import { starIconFill } from "../../../assets/images/img_star.svg";
-import { starIconEmpty } from "../../../assets/images/img_star_gray_600.svg";
+import ProfilePic from "../../../assets/images/img_rectangle5596.png";
+import CallIcon from "../../../assets/images/img_call_gray_900.svg";
+import MailIcon from "../../../assets/images/img_mail_gray_900.svg";
+import starIconFill from "../../../assets/images/img_star.svg";
+import starIconEmpty from "../../../assets/images/img_star_gray_600.svg";
+
 const AgentProfileHeader = ({ agent }) => {
   const reviewScore = agent?.review;
   const filledStars = Math.floor(reviewScore);
@@ -13,7 +17,7 @@ const AgentProfileHeader = ({ agent }) => {
   return (
     <div className="flex md:flex-col flex-row gap-[30px] items-end justify-start md:px-10 sm:px-5 px-[140px] w-full">
       <Img
-        src="images/img_rectangle5599_150x150.png"
+        src={ProfilePic}
         className="h-[150px] md:h-auto object-cover rounded-[10px] w-[150px]"
         alt="rectangle5599"
       />
@@ -56,11 +60,7 @@ const AgentProfileHeader = ({ agent }) => {
           </div>
           <div className="flex flex-1 flex-col gap-2 items-start justify-start w-full">
             <div className="flex flex-row gap-3 items-center justify-start w-full">
-              <Img
-                src="images/img_call_gray_900.svg"
-                className="h-6 w-6"
-                alt="call"
-              />
+              <Img src={CallIcon} className="h-6 w-6" alt="call" />
               <Text
                 className="flex-1 font-semibold text-gray_900 text-left w-auto"
                 variant="body3"
@@ -69,11 +69,7 @@ const AgentProfileHeader = ({ agent }) => {
               </Text>
             </div>
             <div className="flex flex-row gap-3 items-center justify-start w-full">
-              <Img
-                src="images/img_mail_gray_900.svg"
-                className="h-6 w-6"
-                alt="mail"
-              />
+              <Img src={MailIcon} className="h-6 w-6" alt="mail" />
               <Text
                 className="font-semibold text-gray_900 text-left w-auto"
                 variant="body3"

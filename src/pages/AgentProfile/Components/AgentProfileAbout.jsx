@@ -90,16 +90,7 @@ const AgentProfileAbout = ({ agent }) => {
                   className="font-normal leading-[180.00%] not-italic text-gray_600 text-left"
                   variant="body3"
                 >
-                  <>
-                    A slider is great way to display a slideshow featuring
-                    images or videos, usually on your homepage.Adding sliders to
-                    your site is no longer difficult. You don’t have to know
-                    coding anymore. Just use a slider widget and it will
-                    automatically insert the slider on your web page.
-                    <br />
-                    One of the best ways to add beautiful sliders with excellent
-                    responsiveness and advanced options.{" "}
-                  </>
+                  <>{agent?.description}</>
                 </Text>
               </div>
               <Button className="bg-gray_900 cursor-pointer font-semibold min-w-[525px] sm:min-w-full py-[13px] rounded-[10px] text-base text-center text-white_A700 w-auto">
@@ -118,7 +109,7 @@ const AgentProfileAbout = ({ agent }) => {
                   className="font-semibold text-gray_600 text-left w-auto"
                   variant="body3"
                 >
-                  15+ years experience
+                  {agent?.experience} experience
                 </Text>
               </div>
               <div className="flex flex-col gap-1 items-start justify-start w-full">
@@ -132,7 +123,7 @@ const AgentProfileAbout = ({ agent }) => {
                   className="font-semibold text-gray_600 text-left w-auto"
                   variant="body3"
                 >
-                  Private House, Villa, Townhouse, Apartment
+                  {agent?.propertyTypes}
                 </Text>
               </div>
               <div className="flex flex-col gap-1 items-start justify-start w-full">
@@ -146,7 +137,7 @@ const AgentProfileAbout = ({ agent }) => {
                   className="font-semibold text-gray_900 text-left w-auto"
                   variant="body3"
                 >
-                  California, San Jose, Miami
+                  {agent?.propertyArea}
                 </Text>
               </div>
               <div className="flex flex-col gap-1 items-start justify-start w-full">
@@ -160,7 +151,7 @@ const AgentProfileAbout = ({ agent }) => {
                   className="font-semibold text-gray_600 text-left w-auto"
                   variant="body3"
                 >
-                  59 Orchard, NY 5005, US
+                  {agent?.address}
                 </Text>
               </div>
               <div className="flex sm:flex-col flex-row sm:gap-10 gap-[60px] items-start justify-start w-full">
@@ -175,7 +166,7 @@ const AgentProfileAbout = ({ agent }) => {
                     className="font-semibold text-gray_600 text-left w-auto"
                     variant="body3"
                   >
-                    BF-0535
+                    {agent?.licenseNo}
                   </Text>
                 </div>
                 <div className="flex flex-1 flex-col gap-1 items-start justify-start w-full">
@@ -189,7 +180,7 @@ const AgentProfileAbout = ({ agent }) => {
                     className="common-pointer font-semibold text-gray_600 text-left underline w-auto"
                     variant="body3"
                   >
-                    www.abc.com
+                    {agent?.website}
                   </Text>
                 </div>
               </div>

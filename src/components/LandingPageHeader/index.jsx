@@ -3,6 +3,7 @@ import React from "react";
 import { Img, Text, List, Button } from "components";
 import { useNavigate } from "react-router-dom";
 import LogInModal from "modals/LogIn";
+import Logo from "../../assets/images/img_home.svg";
 
 const LandingPageHeader = (props) => {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const LandingPageHeader = (props) => {
               className="common-pointer flex flex-row gap-[11px] items-center justify-start"
               onClick={() => navigate("/")}
             >
-              <Img src="images/img_home.svg" className="h-10 w-10" alt="home" />
+              <Img src={Logo} className="h-10 w-10" alt="home" />
               <Text
                 className="font-markoone font-normal not-italic text-left text-orange_A700 w-auto"
                 variant="body1"

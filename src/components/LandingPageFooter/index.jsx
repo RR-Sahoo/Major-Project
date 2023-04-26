@@ -2,6 +2,7 @@ import React from "react";
 
 import { Img, Text } from "components";
 import { useNavigate } from "react-router-dom";
+import Logo from "../../assets/images/img_home.svg";
 
 const LandingPageFooter = (props) => {
   const navigate = useNavigate();
@@ -16,11 +17,7 @@ const LandingPageFooter = (props) => {
                 className="common-pointer flex flex-row gap-[11px] h-10 md:h-auto items-center justify-start w-[341px]"
                 onClick={() => navigate("/")}
               >
-                <Img
-                  src="images/img_home.svg"
-                  className="h-10 w-10"
-                  alt="home_One"
-                />
+                <Img src={Logo} className="h-10 w-10" alt="home_One" />
                 <Text
                   className="font-markoone font-normal not-italic text-left text-orange_A700 w-auto"
                   variant="body1"
