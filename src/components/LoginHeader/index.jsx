@@ -1,5 +1,5 @@
 import React from "react";
-
+import axios from "axios";
 import { Img, Text, List, Button } from "components";
 import { useNavigate } from "react-router-dom";
 import LogInModal from "modals/LogIn";
@@ -15,6 +15,11 @@ const LoginHeader = (props) => {
   function handleCloseLogInModal() {
     setLogInModal(false);
   }
+  const logout = () => {
+    localStorage.setItem("token", "");
+    navigate("/");
+    window.location.reload();
+  };
 
   return (
     <>
@@ -97,13 +102,7 @@ const LoginHeader = (props) => {
             <div>
               <form className="flex flex-row items-center">
                 <UserIcon />
-                <select
-                  placeholder="Price"
-                  className="font-manrope uppercase text-sm font-bold  tracking-noraml border-transparent"
-                >
-                  <option>User</option>
-                  <option value="lowToHigh">Log out</option>
-                </select>
+                <Button onClick={logout}>LogOut</Button>
               </form>
             </div>
           </section>

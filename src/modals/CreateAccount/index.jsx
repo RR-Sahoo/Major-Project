@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import ModalProvider from "react-modal";
 import LogInModal from "modals/LogIn";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { Text, Img, Input, CheckBox, Button, Line } from "components";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const CreateAccountModal = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -15,6 +18,8 @@ const CreateAccountModal = (props) => {
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
   const [isChecked, setIsChecked] = useState(false);
   const [isOpenLogInModal, setLogInModal] = useState(false);
+  const Navigate = useNavigate();
+  const notify = () => toast("Registered successfully");
 
   function handleOpenLogInModal() {
     setLogInModal(true);
@@ -91,6 +96,10 @@ const CreateAccountModal = (props) => {
       )
       .then((response) => {
         console.log("User created successfully!", response);
+        const token = response.data.token;
+        localStorage.setItem("token", token);
+        console.log("Token stored:", token);
+        window.location.reload();
       })
       .catch((error) => {
         console.error("Error creating user:", error);
@@ -264,7 +273,11 @@ const CreateAccountModal = (props) => {
                       : ""
                   } bg-gray_900 cursor-pointer font-bold sm:px-5 px-6 py-5 rounded-[10px] text-center text-lg text-white_A700 w-full`}
                   disabled={!isFormValid() || !isChecked}
-                  onClick={createUser}
+                  onClick={() => {
+                    createUser();
+                    props.onRequestClose();
+                    notify();
+                  }}
                 >
                   Create Account
                 </Button>

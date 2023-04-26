@@ -3,13 +3,14 @@ import React from "react";
 import LandingPageHeader from "components/LandingPageHeader";
 import { Text, Input, Img, Button, Line } from "components";
 import LandingPageFooter from "components/LandingPageFooter";
+import LoginHeader from "components/LoginHeader";
 
 const ContactPagePage = () => {
   return (
     <>
       <div className="bg-gray_51 flex flex-col font-markoone sm:gap-10 md:gap-10 gap-[100px] items-start justify-start mx-auto self-stretch w-auto sm:w-full md:w-full">
         <div className="flex flex-col md:gap-10 gap-[60px] items-start justify-start w-full">
-          <LandingPageHeader className="bg-white_A700 flex h-20 md:h-auto items-center justify-between md:px-5 px-[120px] py-[19px] w-full" />
+          <LoginHeader />
           <div className="flex font-manrope items-center justify-start md:px-10 sm:px-5 px-[120px] w-full">
             <div className="flex flex-col gap-11 items-center justify-start max-w-[1200px] mx-auto w-full">
               <div className="flex flex-col gap-4 items-center justify-start w-full">

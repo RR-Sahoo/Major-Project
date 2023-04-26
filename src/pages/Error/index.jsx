@@ -2,12 +2,13 @@ import React from "react";
 
 import LandingPageHeader from "components/LandingPageHeader";
 import { Img, Text, Button } from "components";
+import LoginHeader from "components/LoginHeader";
 
 const ErrorPage = () => {
   return (
     <>
       <div className="bg-gray_51 flex flex-col font-markoone sm:gap-10 md:gap-10 gap-[116px] items-center justify-start mx-auto self-stretch w-auto sm:w-full md:w-full">
-        <LandingPageHeader className="bg-white_A700 flex h-20 md:h-auto items-center justify-between md:px-5 px-[120px] py-[19px] w-full" />
+        <LoginHeader />
         <div className="flex flex-col font-manrope gap-[30px] items-center justify-start md:px-5 self-stretch w-auto sm:w-full">
           <Img
             src="images/img_frame1000001686.svg"

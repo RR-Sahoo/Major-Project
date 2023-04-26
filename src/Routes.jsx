@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "pages/Home";
 import NotFound from "pages/NotFound";
@@ -17,12 +17,23 @@ const Listing = React.lazy(() => import("pages/Listing"));
 const AboutUs = React.lazy(() => import("pages/AboutUs"));
 const LandingPage = React.lazy(() => import("pages/LandingPage"));
 const ProjectRoutes = () => {
+  const [loggedin, setLoggedin] = useState(false);
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      setLoggedin(false);
+    } else {
+      setLoggedin(true);
+    }
+  }, []);
+  console.log(loggedin);
   return (
     <React.Suspense fallback={<>Loading...</>}>
       <Router>
         <Routes>
-          <Route path="/" element={<BeforeLogin />} />
-          <Route path="/sample" element={<BeforeLogin />} />
+          <Route
+            path="/"
+            element={loggedin ? <LandingPage /> : <BeforeLogin />}
+          />
           <Route path="*" element={<NotFound />} />
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/listing" element={<Listing />} />
