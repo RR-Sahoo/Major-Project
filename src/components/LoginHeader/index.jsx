@@ -30,7 +30,7 @@ const LoginHeader = (props) => {
               className="common-pointer flex flex-row gap-[11px] items-center justify-start"
               onClick={() => navigate("/")}
             >
-              <Img src="images/img_home.svg" className="h-10 w-10" alt="home" />
+              <Img src="/images/img_home.svg" className="h-10 w-10" alt="home" />
               <Text
                 className="font-markoone font-normal not-italic text-left text-orange_A700 w-auto"
                 variant="body1"

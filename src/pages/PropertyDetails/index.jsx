@@ -66,20 +66,20 @@ const PropertyDetailsPage = (props) => {
               <div className="flex md:flex-col flex-row gap-6 items-center justify-center max-w-[1200px] mx-auto w-full">
                 <div className="flex flex-1 items-center justify-start w-full">
                   <Img
-                    src={propertyDetails.photos[0]}
+                    src="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iNIfKpJ7Z_M0/v1/1200x-1.jpg"
                     className="h-[550px] md:h-auto object-cover rounded-[10px] w-full"
                     alt="rectangle5610"
                   />
                 </div>
                 <div className="flex sm:flex-1 flex-col gap-6 h-[550px] md:h-auto items-start justify-start self-stretch w-auto sm:w-full">
                   <Img
-                    src={propertyDetails.photos[1]}
+                    src="https://www.bhg.com/thmb/dgy0b4w_W0oUJUxc7M4w3H4AyDo=/1866x0/filters:no_upscale():strip_icc()/living-room-gallery-shelves-l-shaped-couch-ELeyNpyyqpZ8hosOG3EG1X-b5a39646574544e8a75f2961332cd89a.jpg"
                     className="h-[263px] sm:h-auto object-cover rounded-[10px] w-full"
                     alt="rectangle5611"
                   />
                   <div className="h-[263px] relative w-96 sm:w-full">
                     <Img
-                      src={propertyDetails.photos[2]}
+                      src="https://res.cloudinary.com/g5-assets-cld/image/upload/x_0,y_0,h_598,w_897,c_crop/q_auto,f_auto,fl_lossy,g_center,h_667,w_1000/g5/g5-c-5befy22d4-morgan-properties/g5-cl-1hellpd464-hyde-park-apartment-homes/uploads/13_mk1yaa.jpg"
                       className="h-[263px] m-auto object-cover rounded-[10px] w-full"
                       alt="rectangle5612"
                     />
@@ -357,7 +357,7 @@ const PropertyDetailsPage = (props) => {
                       </Text>
                       <div className="flex flex-row gap-6 items-center justify-start w-full">
                         <Img
-                          src="images/img_rectangle5599.png"
+                          src="/images/img_rectangle5599.png"
                           className="h-[150px] md:h-auto object-cover rounded-[10px] w-[150px]"
                           alt="rectangle5599"
                         />
@@ -371,27 +371,27 @@ const PropertyDetailsPage = (props) => {
                           <div className="flex flex-row gap-3.5 items-center justify-start w-full">
                             <div className="flex flex-row gap-1 items-start justify-start self-stretch w-auto">
                               <Img
-                                src="images/img_star.svg"
+                                src="/images/img_star.svg"
                                 className="h-4 w-4"
                                 alt="star"
                               />
                               <Img
-                                src="images/img_star.svg"
+                                src="/images/img_star.svg"
                                 className="h-4 w-4"
                                 alt="star_One"
                               />
                               <Img
-                                src="images/img_star.svg"
+                                src="/images/img_star.svg"
                                 className="h-4 w-4"
                                 alt="star_Two"
                               />
                               <Img
-                                src="images/img_star.svg"
+                                src="/images/img_star.svg"
                                 className="h-4 w-4"
                                 alt="star_Three"
                               />
                               <Img
-                                src="images/img_star_gray_600.svg"
+                                src="/images/img_star_gray_600.svg"
                                 className="h-4 w-4"
                                 alt="star_Four"
                               />
@@ -405,7 +405,7 @@ const PropertyDetailsPage = (props) => {
                           </div>
                           <div className="flex flex-row gap-2.5 items-center justify-start w-full">
                             <Img
-                              src="images/img_mail_gray_600.svg"
+                              src="/images/img_mail_gray_600.svg"
                               className="h-5 w-5"
                               alt="mail"
                             />
@@ -418,7 +418,7 @@ const PropertyDetailsPage = (props) => {
                           </div>
                           <div className="flex flex-row gap-2.5 items-center justify-start w-full">
                             <Img
-                              src="images/img_call.svg"
+                              src="/images/img_call.svg"
                               className="h-5 w-5"
                               alt="call"
                             />
