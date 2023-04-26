@@ -7,6 +7,7 @@ import LandingPageFooter from "components/LandingPageFooter";
 import AgentProfileHeader from "./Components/AgentProfileHeader";
 import AgentTabSection from "./Components/AgentTabSection";
 import coverImage from "../../assets/images/img_coverimage.png";
+import LoginHeader from "components/LoginHeader";
 
 const AgentProfilePage = () => {
   const { id } = useParams();
@@ -30,7 +31,7 @@ const AgentProfilePage = () => {
     <>
       <div className="bg-gray_51 flex flex-col font-markoone sm:gap-10 md:gap-10 gap-[100px] items-center justify-center mx-auto self-stretch w-auto sm:w-full md:w-full">
         <div className="flex flex-col items-start justify-start w-full">
-          <LandingPageHeader className="bg-white_A700 flex h-20 md:h-auto items-center justify-between md:px-5 px-[120px] py-[19px] w-full" />
+          <LoginHeader />
           <div className="flex flex-col font-manrope md:px-5 relative w-full">
             <div className="flex flex-1 items-center justify-start mx-auto w-full">
               <Img

@@ -5,6 +5,7 @@ import { Text, Img, List, ReactTable } from "components";
 import { createColumnHelper } from "@tanstack/react-table";
 import BlogPageColumnactive from "components/BlogPageColumnactive";
 import LandingPageFooter from "components/LandingPageFooter";
+import LoginHeader from "components/LoginHeader";
 
 const BlogDetailsPage = () => {
   const tableData = React.useRef([
@@ -126,7 +127,7 @@ const BlogDetailsPage = () => {
   return (
     <>
       <div className="bg-gray_51 flex flex-col font-markoone sm:gap-10 md:gap-10 gap-[111px] items-start justify-start mx-auto self-stretch w-auto sm:w-full md:w-full">
-        <LandingPageHeader className="bg-white_A700 flex h-20 md:h-auto items-center justify-between md:px-5 px-[120px] py-[19px] w-full" />
+        <LoginHeader />
         <div className="flex font-manrope items-start justify-start pl-[120px] pr-[324px] md:px-10 sm:px-5 w-full">
           <div className="flex flex-col gap-10 items-start justify-start w-full">
             <Text

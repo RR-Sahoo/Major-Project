@@ -6,6 +6,7 @@ import LandingPageNumberCount from "components/LandingPageNumberCount";
 import LandingPageBlogCard from "components/LandingPageBlogCard";
 import LandingPageFooter from "components/LandingPageFooter";
 import { useNavigate } from "react-router-dom";
+import LoginHeader from "components/LoginHeader";
 
 const AboutUsPage = () => {
   const navigate = useNavigate();
@@ -44,7 +45,7 @@ const AboutUsPage = () => {
   return (
     <>
       <div className="bg-white_A700 flex flex-col font-markoone sm:gap-10 md:gap-10 gap-[100px] items-center justify-start mx-auto self-stretch w-auto sm:w-full md:w-full">
-        <LandingPageHeader className="bg-white_A700 flex h-20 md:h-auto items-center justify-between md:px-5 px-[120px] py-[19px] w-full" />
+        <LoginHeader />
         <div className="flex font-manrope items-center justify-center md:px-10 sm:px-5 px-[120px] w-full">
           <div className="flex flex-col gap-10 items-center justify-start max-w-[1200px] mx-auto w-full">
             <div className="flex flex-col gap-4 items-center justify-start w-full">

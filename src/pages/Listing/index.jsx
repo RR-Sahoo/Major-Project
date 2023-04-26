@@ -16,6 +16,7 @@ import LandingPageFooter from "components/LandingPageFooter";
 import ListingHeader from "./Components/ListingHeader";
 import { ArrowIcon } from "components/Icones";
 import { Link } from "react-router-dom";
+import LoginHeader from "components/LoginHeader";
 
 const ListingPage = () => {
   const [propertyData, setPropertyData] = useState([]);
@@ -139,7 +140,7 @@ const ListingPage = () => {
     <>
       <div className="bg-gray_51 flex flex-col font-markoone sm:gap-10 md:gap-10 gap-[100px] items-start justify-start mx-auto self-stretch w-auto sm:w-full md:w-full">
         <div className="flex flex-col md:gap-10 gap-[60px] items-center justify-center w-full">
-          <LandingPageHeader className="bg-white_A700 flex h-20 md:h-auto items-center justify-between md:px-5 px-[120px] py-[19px] w-full" />
+          <LoginHeader />
           <ListingHeader handleSearchTermChange={handleSearchTermChange} />
           <div className="flex flex-row gap-8 my-4">
             <div>

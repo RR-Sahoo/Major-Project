@@ -17,6 +17,7 @@ const LoginHeader = (props) => {
   }
   const logout = () => {
     localStorage.setItem("token", "");
+    navigate("/");
     window.location.reload();
   };
 
