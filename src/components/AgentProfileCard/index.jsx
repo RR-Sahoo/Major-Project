@@ -1,7 +1,7 @@
 import React from "react";
 import { Img, Text, Button } from "components";
 import { useNavigate } from "react-router-dom";
-
+import agentProfilePic from "../../assets/images/img_rectangle5610.png";
 const AgentProfileCard = (props) => {
   const navigate = useNavigate();
   const reviewScore = parseFloat(props?.agentReview);
@@ -18,7 +18,7 @@ const AgentProfileCard = (props) => {
     <>
       <div className={props.className}>
         <Img
-          src={props?.agentProfilePic}
+          src={agentProfilePic}
           className="h-[282px] md:h-auto object-cover rounded-bl-none rounded-br-none rounded-tl-[10px] rounded-tr-[10px] w-full"
           alt="rectangle5615"
         />

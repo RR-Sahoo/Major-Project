@@ -25,14 +25,14 @@ const AgentTabSection = ({ agent }) => {
   };
 
   const tabSections = [
-    {
-      tab: "rent",
-      component: <AgentPropertyListing />,
-    },
-    {
-      tab: "sale",
-      component: <AgentPropertyListing />,
-    },
+    // {
+    //   tab: "rent",
+    //   component: <AgentPropertyListing />,
+    // },
+    // {
+    //   tab: "sale",
+    //   component: <AgentPropertyListing />,
+    // },
     {
       tab: "about",
       component: <AgentProfileAbout agent={agent} />,

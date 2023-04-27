@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Img, Text, Button, Line, List, SelectBox } from "components";
 import { XIcon } from "@heroicons/react/outline";
+import addIcon from "../../../assets/images/img_plus_white_a700.svg";
 
 const AgentProfileReview = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -88,7 +89,7 @@ const AgentProfileReview = () => {
                     className="bg-gray_900 cursor-pointer flex items-center justify-center min-w-[190px] px-4 py-5 rounded-[10px] w-auto hover:bg-gray-800"
                     rightIcon={
                       <Img
-                        src="images/img_plus_white_a700.svg"
+                        src={addIcon}
                         className="mt-px mb-[3px] ml-2.5"
                         alt="plus"
                       />

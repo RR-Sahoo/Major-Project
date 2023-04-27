@@ -1,5 +1,15 @@
 import React from "react";
 import { Img, Text, Button } from "components";
+import CallIcon from "../../../assets/images/img_call_gray_900.svg";
+import MailIcon from "../../../assets/images/img_mail_gray_900.svg";
+import clockIcon from "../../../assets/images/img_clock_gray_600.svg";
+import linkedinIcon from "../../../assets/images/img_linkedin_gray_600.svg";
+import twitterIcon from "../../../assets/images/img_twitter_gray_600.svg";
+import playIcon from "../../../assets/images/img_play.svg";
+import signalIcon from "../../../assets/images/img_signal.svg";
+import starIcon from "../../../assets/images/img_star.svg";
+
+import profile from "../../../assets/images/img_rectangle5596.png";
 
 const AgentProfileAbout = ({ agent }) => {
   return (
@@ -11,7 +21,7 @@ const AgentProfileAbout = ({ agent }) => {
               <div className="flex flex-col gap-6 items-start justify-start w-full">
                 <div className="flex sm:flex-col flex-row gap-[30px] items-center justify-start w-full">
                   <Img
-                    src="images/img_rectangle5599.png"
+                    src={profile}
                     className="h-[182px] md:h-auto object-cover rounded-[10px] w-[182px]"
                     alt="rectangle5616"
                   />
@@ -26,27 +36,27 @@ const AgentProfileAbout = ({ agent }) => {
                     <div className="flex flex-row gap-3.5 items-center justify-start w-full">
                       <div className="flex flex-row items-center justify-evenly w-[31%]">
                         <Img
-                          src="images/img_star.svg"
+                          src={starIcon}
                           className="h-4 w-4"
                           alt="star_Five"
                         />
                         <Img
-                          src="images/img_star.svg"
+                          src={starIcon}
                           className="h-4 w-4"
                           alt="star_Six"
                         />
                         <Img
-                          src="images/img_star.svg"
+                          src={starIcon}
                           className="h-4 w-4"
                           alt="star_Seven"
                         />
                         <Img
-                          src="images/img_star.svg"
+                          src={starIcon}
                           className="h-4 w-4"
                           alt="star_Eight"
                         />
                         <Img
-                          src="images/img_star_gray_600.svg"
+                          src={starIcon}
                           className="h-4 w-4"
                           alt="star_Nine"
                         />
@@ -59,11 +69,7 @@ const AgentProfileAbout = ({ agent }) => {
                       </Text>
                     </div>
                     <div className="flex flex-row gap-3 items-center justify-start w-full">
-                      <Img
-                        src="images/img_call_gray_900.svg"
-                        className="h-6 w-6"
-                        alt="call_One"
-                      />
+                      <Img src={CallIcon} className="h-6 w-6" alt="call_One" />
                       <Text
                         className="flex-1 font-semibold text-gray_900 text-left w-auto"
                         variant="body3"
@@ -72,16 +78,12 @@ const AgentProfileAbout = ({ agent }) => {
                       </Text>
                     </div>
                     <div className="flex flex-row gap-3 items-center justify-start w-full">
-                      <Img
-                        src="images/img_mail_gray_900.svg"
-                        className="h-6 w-6"
-                        alt="mail_One"
-                      />
+                      <Img src={MailIcon} className="h-6 w-6" alt="mail_One" />
                       <Text
                         className="font-semibold text-gray_900 text-left w-auto"
                         variant="body3"
                       >
-                        {agent?.mail}
+                        {agent?.email}
                       </Text>
                     </div>
                   </div>
@@ -193,27 +195,27 @@ const AgentProfileAbout = ({ agent }) => {
                 </Text>
                 <div className="flex flex-row gap-4 items-start justify-start w-full">
                   <Img
-                    src="images/img_clock_gray_600.svg"
+                    src={clockIcon}
                     className="h-[30px] w-[30px]"
                     alt="clock"
                   />
                   <Img
-                    src="images/img_linkedin_gray_600.svg"
+                    src={linkedinIcon}
                     className="h-[30px] w-[30px]"
                     alt="linkedin"
                   />
                   <Img
-                    src="images/img_twitter_gray_600.svg"
+                    src={twitterIcon}
                     className="h-[30px] w-[30px]"
                     alt="twitter"
                   />
                   <Img
-                    src="images/img_play.svg"
+                    src={playIcon}
                     className="h-[30px] w-[30px]"
                     alt="play"
                   />
                   <Img
-                    src="images/img_signal.svg"
+                    src={signalIcon}
                     className="h-[30px] w-[30px]"
                     alt="signal"
                   />

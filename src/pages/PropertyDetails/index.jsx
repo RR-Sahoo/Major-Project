@@ -73,7 +73,7 @@ const PropertyDetailsPage = (props) => {
             <LoginHeader />
             <div className="flex font-manrope items-center justify-center md:px-10 sm:px-5 px-[120px] w-full">
               <div className="flex md:flex-col flex-row gap-6 items-center justify-center max-w-[1200px] mx-auto w-full">
-                {/* <div className="flex flex-1 items-center justify-start w-full">
+                <div className="flex flex-1 items-center justify-start w-full">
                   <Img
                     src="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iNIfKpJ7Z_M0/v1/1200x-1.jpg"
                     className="h-[550px] md:h-auto object-cover rounded-[10px] w-full"
@@ -103,7 +103,7 @@ const PropertyDetailsPage = (props) => {
                       }
                     ></Button>
                   </div>
-                </div> */}
+                </div>
               </div>
             </div>
 

@@ -3,7 +3,7 @@ import LandingPageCard from "components/LandingPageCard";
 
 const AgentPropertyListing = () => {
   const landingPageCardPropList = [
-    { image: "images/img_image_260x384.png" },
+    { image: "" },
     { image: "images/img_image_1.png" },
     { image: "images/img_image_2.png" },
     { image: "images/img_image_3.png" },
