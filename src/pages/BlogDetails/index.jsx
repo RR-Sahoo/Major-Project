@@ -127,7 +127,7 @@ const BlogDetailsPage = () => {
     <>
       <div className="bg-gray_51 flex flex-col font-markoone sm:gap-10 md:gap-10 gap-[111px] items-start justify-start mx-auto self-stretch w-auto sm:w-full md:w-full">
         <LandingPageHeader className="bg-white_A700 flex h-20 md:h-auto items-center justify-between md:px-5 px-[120px] py-[19px] w-full" />
-        <div className="flex font-manrope items-start justify-start pl-[120px] pr-[324px] md:px-10 sm:px-5 w-full">
+        <div className="flex flex-col font-manrope items-start justify-start pl-[120px] pr-[324px] md:px-10 sm:px-5 w-full">
           <div className="flex flex-col gap-10 items-start justify-start w-full">
             <Text
               className="text-gray_900 text-left tracking-[-0.72px] w-auto"
@@ -168,7 +168,7 @@ const BlogDetailsPage = () => {
                     </>
                   </Text>
                 </div>
-                <div className="flex md:flex-1 items-center justify-start w-[11%] md:w-full">
+                <div className="flex md:flex-1 flex-col items-center justify-start w-[11%] md:w-full">
                   <div className="flex flex-col gap-4 items-start justify-start self-stretch w-auto">
                     <Img
                       src="images/img_facebook.svg"
@@ -181,9 +181,9 @@ const BlogDetailsPage = () => {
                         className="h-8 w-8"
                         alt="volume"
                       />
-                      <div className="flex items-center justify-start w-[71%]">
+                      <div className="flex flex-col items-center justify-start w-[71%]">
                         <div
-                          className="bg-cover bg-no-repeat flex h-[25px] items-center justify-start self-stretch w-auto"
+                          className="bg-cover bg-no-repeat flex flex-col h-[25px] items-center justify-start self-stretch w-auto"
                           style={{
                             backgroundImage:
                               "url('images/img_frame1000001658.svg')",
@@ -230,7 +230,7 @@ const BlogDetailsPage = () => {
                     </>
                   </Text>
                 </div>
-                <div className="bg-white_A700 border border-bluegray_100 border-solid flex items-start justify-start p-[30px] sm:px-5 rounded-[10px] w-full">
+                <div className="bg-white_A700 border border-bluegray_100 border-solid flex flex-col items-start justify-start p-[30px] sm:px-5 rounded-[10px] w-full">
                   <div className="flex flex-col gap-5 items-start justify-start w-full">
                     <Text
                       className="font-semibold text-gray_900 text-left tracking-[-0.40px] w-auto"
@@ -553,7 +553,7 @@ const BlogDetailsPage = () => {
                     business websites.
                   </Text>
                 </div>
-                <div className="bg-white_A700 border border-bluegray_100 border-solid flex items-start justify-start px-10 sm:px-5 py-[50px] rounded-[10px] w-full">
+                <div className="bg-white_A700 border border-bluegray_100 border-solid flex flex-col items-start justify-start px-10 sm:px-5 py-[50px] rounded-[10px] w-full">
                   <div className="overflow-auto w-full">
                     <ReactTable
                       columns={column}
@@ -572,7 +572,7 @@ const BlogDetailsPage = () => {
                 >
                   Writen by
                 </Text>
-                <div className="flex items-center justify-between md:pr-10 sm:pr-5 pr-[568px] w-full">
+                <div className="flex flex-col items-center justify-between md:pr-10 sm:pr-5 pr-[568px] w-full">
                   <div className="flex sm:flex-col flex-row gap-6 items-center justify-start max-w-[836px] w-full">
                     <Img
                       src="images/img_profilepicture.png"
@@ -609,7 +609,7 @@ const BlogDetailsPage = () => {
             </div>
           </div>
         </div>
-        <div className="flex font-manrope items-start justify-start md:px-10 sm:px-5 px-[120px] w-full">
+        <div className="flex flex-col font-manrope items-start justify-start md:px-10 sm:px-5 px-[120px] w-full">
           <div className="flex flex-col gap-10 items-start justify-start max-w-[1200px] mx-auto w-full">
             <Text
               className="text-gray_900 text-left tracking-[-0.72px] w-auto"

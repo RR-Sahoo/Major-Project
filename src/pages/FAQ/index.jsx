@@ -15,7 +15,7 @@ const FAQPage = () => {
     <>
       <div className="bg-gray_51 flex flex-col font-markoone sm:gap-10 md:gap-10 gap-[68px] items-center justify-start mx-auto self-stretch w-auto sm:w-full md:w-full">
         <Header className="bg-white_A700 flex h-20 md:h-auto items-center justify-between md:px-5 px-[120px] py-[19px] w-full" />
-        <div className="flex font-manrope items-center justify-center md:px-10 sm:px-5 px-[120px] w-full">
+        <div className="flex flex-col font-manrope items-center justify-center md:px-10 sm:px-5 px-[120px] w-full">
           <div className="flex flex-col gap-10 items-center justify-start max-w-[1200px] mx-auto w-full">
             <Text
               className="text-center text-gray_900 tracking-[-0.92px] w-auto"
@@ -27,7 +27,7 @@ const FAQPage = () => {
             <div className="flex flex-col gap-[25px] items-start justify-start w-full">
               <Input
                 value={inputvalue}
-                onChange={(e) => setInputvalue(e?.target?.value)}
+                onChange={(e) => setInputvalue(e)}
                 wrapClassName="bg-white_A700 border border-bluegray_100 border-solid flex gap-2 px-[26px] py-3.5 rounded-[10px] w-full"
                 className="font-semibold p-0 placeholder:text-gray_600 sm:px-5 text-gray_600 text-left text-lg w-full"
                 name="search_One"
@@ -54,7 +54,7 @@ const FAQPage = () => {
                   />
                 }
               ></Input>
-              <div className="bg-white_A700 border border-bluegray_100 border-solid flex items-start justify-start sm:px-5 px-[30px] py-7 rounded-[10px] w-full">
+              <div className="bg-white_A700 border border-bluegray_100 border-solid flex flex-col items-start justify-start sm:px-5 px-[30px] py-7 rounded-[10px] w-full">
                 <div className="flex flex-col gap-5 items-start justify-start w-full">
                   <div className="flex flex-col gap-4 items-start justify-start max-w-[732px] w-full">
                     <Text

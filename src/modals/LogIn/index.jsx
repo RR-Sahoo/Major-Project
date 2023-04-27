@@ -21,7 +21,7 @@ const LogInModal = (props) => {
         {...props}
       >
         <div className="sm:h-auto md:h-auto max-h-[97vh] overflow-y-auto sm:w-full md:w-full">
-          <div className="bg-white_A700 border border-bluegray_100 border-solid flex items-start justify-start md:px-5 px-[30px] py-10 rounded-[10px] w-full">
+          <div className="bg-white_A700 border border-bluegray_100 border-solid flex flex-col items-start justify-start md:px-5 px-[30px] py-10 rounded-[10px] w-full">
             <div className="flex flex-col gap-8 items-center justify-center w-full">
               <div className="flex flex-col gap-4 items-start justify-start w-full">
                 <div className="flex flex-col gap-6 items-start justify-start w-full">
@@ -87,8 +87,9 @@ const LogInModal = (props) => {
                     label="Remember"
                   ></CheckBox>
                   <Text
-                    className="font-bold text-gray_900 text-right w-auto"
+                    className="common-pointer font-bold text-gray_900 text-right w-auto"
                     variant="body3"
+                    onClick={props.onRequestClose}
                   >
                     Forgot Password
                   </Text>

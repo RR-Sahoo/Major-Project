@@ -18,9 +18,9 @@ const PropertyDetailsPage = () => {
         <div className="flex flex-col md:gap-10 gap-[60px] items-start justify-start w-full">
           <div className="flex flex-col gap-10 items-start justify-start w-full">
             <LandingPageHeader className="bg-white_A700 flex h-20 md:h-auto items-center justify-between md:px-5 px-[120px] py-[19px] w-full" />
-            <div className="flex font-manrope items-center justify-center md:px-10 sm:px-5 px-[120px] w-full">
+            <div className="flex flex-col font-manrope items-center justify-center md:px-10 sm:px-5 px-[120px] w-full">
               <div className="flex md:flex-col flex-row gap-6 items-center justify-center max-w-[1200px] mx-auto w-full">
-                <div className="flex flex-1 items-center justify-start w-full">
+                <div className="flex flex-1 flex-col items-center justify-start w-full">
                   <Img
                     src="images/img_rectangle5610.png"
                     className="h-[550px] md:h-auto object-cover rounded-[10px] w-full"
@@ -57,10 +57,10 @@ const PropertyDetailsPage = () => {
                 </div>
               </div>
             </div>
-            <div className="flex font-manrope items-center justify-center md:px-10 sm:px-5 px-[120px] w-full">
+            <div className="flex flex-col font-manrope items-center justify-center md:px-10 sm:px-5 px-[120px] w-full">
               <div className="flex md:flex-col flex-row gap-6 items-start justify-center max-w-[1200px] mx-auto w-full">
                 <div className="flex flex-1 flex-col gap-6 items-start justify-start w-full">
-                  <div className="bg-white_A700 border border-bluegray_100 border-solid flex items-start justify-start p-10 sm:px-5 rounded-[10px] w-full">
+                  <div className="bg-white_A700 border border-bluegray_100 border-solid flex flex-col items-start justify-start p-10 sm:px-5 rounded-[10px] w-full">
                     <div className="flex flex-col gap-11 items-start justify-start w-full">
                       <div className="flex flex-col gap-6 items-start justify-start w-full">
                         <div className="flex flex-col gap-4 items-start justify-start w-full">
@@ -80,7 +80,7 @@ const PropertyDetailsPage = () => {
                           </Text>
                         </div>
                         <div className="flex sm:flex-col flex-row gap-4 items-start justify-start md:pr-10 sm:pr-5 pr-[180px] w-full">
-                          <div className="bg-white_A700 border border-gray_600 border-solid flex flex-1 items-center justify-center sm:px-5 px-6 py-[7px] rounded-[10px] w-full">
+                          <div className="bg-white_A700 border border-gray_600 border-solid flex flex-1 flex-col items-center justify-center sm:px-5 px-6 py-[7px] rounded-[10px] w-full">
                             <div className="flex flex-col gap-1 items-start justify-start w-full">
                               <Text
                                 className="font-bold text-gray_900 text-left tracking-[-0.48px] w-auto"
@@ -97,7 +97,7 @@ const PropertyDetailsPage = () => {
                               </Text>
                             </div>
                           </div>
-                          <div className="bg-white_A700 border border-bluegray_100 border-solid flex flex-1 items-center justify-center sm:px-5 px-6 py-[7px] rounded-[10px] w-full">
+                          <div className="bg-white_A700 border border-bluegray_100 border-solid flex flex-1 flex-col items-center justify-center sm:px-5 px-6 py-[7px] rounded-[10px] w-full">
                             <div className="flex flex-col gap-1 items-start justify-start w-full">
                               <Text
                                 className="font-bold text-gray_900 text-left tracking-[-0.48px] w-auto"
@@ -175,7 +175,7 @@ const PropertyDetailsPage = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="bg-white_A700 border border-bluegray_100 border-solid flex items-start justify-start p-10 sm:px-5 rounded-[10px] w-full">
+                  <div className="bg-white_A700 border border-bluegray_100 border-solid flex flex-col items-start justify-start p-10 sm:px-5 rounded-[10px] w-full">
                     <div className="flex flex-col gap-6 items-start justify-start w-full">
                       <Text
                         className="text-gray_900 text-left tracking-[-0.56px] w-auto"
@@ -314,7 +314,7 @@ const PropertyDetailsPage = () => {
                       </List>
                     </div>
                   </div>
-                  <div className="bg-white_A700 border border-bluegray_100 border-solid flex items-start justify-start p-10 sm:px-5 rounded-[10px] w-full">
+                  <div className="bg-white_A700 border border-bluegray_100 border-solid flex flex-col items-start justify-start p-10 sm:px-5 rounded-[10px] w-full">
                     <div className="flex flex-col gap-[26px] items-start justify-start w-full">
                       <Text
                         className="text-gray_900 text-left tracking-[-0.56px] w-auto"
@@ -402,7 +402,7 @@ const PropertyDetailsPage = () => {
                     </div>
                   </div>
                 </div>
-                <div className="bg-white_A700 border border-bluegray_100 border-solid flex sm:flex-1 items-start justify-start p-6 sm:px-5 rounded-[10px] self-stretch w-auto sm:w-full">
+                <div className="bg-white_A700 border border-bluegray_100 border-solid flex sm:flex-1 flex-col items-start justify-start p-6 sm:px-5 rounded-[10px] self-stretch w-auto sm:w-full">
                   <div className="flex flex-col gap-10 items-start justify-start w-[336px]">
                     <div className="flex flex-col gap-6 items-start justify-start w-full">
                       <Text
@@ -468,7 +468,7 @@ const PropertyDetailsPage = () => {
                             />
                           }
                         ></Input>
-                        <div className="bg-white_A700 border border-bluegray_100 border-solid flex h-[152px] md:h-auto items-start justify-start px-[19px] py-3.5 rounded-[10px] w-full">
+                        <div className="bg-white_A700 border border-bluegray_100 border-solid flex flex-col h-[152px] md:h-auto items-start justify-start px-[19px] py-3.5 rounded-[10px] w-full">
                           <Text
                             className="font-semibold text-gray_600 text-left w-auto"
                             variant="body3"
@@ -486,7 +486,7 @@ const PropertyDetailsPage = () => {
               </div>
             </div>
           </div>
-          <div className="flex font-manrope items-center justify-center md:px-10 sm:px-5 px-[120px] w-full">
+          <div className="flex flex-col font-manrope items-center justify-center md:px-10 sm:px-5 px-[120px] w-full">
             <div className="flex flex-col gap-10 items-center justify-center max-w-[1200px] mx-auto w-full">
               <div className="flex sm:flex-col flex-row gap-5 items-center justify-start w-full">
                 <Text

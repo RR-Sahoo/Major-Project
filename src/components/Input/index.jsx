@@ -15,11 +15,16 @@ const Input = React.forwardRef(
       label = "",
       prefix,
       suffix,
+      onChange,
 
       ...restProps
     },
     ref
   ) => {
+    const handleChange = (e) => {
+      if (onChange) onChange(e?.target?.value);
+    };
+
     return (
       <>
         <div
@@ -35,6 +40,7 @@ const Input = React.forwardRef(
             className={`${className} bg-transparent border-0`}
             type={type}
             name={name}
+            onChange={handleChange}
             placeholder={placeholder}
             {...restProps}
           />

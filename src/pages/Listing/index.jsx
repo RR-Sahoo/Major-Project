@@ -30,7 +30,7 @@ const ListingPage = () => {
       <div className="bg-gray_51 flex flex-col font-markoone sm:gap-10 md:gap-10 gap-[100px] items-start justify-start mx-auto self-stretch w-auto sm:w-full md:w-full">
         <div className="flex flex-col md:gap-10 gap-[60px] items-center justify-center w-full">
           <LandingPageHeader className="bg-white_A700 flex h-20 md:h-auto items-center justify-between md:px-5 px-[120px] py-[19px] w-full" />
-          <div className="flex font-manrope items-center justify-start md:px-10 sm:px-5 px-[120px] w-full">
+          <div className="flex flex-col font-manrope items-center justify-start md:px-10 sm:px-5 px-[120px] w-full">
             <div className="flex flex-col gap-6 items-center justify-center max-w-[1200px] mx-auto w-full">
               <Text
                 className="text-gray_900 text-left tracking-[-0.72px] w-auto"
@@ -41,7 +41,7 @@ const ListingPage = () => {
               </Text>
               <div className="flex flex-col gap-3 items-start justify-start w-full">
                 <div className="flex md:flex-col flex-row gap-5 items-start justify-start w-full">
-                  <div className="bg-white_A700 border border-bluegray_100 border-solid flex flex-1 h-[60px] md:h-auto items-start justify-start px-4 py-3.5 rounded-[10px] w-full">
+                  <div className="bg-white_A700 border border-bluegray_100 border-solid flex flex-1 flex-col h-[60px] md:h-auto items-start justify-start px-4 py-3.5 rounded-[10px] w-full">
                     <Input
                       wrapClassName="flex w-auto sm:w-full"
                       className="font-semibold p-0 placeholder:text-gray_700 self-stretch text-gray_700 text-left text-lg w-full"
@@ -56,7 +56,7 @@ const ListingPage = () => {
                       }
                     ></Input>
                   </div>
-                  <div className="flex sm:flex-1 items-start justify-start self-stretch w-auto sm:w-full">
+                  <div className="flex sm:flex-1 flex-col items-start justify-start self-stretch w-auto sm:w-full">
                     <SelectBox
                       className="bg-white_A700 border border-bluegray_100 border-solid font-bold px-4 py-[18px] rounded-[10px] text-gray_700 text-left text-lg w-full"
                       placeholderClassName="text-gray_700"
@@ -207,7 +207,7 @@ const ListingPage = () => {
               </div>
             </div>
           </div>
-          <div className="flex font-manrope items-center justify-center md:px-10 sm:px-5 px-[120px] w-full">
+          <div className="flex flex-col font-manrope items-center justify-center md:px-10 sm:px-5 px-[120px] w-full">
             <div className="flex md:flex-col flex-row gap-6 items-start justify-center max-w-[1200px] mx-auto w-full">
               <div className="h-[511px] relative w-[32%] md:w-full">
                 <div className="h-[511px] m-auto w-full">
@@ -221,7 +221,7 @@ const ListingPage = () => {
                     alt="group1000001533"
                   />
                 </div>
-                <div className="absolute bg-white_A700 border border-gray_600 border-solid flex h-max inset-y-[0] items-center justify-start left-[7%] my-auto px-4 py-6 rounded-lg w-[308px]">
+                <div className="absolute bg-white_A700 border border-gray_600 border-solid flex flex-col h-max inset-y-[0] items-center justify-start left-[7%] my-auto px-4 py-6 rounded-lg w-[308px]">
                   <div className="flex flex-col gap-[21.66px] items-start justify-start w-full">
                     <div className="flex flex-row gap-[9.63px] items-center justify-start w-full">
                       <Img
@@ -297,7 +297,7 @@ const ListingPage = () => {
                         </div>
                       </div>
                     </List>
-                    <div className="flex items-center justify-start w-full">
+                    <div className="flex flex-col items-center justify-start w-full">
                       <Text
                         className="text-gray_900 text-left tracking-[-0.39px] w-auto"
                         variant="body2"
@@ -309,7 +309,7 @@ const ListingPage = () => {
                 </div>
               </div>
               <div className="flex flex-1 flex-col md:gap-10 gap-[60px] items-start justify-start w-full">
-                <div className="flex items-start justify-start w-full">
+                <div className="flex flex-col items-start justify-start w-full">
                   <div className="md:gap-5 gap-6 grid md:grid-cols-1 grid-cols-2 justify-center min-h-[auto] w-full">
                     {landingPageCardPropList.map((props, index) => (
                       <React.Fragment key={`LandingPageCard${index}`}>

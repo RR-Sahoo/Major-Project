@@ -77,7 +77,7 @@ const LandingPagePage = () => {
       <div className="bg-white_A700 flex flex-col font-markoone sm:gap-10 md:gap-10 gap-[100px] items-center justify-start mx-auto self-stretch w-auto sm:w-full md:w-full">
         <div className="flex flex-col items-start justify-start w-full">
           <LandingPageHeader className="bg-white_A700 flex h-20 md:h-auto items-center justify-between md:px-5 px-[120px] py-[19px] w-full" />
-          <div className="bg-yellow_50 flex font-manrope items-start justify-start md:pl-10 sm:pl-5 pl-[120px] py-[50px] w-full">
+          <div className="bg-yellow_50 flex flex-col font-manrope items-start justify-start md:pl-10 sm:pl-5 pl-[120px] py-[50px] w-full">
             <div className="flex md:flex-col flex-row md:gap-10 gap-[100px] items-center justify-start ml-auto w-full">
               <div className="flex flex-1 flex-col gap-10 items-start justify-start w-full">
                 <div className="flex flex-col gap-4 items-start justify-start w-full">
@@ -100,7 +100,7 @@ const LandingPagePage = () => {
                     ad production and delivery.
                   </Text>
                 </div>
-                <div className="bg-white_A700 flex items-start justify-start p-6 sm:px-5 rounded-[16px] w-full">
+                <div className="bg-white_A700 flex flex-col items-start justify-start p-6 sm:px-5 rounded-[16px] w-full">
                   <div className="flex flex-col gap-[38px] items-center justify-start w-full">
                     <div className="flex sm:flex-col flex-row gap-4 items-center justify-center w-full">
                       <Button className="bg-gray_900 cursor-pointer flex-1 font-bold sm:px-5 px-[31px] py-4 rounded-[10px] text-center text-lg text-white_A700 w-full">
@@ -162,7 +162,7 @@ const LandingPagePage = () => {
                   </div>
                 </div>
               </div>
-              <div className="flex md:flex-1 items-center justify-start w-[47%] md:w-full">
+              <div className="flex md:flex-1 flex-col items-center justify-start w-[47%] md:w-full">
                 <Img
                   src="images/img_image.png"
                   className="h-[503px] md:h-auto object-cover w-full"
@@ -172,9 +172,9 @@ const LandingPagePage = () => {
             </div>
           </div>
         </div>
-        <div className="flex font-manrope items-start justify-start md:px-10 sm:px-5 px-[120px] w-full">
+        <div className="flex flex-col font-manrope items-start justify-start md:px-10 sm:px-5 px-[120px] w-full">
           <div className="flex md:flex-col flex-row gap-6 items-center justify-center max-w-[1200px] mx-auto w-full">
-            <div className="bg-red_100 flex flex-1 h-[424px] md:h-auto items-start justify-center md:px-10 sm:px-5 px-[50px] py-[46px] rounded-[20px] w-full">
+            <div className="bg-red_100 flex flex-1 flex-col h-[424px] md:h-auto items-start justify-center md:px-10 sm:px-5 px-[50px] py-[46px] rounded-[20px] w-full">
               <div className="flex flex-col gap-[50px] items-start justify-start w-full">
                 <div className="flex flex-col gap-4 items-start justify-start w-full">
                   <Text
@@ -200,7 +200,7 @@ const LandingPagePage = () => {
                 </Button>
               </div>
             </div>
-            <div className="flex flex-1 items-start justify-start w-full">
+            <div className="flex flex-1 flex-col items-start justify-start w-full">
               <div className="sm:gap-5 gap-6 grid sm:grid-cols-1 grid-cols-2 justify-center min-h-[auto] w-full">
                 {landingPageAdvantageCardPropList.map((props, index) => (
                   <React.Fragment key={`LandingPageAdvantageCard${index}`}>
@@ -214,7 +214,7 @@ const LandingPagePage = () => {
             </div>
           </div>
         </div>
-        <div className="bg-gray_50 flex font-manrope items-start justify-start md:px-10 sm:px-5 px-[120px] py-[50px] w-full">
+        <div className="bg-gray_50 flex flex-col font-manrope items-start justify-start md:px-10 sm:px-5 px-[120px] py-[50px] w-full">
           <div className="flex md:flex-col flex-row md:gap-10 gap-[100px] items-start justify-start max-w-[1200px] mx-auto w-full">
             <List
               className="md:flex-1 sm:flex-col flex-row md:gap-10 gap-[100px] grid sm:grid-cols-1 md:grid-cols-2 grid-cols-3 w-[73%] md:w-full"
@@ -236,7 +236,7 @@ const LandingPagePage = () => {
             />
           </div>
         </div>
-        <div className="flex font-manrope items-center justify-center md:px-10 sm:px-5 px-[120px] w-full">
+        <div className="flex flex-col font-manrope items-center justify-center md:px-10 sm:px-5 px-[120px] w-full">
           <div className="flex flex-col md:gap-10 gap-[60px] md:h-auto items-start justify-start max-w-[1200px] mx-auto w-full">
             <div className="flex flex-col gap-6 items-start justify-start w-full">
               <div className="flex sm:flex-col flex-row md:gap-10 items-center justify-between w-full">
@@ -278,7 +278,7 @@ const LandingPagePage = () => {
                 </Button>
               </div>
             </div>
-            <div className="flex items-start justify-start w-full">
+            <div className="flex flex-col items-start justify-start w-full">
               <div className="md:gap-5 gap-6 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-3 justify-center min-h-[auto] w-full">
                 {landingPageCardPropList.map((props, index) => (
                   <React.Fragment key={`LandingPageCard${index}`}>
@@ -299,7 +299,7 @@ const LandingPagePage = () => {
             </div>
           </div>
         </div>
-        <div className="bg-gray_51 flex font-manrope items-center justify-center p-[120px] md:px-10 sm:px-5 w-full">
+        <div className="bg-gray_51 flex flex-col font-manrope items-center justify-center p-[120px] md:px-10 sm:px-5 w-full">
           <div className="flex flex-col md:gap-10 gap-[150px] items-center justify-center max-w-[1200px] mx-auto w-full">
             <div className="flex md:flex-col flex-row md:gap-10 gap-[85px] items-center justify-start w-full">
               <div className="flex flex-1 flex-col md:gap-10 gap-[60px] items-start justify-start w-full">
@@ -416,7 +416,7 @@ const LandingPagePage = () => {
           </div>
         </div>
         <div className="flex flex-col font-manrope gap-6 items-start justify-start w-full">
-          <div className="flex items-center justify-center md:px-10 sm:px-5 px-[215px] w-full">
+          <div className="flex flex-col items-center justify-center md:px-10 sm:px-5 px-[215px] w-full">
             <Slider
               autoPlay
               autoPlayInterval={2000}
@@ -439,7 +439,7 @@ const LandingPagePage = () => {
                       className="flex-1 md:flex-none h-[344px] sm:h-auto object-cover rounded-lg w-full"
                       alt="rectangle5591"
                     />
-                    <div className="flex flex-1 items-start justify-start w-full">
+                    <div className="flex flex-1 flex-col items-start justify-start w-full">
                       <div className="flex flex-col gap-[30px] items-start justify-start w-full">
                         <div className="flex sm:flex-col flex-row sm:gap-10 gap-[73px] items-center justify-start w-full">
                           <div className="flex flex-1 flex-col gap-1 items-start justify-start w-full">
@@ -509,7 +509,7 @@ const LandingPagePage = () => {
             </div>
           </div>
         </div>
-        <div className="bg-gray_900 flex font-manrope items-center justify-center p-[120px] md:px-10 sm:px-5 w-full">
+        <div className="bg-gray_900 flex flex-col font-manrope items-center justify-center p-[120px] md:px-10 sm:px-5 w-full">
           <div className="flex flex-col md:gap-10 gap-[120px] items-center justify-start max-w-[1200px] mx-auto w-full">
             <div className="flex flex-col md:gap-10 gap-[60px] items-start justify-start w-full">
               <div className="flex sm:flex-col flex-row gap-5 items-center justify-start w-full">
@@ -552,7 +552,7 @@ const LandingPagePage = () => {
                 ))}
               </List>
             </div>
-            <div className="bg-gray_401 flex items-center justify-center md:px-10 sm:px-5 px-[100px] py-10 rounded-[10px] w-full">
+            <div className="bg-gray_401 flex flex-col items-center justify-center md:px-10 sm:px-5 px-[100px] py-10 rounded-[10px] w-full">
               <div className="flex flex-col gap-[30px] items-center justify-start md:px-10 sm:px-5 px-[200px] w-full">
                 <div className="flex flex-col gap-2.5 items-center justify-start w-full">
                   <Text

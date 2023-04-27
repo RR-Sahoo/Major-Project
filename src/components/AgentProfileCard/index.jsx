@@ -14,7 +14,7 @@ const AgentProfileCard = (props) => {
           className="h-[282px] md:h-auto object-cover rounded-bl-none rounded-br-none rounded-tl-[10px] rounded-tr-[10px] w-full"
           alt="rectangle5615"
         />
-        <div className="bg-white_A700 border border-bluegray_100 border-solid flex items-start justify-start px-5 py-3.5 rounded-bl-[10px] rounded-br-[10px] rounded-tl-none rounded-tr-none w-full">
+        <div className="bg-white_A700 border border-bluegray_100 border-solid flex flex-col items-start justify-start px-5 py-3.5 rounded-bl-[10px] rounded-br-[10px] rounded-tl-none rounded-tr-none w-full">
           <div className="flex flex-col gap-2 items-start justify-start w-full">
             <Text
               className="font-manrope font-semibold text-gray_900 text-left tracking-[-0.40px] w-auto"

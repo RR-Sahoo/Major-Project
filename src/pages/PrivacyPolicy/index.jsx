@@ -10,7 +10,7 @@ const PrivacyPolicyPage = () => {
       <div className="bg-gray_51 flex flex-col font-markoone sm:gap-10 md:gap-10 gap-[100px] items-start justify-start mx-auto self-stretch w-auto sm:w-full md:w-full">
         <div className="flex flex-col md:gap-10 gap-[60px] items-start justify-start w-full">
           <Header className="bg-white_A700 flex h-20 md:h-auto items-center justify-between md:px-5 px-[120px] py-[19px] w-full" />
-          <div className="flex font-manrope items-start justify-center pl-[120px] pr-[266px] md:px-10 sm:px-5 w-full">
+          <div className="flex flex-col font-manrope items-start justify-center pl-[120px] pr-[266px] md:px-10 sm:px-5 w-full">
             <div className="flex flex-col md:gap-10 gap-[60px] items-start justify-start w-full">
               <div className="flex flex-col gap-10 items-start justify-start w-full">
                 <div className="flex flex-col gap-1.5 items-start justify-start w-full">

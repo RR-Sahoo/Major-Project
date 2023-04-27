@@ -54,14 +54,14 @@ const LandingPageFooter = (props) => {
                   </Text>
                 </div>
                 <div className="flex flex-row gap-3 items-start justify-start w-full">
-                  <div className="flex h-[30px] items-center justify-start w-[30px]">
+                  <div className="flex flex-col h-[30px] items-center justify-start w-[30px]">
                     <Img
                       src="images/img_plus.svg"
                       className="h-[30px] w-[30px]"
                       alt="plus"
                     />
                   </div>
-                  <div className="flex h-[30px] items-center justify-start w-[30px]">
+                  <div className="flex flex-col h-[30px] items-center justify-start w-[30px]">
                     <Img
                       src="images/img_twitter.svg"
                       className="h-[30px] w-[30px]"
@@ -78,7 +78,7 @@ const LandingPageFooter = (props) => {
                     className="h-[30px] w-[30px]"
                     alt="linkedin"
                   />
-                  <div className="flex h-[30px] items-center justify-start w-[30px]">
+                  <div className="flex flex-col h-[30px] items-center justify-start w-[30px]">
                     <Img
                       src="images/img_clock_orange_a700.svg"
                       className="h-[30px] w-[30px]"

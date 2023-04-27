@@ -13,10 +13,15 @@ const CheckBox = React.forwardRef(
       errors = [],
 
       id = "checkbox_id",
+      onChange,
       ...restProps
     },
     ref
   ) => {
+    const handleChange = (e) => {
+      if (onChange) onChange(e?.target?.checked);
+    };
+
     return (
       <>
         <div className={className}>
@@ -25,6 +30,7 @@ const CheckBox = React.forwardRef(
             ref={ref}
             type="checkbox"
             name={name}
+            onChange={handleChange}
             {...restProps}
             id={id}
           />

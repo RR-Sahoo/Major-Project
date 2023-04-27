@@ -4,8 +4,11 @@ import LandingPageHeader from "components/LandingPageHeader";
 import { Img, Text, Button, Line, List, SelectBox } from "components";
 import LandingPageCard from "components/LandingPageCard";
 import LandingPageFooter from "components/LandingPageFooter";
+import { useNavigate } from "react-router-dom";
 
 const AgentProfilePage = () => {
+  const navigate = useNavigate();
+
   function handleNavigate() {
     window.location.href = "www.abc.com";
   }
@@ -25,7 +28,7 @@ const AgentProfilePage = () => {
         <div className="flex flex-col items-start justify-start w-full">
           <LandingPageHeader className="bg-white_A700 flex h-20 md:h-auto items-center justify-between md:px-5 px-[120px] py-[19px] w-full" />
           <div className="flex flex-col font-manrope md:px-5 relative w-full">
-            <div className="flex flex-1 items-center justify-start mx-auto w-full">
+            <div className="flex flex-1 flex-col items-center justify-start mx-auto w-full">
               <Img
                 src="images/img_coverimage.png"
                 className="h-[250px] sm:h-auto object-cover w-full"
@@ -114,12 +117,15 @@ const AgentProfilePage = () => {
                       </div>
                     </div>
                   </div>
-                  <Button className="bg-gray_900 cursor-pointer font-semibold min-w-[112px] sm:px-5 px-6 py-4 rounded-[10px] text-base text-center text-white_A700 w-auto">
+                  <Button
+                    className="common-pointer bg-gray_900 cursor-pointer font-semibold min-w-[112px] sm:px-5 px-6 py-4 rounded-[10px] text-base text-center text-white_A700 w-auto"
+                    onClick={() => navigate("/contactpage")}
+                  >
                     Contact
                   </Button>
                 </div>
               </div>
-              <div className="flex items-center justify-center md:px-10 sm:px-5 px-[120px] w-full">
+              <div className="flex flex-col items-center justify-center md:px-10 sm:px-5 px-[120px] w-full">
                 <div className="flex flex-col gap-12 items-center justify-center w-full">
                   <div className="gap-3 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-4 items-start justify-start w-full">
                     <Button className="bg-gray_900 cursor-pointer flex-1 font-semibold sm:px-5 px-[30px] py-3.5 rounded-[10px] text-base text-center text-white_A700 w-full">
@@ -135,7 +141,7 @@ const AgentProfilePage = () => {
                       Review
                     </Button>
                   </div>
-                  <div className="flex items-center justify-center w-full">
+                  <div className="flex flex-col items-center justify-center w-full">
                     <div className="md:gap-5 gap-6 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-3 justify-center min-h-[auto] w-full">
                       {landingPageCardPropList.map((props, index) => (
                         <React.Fragment key={`LandingPageCard${index}`}>
@@ -192,9 +198,9 @@ const AgentProfilePage = () => {
             </div>
           </div>
         </div>
-        <div className="flex font-manrope items-start justify-start md:px-10 sm:px-5 px-[120px] w-full">
-          <div className="bg-white_A700 border border-bluegray_100 border-solid flex items-center justify-center max-w-[1200px] mx-auto p-[42px] md:px-5 rounded-[10px] w-full">
-            <div className="flex items-center justify-center w-full">
+        <div className="flex flex-col font-manrope items-start justify-start md:px-10 sm:px-5 px-[120px] w-full">
+          <div className="bg-white_A700 border border-bluegray_100 border-solid flex flex-col items-center justify-center max-w-[1200px] mx-auto p-[42px] md:px-5 rounded-[10px] w-full">
+            <div className="flex flex-col items-center justify-center w-full">
               <div className="flex md:flex-col flex-row md:gap-10 gap-[65px] items-start justify-center w-full">
                 <div className="flex flex-1 flex-col gap-[57px] items-start justify-start w-full">
                   <div className="flex flex-col gap-6 items-start justify-start w-full">
@@ -292,7 +298,10 @@ const AgentProfilePage = () => {
                       </>
                     </Text>
                   </div>
-                  <Button className="bg-gray_900 cursor-pointer font-semibold min-w-[525px] sm:min-w-full py-[13px] rounded-[10px] text-base text-center text-white_A700 w-auto">
+                  <Button
+                    className="common-pointer bg-gray_900 cursor-pointer font-semibold min-w-[525px] sm:min-w-full py-[13px] rounded-[10px] text-base text-center text-white_A700 w-auto"
+                    onClick={() => navigate("/contactpage")}
+                  >
                     Contact
                   </Button>
                 </div>
@@ -424,9 +433,9 @@ const AgentProfilePage = () => {
             </div>
           </div>
         </div>
-        <div className="flex font-manrope items-start justify-start md:px-10 sm:px-5 px-[120px] w-full">
-          <div className="bg-white_A700 border border-bluegray_100 border-solid flex items-start justify-start max-w-[1200px] mx-auto md:px-5 py-[30px] rounded-[10px] w-full">
-            <div className="flex items-start justify-start w-full">
+        <div className="flex flex-col font-manrope items-start justify-start md:px-10 sm:px-5 px-[120px] w-full">
+          <div className="bg-white_A700 border border-bluegray_100 border-solid flex flex-col items-start justify-start max-w-[1200px] mx-auto md:px-5 py-[30px] rounded-[10px] w-full">
+            <div className="flex flex-col items-start justify-start w-full">
               <div className="flex flex-col gap-10 items-start justify-start w-full">
                 <div className="flex flex-col gap-[22px] items-center justify-start w-full">
                   <div className="flex sm:flex-col flex-row gap-5 items-center justify-between md:px-10 sm:px-5 px-[42px] w-full">
@@ -459,7 +468,7 @@ const AgentProfilePage = () => {
                     className="flex-col gap-[25px] grid items-center w-full"
                     orientation="vertical"
                   >
-                    <div className="bg-white_A700 border border-bluegray_100 border-solid flex flex-1 items-start justify-start sm:px-5 px-[30px] py-[39px] rounded-[20px] w-full">
+                    <div className="bg-white_A700 border border-bluegray_100 border-solid flex flex-1 flex-col items-start justify-start sm:px-5 px-[30px] py-[39px] rounded-[20px] w-full">
                       <div className="flex flex-col gap-10 items-start justify-start w-full">
                         <Text
                           className="font-semibold leading-[165.00%] max-w-[1090px] md:max-w-full text-gray_600 text-left"
@@ -535,7 +544,7 @@ const AgentProfilePage = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="bg-white_A700 border border-bluegray_100 border-solid flex flex-1 items-start justify-start sm:px-5 px-[30px] py-[39px] rounded-[20px] w-full">
+                    <div className="bg-white_A700 border border-bluegray_100 border-solid flex flex-1 flex-col items-start justify-start sm:px-5 px-[30px] py-[39px] rounded-[20px] w-full">
                       <div className="flex flex-col gap-10 items-start justify-start w-full">
                         <Text
                           className="font-semibold leading-[165.00%] max-w-[1090px] md:max-w-full text-gray_600 text-left"
@@ -611,7 +620,7 @@ const AgentProfilePage = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="bg-white_A700 border border-bluegray_100 border-solid flex flex-1 items-start justify-start sm:px-5 px-[30px] py-[39px] rounded-[20px] w-full">
+                    <div className="bg-white_A700 border border-bluegray_100 border-solid flex flex-1 flex-col items-start justify-start sm:px-5 px-[30px] py-[39px] rounded-[20px] w-full">
                       <div className="flex flex-col gap-10 items-start justify-start w-full">
                         <Text
                           className="font-semibold leading-[165.00%] max-w-[1090px] md:max-w-full text-gray_600 text-left"

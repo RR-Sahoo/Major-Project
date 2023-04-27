@@ -14,7 +14,7 @@ const LandingPageCard = (props) => {
           className="h-[260px] sm:h-auto object-cover rounded-bl-none rounded-br-none rounded-tl-[10px] rounded-tr-[10px] w-full"
           alt="image"
         />
-        <div className="bg-gray_51 border border-red_101 border-solid flex items-start justify-start px-5 py-[30px] rounded-bl-[10px] rounded-br-[10px] rounded-tl-none rounded-tr-none w-full">
+        <div className="bg-gray_51 border border-red_101 border-solid flex flex-col items-start justify-start px-5 py-[30px] rounded-bl-[10px] rounded-br-[10px] rounded-tl-none rounded-tr-none w-full">
           <div className="flex flex-col gap-[27px] items-start justify-start w-full">
             <div className="flex flex-row gap-3 items-center justify-start w-full">
               <Img src="images/img_eye.svg" className="h-6 w-6" alt="eye" />

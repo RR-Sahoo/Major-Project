@@ -3,6 +3,7 @@ import React from "react";
 import LandingPageHeader from "components/LandingPageHeader";
 import { Text, Img, List, Button, Input } from "components";
 import LandingPageNumberCount from "components/LandingPageNumberCount";
+import TeamMembersCard from "components/TeamMembersCard";
 import LandingPageBlogCard from "components/LandingPageBlogCard";
 import LandingPageFooter from "components/LandingPageFooter";
 import { useNavigate } from "react-router-dom";
@@ -23,6 +24,68 @@ const AboutUsPage = () => {
     },
     { desc: "Properties for Buy & sell Successfully", number: "25K+" },
     { desc: "Daily completed transactions", number: "500" },
+  ];
+  const teamMembersCardPropList = [
+    {
+      teamMemberName: "Kausar Pial",
+      teamMemberProfilePic: "images/img_rectangle5596.png",
+      teamMemberPosition: "CEO",
+    },
+    {
+      teamMemberName: "Floyd Miles",
+      teamMemberProfilePic: "images/img_rectangle5597.png",
+      teamMemberPosition: "President of Sales",
+    },
+    {
+      teamMemberName: "Darlene Robertson",
+      teamMemberProfilePic: "images/img_rectangle5598.png",
+      teamMemberPosition: "Marketing Coordinator",
+    },
+    {
+      teamMemberName: "Guy Hawkins",
+      teamMemberProfilePic: "images/img_rectangle5599.png",
+      teamMemberPosition: "Marketing Coordinator",
+    },
+    {
+      teamMemberName: "Jerome Bell",
+      teamMemberProfilePic: "images/img_rectangle5600.png",
+      teamMemberPosition: "Marketing Coordinator",
+    },
+    {
+      teamMemberName: "Ralph Edwards",
+      teamMemberProfilePic: "images/img_rectangle5601.png",
+      teamMemberPosition: "Marketing Coordinator",
+    },
+    {
+      teamMemberName: "Arlene McCoy",
+      teamMemberProfilePic: "images/img_rectangle5602.png",
+      teamMemberPosition: "Marketing Coordinator",
+    },
+    {
+      teamMemberName: "Devon Lane",
+      teamMemberProfilePic: "images/img_rectangle5603.png",
+      teamMemberPosition: "Marketing Coordinator",
+    },
+    {
+      teamMemberName: "Courtney Henry",
+      teamMemberProfilePic: "images/img_rectangle5604.png",
+      teamMemberPosition: "Marketing Coordinator",
+    },
+    {
+      teamMemberName: "Bessie Cooper",
+      teamMemberProfilePic: "images/img_rectangle5605.png",
+      teamMemberPosition: "Marketing Coordinator",
+    },
+    {
+      teamMemberName: "Cody Fisher",
+      teamMemberProfilePic: "images/img_rectangle5606.png",
+      teamMemberPosition: "Marketing Coordinator",
+    },
+    {
+      teamMemberName: "Cody Fisher",
+      teamMemberProfilePic: "images/img_rectangle5607.png",
+      teamMemberPosition: "Marketing Coordinator",
+    },
   ];
   const landingPageBlogCardPropList = [
     {
@@ -45,7 +108,7 @@ const AboutUsPage = () => {
     <>
       <div className="bg-white_A700 flex flex-col font-markoone sm:gap-10 md:gap-10 gap-[100px] items-center justify-start mx-auto self-stretch w-auto sm:w-full md:w-full">
         <LandingPageHeader className="bg-white_A700 flex h-20 md:h-auto items-center justify-between md:px-5 px-[120px] py-[19px] w-full" />
-        <div className="flex font-manrope items-center justify-center md:px-10 sm:px-5 px-[120px] w-full">
+        <div className="flex flex-col font-manrope items-center justify-center md:px-10 sm:px-5 px-[120px] w-full">
           <div className="flex flex-col gap-10 items-center justify-start max-w-[1200px] mx-auto w-full">
             <div className="flex flex-col gap-4 items-center justify-start w-full">
               <Text
@@ -96,7 +159,7 @@ const AboutUsPage = () => {
             </div>
           </div>
         </div>
-        <div className="bg-gray_50 flex font-manrope items-center justify-center md:px-10 sm:px-5 px-[120px] py-[50px] w-full">
+        <div className="bg-gray_50 flex flex-col font-manrope items-center justify-center md:px-10 sm:px-5 px-[120px] py-[50px] w-full">
           <div className="flex md:flex-col flex-row md:gap-10 items-start justify-between max-w-[1200px] mx-auto w-full">
             <List
               className="md:flex-1 sm:flex-col flex-row md:gap-10 gap-[100px] grid sm:grid-cols-1 md:grid-cols-2 grid-cols-3 w-[73%] md:w-full"
@@ -118,7 +181,7 @@ const AboutUsPage = () => {
             />
           </div>
         </div>
-        <div className="flex font-manrope items-center justify-center max-w-[1440px] pl-[120px] pr-[173px] md:px-10 sm:px-5 w-full">
+        <div className="flex flex-col font-manrope items-center justify-center max-w-[1440px] pl-[120px] pr-[173px] md:px-10 sm:px-5 w-full">
           <div className="flex md:flex-col flex-row md:gap-10 gap-[84px] items-center justify-start max-w-[1147px] mx-auto w-full">
             <div className="flex flex-1 flex-col gap-14 items-start justify-start w-full">
               <div className="flex flex-col gap-5 items-start justify-start w-full">
@@ -231,7 +294,7 @@ const AboutUsPage = () => {
             />
           </div>
         </div>
-        <div className="flex font-manrope items-center justify-center max-w-[1440px] pl-[170px] pr-[120px] md:px-10 sm:px-5 w-full">
+        <div className="flex flex-col font-manrope items-center justify-center max-w-[1440px] pl-[170px] pr-[120px] md:px-10 sm:px-5 w-full">
           <div className="flex md:flex-col flex-row md:gap-10 gap-[158px] items-center justify-between max-w-[1150px] mx-auto w-full">
             <Img
               src="images/img_rectangle20_589x496.png"
@@ -280,7 +343,7 @@ const AboutUsPage = () => {
             </div>
           </div>
         </div>
-        <div className="flex font-manrope items-center justify-center md:px-10 sm:px-5 px-[120px] w-full">
+        <div className="flex flex-col font-manrope items-center justify-center md:px-10 sm:px-5 px-[120px] w-full">
           <div className="flex flex-col md:gap-10 gap-[60px] items-center justify-start max-w-[1200px] mx-auto w-full">
             <Text
               className="text-center text-gray_900 tracking-[-0.72px] w-auto"
@@ -289,265 +352,21 @@ const AboutUsPage = () => {
             >
               Relasto Team members
             </Text>
-            <div className="flex items-start justify-start w-full">
+            <div className="flex flex-col items-start justify-start w-full">
               <div className="md:gap-5 gap-6 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-4 justify-center min-h-[auto] w-full">
-                <div className="flex flex-1 flex-col gap-4 items-start justify-start w-full">
-                  <Img
-                    src="images/img_rectangle5596.png"
-                    className="h-[282px] md:h-auto object-cover rounded-[10px] w-full"
-                    alt="rectangle5596"
-                  />
-                  <div className="flex flex-col items-start justify-start w-full">
-                    <Text
-                      className="font-semibold text-gray_900 text-left tracking-[-0.40px] w-auto"
-                      variant="body1"
-                    >
-                      Kausar Pial
-                    </Text>
-                    <Text
-                      className="font-normal not-italic text-gray_700 text-left w-auto"
-                      variant="body3"
-                    >
-                      CEO
-                    </Text>
-                  </div>
-                </div>
-                <div className="flex flex-1 flex-col gap-4 items-start justify-start w-full">
-                  <Img
-                    src="images/img_rectangle5597.png"
-                    className="h-[282px] md:h-auto object-cover rounded-[10px] w-full"
-                    alt="rectangle5597"
-                  />
-                  <div className="flex flex-col items-start justify-start w-full">
-                    <Text
-                      className="font-semibold text-gray_900 text-left tracking-[-0.40px] w-auto"
-                      variant="body1"
-                    >
-                      Floyd Miles
-                    </Text>
-                    <Text
-                      className="font-normal not-italic text-gray_700 text-left w-auto"
-                      variant="body3"
-                    >
-                      President of Sales
-                    </Text>
-                  </div>
-                </div>
-                <div className="flex flex-1 flex-col gap-4 items-start justify-start w-full">
-                  <Img
-                    src="images/img_rectangle5598.png"
-                    className="h-[282px] md:h-auto object-cover rounded-[10px] w-full"
-                    alt="rectangle5598"
-                  />
-                  <div className="flex flex-col gap-[5px] items-start justify-start w-full">
-                    <Text
-                      className="font-semibold text-gray_900 text-left tracking-[-0.40px] w-auto"
-                      variant="body1"
-                    >
-                      Darlene Robertson
-                    </Text>
-                    <Text
-                      className="font-normal not-italic text-gray_700 text-left w-auto"
-                      variant="body3"
-                    >
-                      Marketing Coordinator
-                    </Text>
-                  </div>
-                </div>
-                <div className="flex flex-1 flex-col gap-4 items-start justify-start w-full">
-                  <Img
-                    src="images/img_rectangle5599.png"
-                    className="h-[282px] md:h-auto object-cover rounded-[10px] w-full"
-                    alt="rectangle5599"
-                  />
-                  <div className="flex flex-col items-start justify-start w-full">
-                    <Text
-                      className="font-semibold text-gray_900 text-left tracking-[-0.40px] w-auto"
-                      variant="body1"
-                    >
-                      Guy Hawkins
-                    </Text>
-                    <Text
-                      className="font-normal not-italic text-gray_700 text-left w-auto"
-                      variant="body3"
-                    >
-                      Marketing Coordinator
-                    </Text>
-                  </div>
-                </div>
-                <div className="flex flex-1 flex-col gap-4 items-start justify-start w-full">
-                  <Img
-                    src="images/img_rectangle5600.png"
-                    className="h-[282px] md:h-auto object-cover rounded-[10px] w-full"
-                    alt="rectangle5600"
-                  />
-                  <div className="flex flex-col gap-[5px] items-start justify-start w-full">
-                    <Text
-                      className="font-semibold text-gray_900 text-left tracking-[-0.40px] w-auto"
-                      variant="body1"
-                    >
-                      Jerome Bell
-                    </Text>
-                    <Text
-                      className="font-normal not-italic text-gray_700 text-left w-auto"
-                      variant="body3"
-                    >
-                      Marketing Coordinator
-                    </Text>
-                  </div>
-                </div>
-                <div className="flex flex-1 flex-col gap-4 items-start justify-start w-full">
-                  <Img
-                    src="images/img_rectangle5601.png"
-                    className="h-[282px] md:h-auto object-cover rounded-[10px] w-full"
-                    alt="rectangle5601"
-                  />
-                  <div className="flex flex-col items-start justify-start w-full">
-                    <Text
-                      className="font-semibold text-gray_900 text-left tracking-[-0.40px] w-auto"
-                      variant="body1"
-                    >
-                      Ralph Edwards
-                    </Text>
-                    <Text
-                      className="font-normal not-italic text-gray_700 text-left w-auto"
-                      variant="body3"
-                    >
-                      Marketing Coordinator
-                    </Text>
-                  </div>
-                </div>
-                <div className="flex flex-1 flex-col gap-4 items-start justify-start w-full">
-                  <Img
-                    src="images/img_rectangle5602.png"
-                    className="h-[282px] md:h-auto object-cover rounded-[10px] w-full"
-                    alt="rectangle5602"
-                  />
-                  <div className="flex flex-col items-start justify-start w-full">
-                    <Text
-                      className="font-semibold text-gray_900 text-left tracking-[-0.40px] w-auto"
-                      variant="body1"
-                    >
-                      Arlene McCoy
-                    </Text>
-                    <Text
-                      className="font-normal not-italic text-gray_700 text-left w-auto"
-                      variant="body3"
-                    >
-                      Marketing Coordinator
-                    </Text>
-                  </div>
-                </div>
-                <div className="flex flex-1 flex-col gap-4 items-start justify-start w-full">
-                  <Img
-                    src="images/img_rectangle5603.png"
-                    className="h-[282px] md:h-auto object-cover rounded-[10px] w-full"
-                    alt="rectangle5603"
-                  />
-                  <div className="flex flex-col gap-[5px] items-start justify-start w-full">
-                    <Text
-                      className="font-semibold text-gray_900 text-left tracking-[-0.40px] w-auto"
-                      variant="body1"
-                    >
-                      Devon Lane
-                    </Text>
-                    <Text
-                      className="font-normal not-italic text-gray_700 text-left w-auto"
-                      variant="body3"
-                    >
-                      Marketing Coordinator
-                    </Text>
-                  </div>
-                </div>
-                <div className="flex flex-1 flex-col gap-4 items-start justify-start w-full">
-                  <Img
-                    src="images/img_rectangle5604.png"
-                    className="h-[282px] md:h-auto object-cover rounded-[10px] w-full"
-                    alt="rectangle5604"
-                  />
-                  <div className="flex flex-col items-start justify-start w-full">
-                    <Text
-                      className="font-semibold text-gray_900 text-left tracking-[-0.40px] w-auto"
-                      variant="body1"
-                    >
-                      Courtney Henry
-                    </Text>
-                    <Text
-                      className="font-normal not-italic text-gray_700 text-left w-auto"
-                      variant="body3"
-                    >
-                      Marketing Coordinator
-                    </Text>
-                  </div>
-                </div>
-                <div className="flex flex-1 flex-col gap-4 items-start justify-start w-full">
-                  <Img
-                    src="images/img_rectangle5605.png"
-                    className="h-[282px] md:h-auto object-cover rounded-[10px] w-full"
-                    alt="rectangle5605"
-                  />
-                  <div className="flex flex-col items-start justify-start w-full">
-                    <Text
-                      className="font-semibold text-gray_900 text-left tracking-[-0.40px] w-auto"
-                      variant="body1"
-                    >
-                      Bessie Cooper
-                    </Text>
-                    <Text
-                      className="font-normal not-italic text-gray_700 text-left w-auto"
-                      variant="body3"
-                    >
-                      Marketing Coordinator
-                    </Text>
-                  </div>
-                </div>
-                <div className="flex flex-1 flex-col gap-4 items-start justify-start w-full">
-                  <Img
-                    src="images/img_rectangle5606.png"
-                    className="h-[282px] md:h-auto object-cover rounded-[10px] w-full"
-                    alt="rectangle5606"
-                  />
-                  <div className="flex flex-col items-start justify-start w-full">
-                    <Text
-                      className="font-semibold text-gray_900 text-left tracking-[-0.40px] w-auto"
-                      variant="body1"
-                    >
-                      Cody Fisher
-                    </Text>
-                    <Text
-                      className="font-normal not-italic text-gray_700 text-left w-auto"
-                      variant="body3"
-                    >
-                      Marketing Coordinator
-                    </Text>
-                  </div>
-                </div>
-                <div className="flex flex-1 flex-col gap-4 items-start justify-start w-full">
-                  <Img
-                    src="images/img_rectangle5607.png"
-                    className="h-[282px] md:h-auto object-cover rounded-[10px] w-full"
-                    alt="rectangle5607"
-                  />
-                  <div className="flex flex-col items-start justify-start w-full">
-                    <Text
-                      className="font-semibold text-gray_900 text-left tracking-[-0.40px] w-auto"
-                      variant="body1"
-                    >
-                      Cody Fisher
-                    </Text>
-                    <Text
-                      className="font-normal not-italic text-gray_700 text-left w-auto"
-                      variant="body3"
-                    >
-                      Marketing Coordinator
-                    </Text>
-                  </div>
-                </div>
+                {teamMembersCardPropList.map((props, index) => (
+                  <React.Fragment key={`TeamMembersCard${index}`}>
+                    <TeamMembersCard
+                      className="flex flex-1 flex-col items-start justify-start w-full"
+                      {...props}
+                    />
+                  </React.Fragment>
+                ))}
               </div>
             </div>
           </div>
         </div>
-        <div className="bg-gray_900 flex font-manrope items-center justify-center p-[120px] md:px-10 sm:px-5 w-full">
+        <div className="bg-gray_900 flex flex-col font-manrope items-center justify-center p-[120px] md:px-10 sm:px-5 w-full">
           <div className="flex flex-col md:gap-10 gap-[120px] items-center justify-start max-w-[1200px] mx-auto w-full">
             <div className="flex flex-col md:gap-10 gap-[60px] items-start justify-start w-full">
               <div className="flex sm:flex-col flex-row gap-5 items-center justify-start w-full">
@@ -590,7 +409,7 @@ const AboutUsPage = () => {
                 ))}
               </List>
             </div>
-            <div className="bg-gray_401 flex items-center justify-center md:px-10 sm:px-5 px-[100px] py-10 rounded-[10px] w-full">
+            <div className="bg-gray_401 flex flex-col items-center justify-center md:px-10 sm:px-5 px-[100px] py-10 rounded-[10px] w-full">
               <div className="flex flex-col gap-[30px] items-center justify-start md:px-10 sm:px-5 px-[200px] w-full">
                 <div className="flex flex-col gap-2.5 items-center justify-start w-full">
                   <Text
