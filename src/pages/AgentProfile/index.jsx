@@ -40,12 +40,14 @@ const AgentProfilePage = () => {
                 alt="coverimage"
               />
             </div>
-            <div className="flex flex-1 flex-col gap-[58px] items-center justify-start mt-[-46px] mx-auto w-full z-[1]">
-              <AgentProfileHeader agent={agent} />
-              <section className="h-[1100px] w-full">
-                <AgentTabSection agent={agent} />
-              </section>
-            </div>
+            {agent && (
+              <div className="flex flex-1 flex-col gap-[58px] items-center justify-start mt-[-46px] mx-auto w-full z-[1]">
+                <AgentProfileHeader agent={agent} />
+                <section className="h-[1100px] w-full">
+                  <AgentTabSection agent={agent} />
+                </section>
+              </div>
+            )}
           </div>
         </div>
         <LandingPageFooter className="bg-white_A700 flex items-center justify-center md:px-5 px-[120px] py-20 w-full" />

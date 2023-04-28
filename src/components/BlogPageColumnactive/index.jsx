@@ -1,8 +1,10 @@
 import React from "react";
 
 import { Img, Button, Text } from "components";
+import { useNavigate } from "react-router-dom";
 
 const BlogPageColumnactive = (props) => {
+  const Navigate = useNavigate();
   return (
     <>
       <div className={props.className}>
@@ -47,18 +49,25 @@ const BlogPageColumnactive = (props) => {
             </div>
           </div>
         </div>
-        <div className="flex flex-row gap-2 items-center justify-start w-full">
-          <Text
-            className="font-bold font-manrope text-gray_600 text-left w-auto"
-            variant="body3"
+        <div className="  w-full">
+          <div
+            className="flex flex-row gap-2 cursor-pointer items-center justify-start w-auto"
+            onClick={() => {
+              Navigate(`/blogdetails`);
+            }}
           >
-            {props?.active}
-          </Text>
-          <Img
-            src="images/img_arrowright_gray_600.svg"
-            className="h-6 w-6"
-            alt="arrowright"
-          />
+            <Text
+              className="font-bold font-manrope text-gray_600 text-left w-auto"
+              variant="body3"
+            >
+              {props?.active}
+            </Text>
+            <Img
+              src="images/img_arrowright_gray_600.svg"
+              className="h-6 w-6"
+              alt="arrowright"
+            />
+          </div>
         </div>
       </div>
     </>

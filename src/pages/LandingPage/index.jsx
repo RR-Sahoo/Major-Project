@@ -15,8 +15,6 @@ const LandingPagePage = () => {
   const navigate = useNavigate();
   const [isOpenCreateAccountModal, setCreateAccountModal] = useState(false);
   const [propertyData, setPropertyData] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [searchTerm, setSearchTerm] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -31,25 +29,6 @@ const LandingPagePage = () => {
       })
       .catch((error) => console.log(error));
   }, []);
-  const handleSearchTermChange = (event) => {
-    setSearchTerm(event.target.value);
-  };
-  const filteredProperties = propertyData.filter((property) =>
-    property.Location.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-  const itemsPerPage = 6;
-  const totalPages = Math.ceil(filteredProperties.length / itemsPerPage);
-  const getPaginatedData = () => {
-    const filteredData = filteredProperties.filter((property) =>
-      property.Location.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    const start = (currentPage - 1) * itemsPerPage;
-    const end = start + itemsPerPage;
-    return filteredData.slice(start, end);
-  };
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
 
   function handleOpenCreateAccountModal() {
     setCreateAccountModal(true);
@@ -68,8 +47,14 @@ const LandingPagePage = () => {
   ];
   const sliderRef = useRef(null);
   const [sliderState, setsliderState] = useState(0);
-  const TABS = ["Buy", "Sell", "Rent"];
-  const [activeTab, setActiveTab] = useState(0);
+  const [activeTab, setActiveTab] = useState("sell");
+  const tabSections = [
+    { tab: "sell", label: "Property for Sell" },
+    { tab: "rent", label: "Property for Rent" },
+  ];
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
+  };
   const [loggedin, setLoggedin] = useState(false);
 
   useEffect(() => {
@@ -79,6 +64,12 @@ const LandingPagePage = () => {
       setLoggedin(true);
     }
   }, []);
+
+  const getFilteredData = () => {
+    return propertyData
+      .filter((property) => property.tag === activeTab)
+      .slice(0, 6);
+  };
   console.log(loggedin);
   return (
     <>
@@ -317,39 +308,41 @@ const LandingPagePage = () => {
                 </Button>
               </div>
               <div className="flex sm:flex-col flex-row gap-2.5 items-start justify-start w-full">
-                <Button className="bg-transparent cursor-pointer font-bold min-w-[159px] text-center text-gray_900 text-lg w-auto">
-                  Resident Property
-                </Button>
-                <Button className="bg-transparent cursor-pointer font-bold min-w-[186px] text-center text-gray_400 text-lg w-auto">
-                  Commercial Property
-                </Button>
-                <Button className="bg-transparent cursor-pointer font-bold min-w-[164px] text-center text-gray_400 text-lg w-auto">
-                  Industrial Property
-                </Button>
-                <Button className="bg-transparent cursor-pointer font-bold min-w-[180px] text-center text-gray_400 text-lg w-auto">
-                  Agriculture Property
-                </Button>
+                {tabSections.map(({ tab, label }) => (
+                  <Button
+                    key={tab}
+                    className={`bg-transparent cursor-pointer font-bold min-w-[186px] text-center text-lg ${
+                      activeTab === tab ? "text-gray_900" : "text-gray_400"
+                    } w-auto`}
+                    onClick={() => handleTabClick(tab)}
+                  >
+                    {" "}
+                    {label}
+                  </Button>
+                ))}
               </div>
             </div>
             <div className="flex items-start justify-start w-full">
               <div className="md:gap-5 gap-6 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-3 justify-center min-h-[auto] w-full">
-                {getPaginatedData().map((property, index) => (
-                  <React.Fragment key={`LandingPageCard${index}`}>
-                    <LandingPageCard
-                      className="flex flex-1 flex-col h-[512px] md:h-auto items-start justify-start w-full"
-                      address={property.Location}
-                      bedroom={`${property.Bedrooms} Bed Room`}
-                      bathroom={`${property.Bathrooms} Bath`}
-                      sqftcounter={`${property.property_size} sqft`}
-                      tag={property.tag}
-                      p1bath="Family"
-                      viewDetails="View Details"
-                      price={`₹${property.price}`}
-                      image={property.image}
-                      id={property._id}
-                    />
-                  </React.Fragment>
-                ))}
+                {getFilteredData()
+                  .slice(0, 6)
+                  .map((property, index) => (
+                    <React.Fragment key={`LandingPageCard${index}`}>
+                      <LandingPageCard
+                        className="flex flex-1 flex-col h-[512px] md:h-auto items-start justify-start w-full"
+                        address={property.Location}
+                        bedroom={`${property.Bedrooms} Bed Room`}
+                        bathroom={`${property.Bathrooms} Bath`}
+                        sqftcounter={`${property.property_size} sqft`}
+                        tag={property.tag}
+                        p1bath="Family"
+                        viewDetails="View Details"
+                        price={`₹${property.price}`}
+                        image={property.image}
+                        id={property._id}
+                      />
+                    </React.Fragment>
+                  ))}
               </div>
             </div>
           </div>
