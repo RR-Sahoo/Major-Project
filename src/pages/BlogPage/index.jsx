@@ -4,13 +4,14 @@ import LandingPageHeader from "components/LandingPageHeader";
 import { Text, Input, Img, SelectBox, Button } from "components";
 import BlogPageColumnactive from "components/BlogPageColumnactive";
 import LandingPageFooter from "components/LandingPageFooter";
+import LoginHeader from "components/LoginHeader";
 
 const BlogPagePage = () => {
   return (
     <>
       <div className="bg-gray_51 flex flex-col font-markoone items-start justify-start mx-auto self-stretch w-auto sm:w-full md:w-full">
         <div className="flex flex-col md:gap-10 gap-[68px] items-center justify-start w-full">
-          <LandingPageHeader className="bg-white_A700 flex h-20 md:h-auto items-center justify-between md:px-5 px-[120px] py-[19px] w-full" />
+          <LoginHeader />
           <div className="flex font-manrope items-center justify-start md:px-10 sm:px-5 px-[120px] w-full">
             <div className="flex flex-col md:gap-10 gap-[60px] items-center justify-start max-w-[1200px] mx-auto w-full">
               <div className="flex flex-col gap-6 items-start justify-start w-full">
@@ -21,53 +22,6 @@ const BlogPagePage = () => {
                 >
                   Real Estate News & Blogs
                 </Text>
-                <div className="gap-4 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-3 items-start justify-start w-full">
-                  <div className="bg-white_A700 border border-bluegray_100 border-solid flex flex-1 items-center justify-start px-4 py-3.5 rounded-[10px] w-full">
-                    <Input
-                      wrapClassName="flex w-full"
-                      className="font-semibold p-0 placeholder:text-gray_600 text-gray_600 text-left text-lg w-full"
-                      name="frame1000001653"
-                      placeholder="Enter your address"
-                      suffix={
-                        <Img
-                          src="images/img_search_gray_600.svg"
-                          className="mt-auto mb-[3px] ml-3"
-                          alt="search"
-                        />
-                      }
-                    ></Input>
-                  </div>
-                  <SelectBox
-                    className="bg-white_A700 border border-bluegray_100 border-solid flex-1 font-bold px-4 py-[18px] rounded-[10px] text-gray_600 text-left text-lg w-full"
-                    placeholderClassName="text-gray_600"
-                    name="dropdownlarge"
-                    placeholder="Category"
-                    isSearchable={false}
-                    isMulti={false}
-                    indicator={
-                      <Img
-                        src="images/img_arrowdown_gray_600_24x24.svg"
-                        className="h-6 w-6"
-                        alt="arrow_down"
-                      />
-                    }
-                  ></SelectBox>
-                  <SelectBox
-                    className="bg-white_A700 border border-bluegray_100 border-solid flex-1 font-bold px-4 py-[18px] rounded-[10px] text-gray_600 text-left text-lg w-full"
-                    placeholderClassName="text-gray_600"
-                    name="dropdownlarge_One"
-                    placeholder="Popular"
-                    isSearchable={false}
-                    isMulti={false}
-                    indicator={
-                      <Img
-                        src="images/img_arrowdown_gray_600_24x24.svg"
-                        className="h-6 w-6"
-                        alt="arrow_down"
-                      />
-                    }
-                  ></SelectBox>
-                </div>
               </div>
               <div className="flex items-center justify-center w-full">
                 <div className="md:gap-5 gap-6 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-3 justify-center min-h-[auto] w-full">

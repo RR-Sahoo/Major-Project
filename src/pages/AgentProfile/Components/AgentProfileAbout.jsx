@@ -7,11 +7,17 @@ import linkedinIcon from "../../../assets/images/img_linkedin_gray_600.svg";
 import twitterIcon from "../../../assets/images/img_twitter_gray_600.svg";
 import playIcon from "../../../assets/images/img_play.svg";
 import signalIcon from "../../../assets/images/img_signal.svg";
-import starIcon from "../../../assets/images/img_star.svg";
+import starIconFill from "../../../assets/images/img_star.svg";
+import starIconEmpty from "../../../assets/images/img_star_gray_600.svg";
 
 import profile from "../../../assets/images/img_rectangle5596.png";
 
 const AgentProfileAbout = ({ agent }) => {
+  const reviewScore = parseInt(agent?.review);
+
+  // Calculate the number of filled and empty stars based on the review score
+  const filledStars = Math.floor(reviewScore);
+  const emptyStars = 5 - filledStars;
   return (
     <div className="flex font-manrope items-start justify-start md:px-10 sm:px-5 px-[120px] w-full">
       <div className="bg-white_A700 border border-bluegray_100 border-solid flex items-center justify-center max-w-[1200px] mx-auto p-[42px] md:px-5 rounded-[10px] w-full">
@@ -35,31 +41,22 @@ const AgentProfileAbout = ({ agent }) => {
                     </Text>
                     <div className="flex flex-row gap-3.5 items-center justify-start w-full">
                       <div className="flex flex-row items-center justify-evenly w-[31%]">
-                        <Img
-                          src={starIcon}
-                          className="h-4 w-4"
-                          alt="star_Five"
-                        />
-                        <Img
-                          src={starIcon}
-                          className="h-4 w-4"
-                          alt="star_Six"
-                        />
-                        <Img
-                          src={starIcon}
-                          className="h-4 w-4"
-                          alt="star_Seven"
-                        />
-                        <Img
-                          src={starIcon}
-                          className="h-4 w-4"
-                          alt="star_Eight"
-                        />
-                        <Img
-                          src={starIcon}
-                          className="h-4 w-4"
-                          alt="star_Nine"
-                        />
+                        {[...Array(filledStars)].map((_, index) => (
+                          <Img
+                            key={index}
+                            src={starIconFill}
+                            className="h-4 w-4"
+                            alt={`star_${index}`}
+                          />
+                        ))}
+                        {[...Array(emptyStars)].map((_, index) => (
+                          <Img
+                            key={index}
+                            src={starIconEmpty}
+                            className="h-4 w-4"
+                            alt={`star_${index + filledStars}`}
+                          />
+                        ))}
                       </div>
                       <Text
                         className="flex-1 font-semibold text-gray_900 text-left w-auto"
