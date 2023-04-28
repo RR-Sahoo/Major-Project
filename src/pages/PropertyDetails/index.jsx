@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import LandingPageHeader from "components/LandingPageHeader";
-import { Img, Button, Text, GoogleMap, List, Input } from "components";
+import { Img, Button, Text, GoogleMap, List, Input, Slider } from "components";
 import LandingPageCard from "components/LandingPageCard";
 import LandingPageFooter from "components/LandingPageFooter";
 import axios from "axios";
@@ -25,6 +25,8 @@ const PropertyDetailsPage = (props) => {
   const [mapLocation, setMapLocation] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
+  const [sliderState, setsliderState] = useState(0);
+  const sliderRef = useRef(null);
 
   const handleMapClick = () => {
     setShowMap(true);
@@ -214,6 +216,53 @@ const PropertyDetailsPage = (props) => {
                             </div>
                           )}
                           {showPhotos && (
+                            <Slider
+                              autoPlay
+                              autoPlayInterval={2000}
+                              activeIndex={sliderState}
+                              responsive={{
+                                0: { items: 1 },
+                                550: { items: 1 },
+                                1050: { items: 1 },
+                              }}
+                              onSlideChanged={(e) => {
+                                setsliderState(e?.item);
+                              }}
+                              ref={sliderRef}
+                              draggable={true}
+                              className="max-w-[700px] mx-auto w-full"
+                              items={[
+                                <React.Fragment key={Math.random()}>
+                                  <div className="flex md:flex-col md:gap-10 gap-[100px] items-start justify-start mx-2.5">
+                                    <Img
+                                      src="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iNIfKpJ7Z_M0/v1/1200x-1.jpg"
+                                      className="flex-1 md:flex-none h-[400px] sm:h-auto object-cover rounded-lg w-full"
+                                      alt="rectangle5591"
+                                    />
+                                  </div>
+                                </React.Fragment>,
+                                <React.Fragment key={Math.random()}>
+                                  <div className="flex md:flex-col md:gap-10 gap-[100px] items-start justify-start mx-2.5">
+                                    <Img
+                                      src="https://www.bhg.com/thmb/dgy0b4w_W0oUJUxc7M4w3H4AyDo=/1866x0/filters:no_upscale():strip_icc()/living-room-gallery-shelves-l-shaped-couch-ELeyNpyyqpZ8hosOG3EG1X-b5a39646574544e8a75f2961332cd89a.jpg"
+                                      className="flex-1 md:flex-none h-[400px] sm:h-auto object-cover rounded-lg w-full"
+                                      alt="rectangle5591"
+                                    />
+                                  </div>
+                                </React.Fragment>,
+                                <React.Fragment key={Math.random()}>
+                                  <div className="flex md:flex-col md:gap-10 gap-[100px] items-start justify-start mx-2.5">
+                                    <Img
+                                      src="https://res.cloudinary.com/g5-assets-cld/image/upload/x_0,y_0,h_598,w_897,c_crop/q_auto,f_auto,fl_lossy,g_center,h_667,w_1000/g5/g5-c-5befy22d4-morgan-properties/g5-cl-1hellpd464-hyde-park-apartment-homes/uploads/13_mk1yaa.jpg"
+                                      className="flex-1 md:flex-none h-[400px] sm:h-auto object-cover rounded-lg w-full"
+                                      alt="rectangle5591"
+                                    />
+                                  </div>
+                                </React.Fragment>,
+                              ]}
+                            />
+                          )}
+                          {/*{showPhotos && (
                             <div className="h-[400px] relative w-full">
                               <iframe
                                 srcDoc={`
@@ -235,7 +284,7 @@ const PropertyDetailsPage = (props) => {
                                 }}
                               />
                             </div>
-                          )}
+                              )}*/}
                         </div>
                       </div>
                     </div>

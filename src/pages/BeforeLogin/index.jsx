@@ -240,7 +240,6 @@ const BeforeLogin = () => {
             </div>
           </div>
         </div>
-        <LandingPageCounter />
 
         <div className="bg-gray_51 flex font-manrope items-center justify-center p-[120px] md:px-10 sm:px-5 w-full">
           <div className="flex flex-col md:gap-10 gap-[150px] items-center justify-center max-w-[1200px] mx-auto w-full">
