@@ -14,6 +14,30 @@ const LogInModal = (props) => {
   const [isOpenCreateAccountModal, setCreateAccountModal] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const toast = (message) => {
+    // create a new element to hold the notification
+    const notification = document.createElement("div");
+
+    // set the notification text and style
+    notification.textContent = message;
+    notification.style.position = "fixed";
+    notification.style.bottom = "20px";
+    notification.style.right = "20px";
+    notification.style.padding = "10px";
+    notification.style.background = "#333";
+    notification.style.color = "#fff";
+    notification.style.borderRadius = "5px";
+    notification.style.borderBottomColor = "red";
+
+    // append the notification to the document body
+    document.body.appendChild(notification);
+
+    // remove the notification after 3 seconds
+    setTimeout(() => {
+      notification.remove();
+    }, 3000);
+  };
+
   const notify = () => toast("Logged in successfully");
 
   function handleOpenCreateAccountModal() {

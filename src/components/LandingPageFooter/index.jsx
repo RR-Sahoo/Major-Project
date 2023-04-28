@@ -10,9 +10,9 @@ const LandingPageFooter = (props) => {
   return (
     <>
       <footer className={props.className}>
-        <div className="flex flex-col md:gap-10 gap-[120px] items-start justify-start w-full">
-          <div className="flex md:flex-col flex-row md:gap-5 items-center justify-start w-full">
-            <div className="flex flex-col gap-[43px] items-start justify-start w-[341px]">
+        <div className="flex flex-col md:gap-10 items-start justify-start w-full">
+          <div className="flex md:flex-col flex-row md:gap-5 justify-start w-full">
+            <div className="flex flex-col items-start justify-start w-[341px]">
               <div
                 className="common-pointer flex flex-row gap-[11px] h-10 md:h-auto items-center justify-start w-[341px]"
                 onClick={() => navigate("/")}
@@ -26,23 +26,7 @@ const LandingPageFooter = (props) => {
                 </Text>
               </div>
               <div className="flex flex-col gap-7 h-[194px] md:h-auto items-start justify-start w-full">
-                <Text
-                  className="font-manrope font-semibold leading-[160.00%] text-gray_900 text-left"
-                  variant="body4"
-                >
-                  <>
-                    59 Bervely Hill Ave, Brooklyn Town,
-                    <br />
-                    New York, NY 5630, CA, US
-                  </>
-                </Text>
                 <div className="flex flex-col gap-1 items-start justify-start self-stretch w-auto">
-                  <Text
-                    className="font-manrope font-semibold text-gray_900 text-left w-auto"
-                    variant="body4"
-                  >
-                    +(123) 456-7890
-                  </Text>
                   <Text
                     className="font-manrope font-semibold text-gray_900 text-left w-auto"
                     variant="body4"
@@ -50,13 +34,79 @@ const LandingPageFooter = (props) => {
                     info@mail.com
                   </Text>
                 </div>
+              </div>
+            </div>
+            <div className="flex flex-1 md:flex-col flex-row md:gap-10 gap-[77px] items-start justify-start w-full">
+              <div className="flex flex-1 flex-col gap-5 items-start justify-start w-full">
+                <Text
+                  className="font-bold font-manrope text-gray_900 text-left w-auto"
+                  variant="body3"
+                >
+                  Company
+                </Text>
+                <div
+                  className="flex flex-col gap-3.5 items-start justify-start w-full cursor-pointer"
+                  onClick={() => navigate("/aboutus")}
+                >
+                  <Text
+                    className="font-manrope font-semibold text-gray_900 text-left w-auto"
+                    variant="body4"
+                  >
+                    About us
+                  </Text>
+                </div>
+              </div>
+              <div className="flex flex-1 flex-col gap-5 items-start justify-start w-full">
+                <Text
+                  className="font-bold font-manrope text-gray_900 text-left w-auto"
+                  variant="body3"
+                >
+                  Get help
+                </Text>
+                <div
+                  className="flex flex-col gap-3.5 items-start justify-start w-full"
+                  onClick={() => navigate("/faq")}
+                >
+                  <Text
+                    className="font-manrope font-semibold text-gray_900 text-left w-auto"
+                    variant="body4"
+                  >
+                    FAQ
+                  </Text>
+                </div>
+              </div>
+              <div className="flex flex-1 flex-col gap-5 items-start justify-start w-full">
+                <Text
+                  className="font-bold font-manrope text-gray_900 text-left w-auto"
+                  variant="body3"
+                >
+                  Documentation
+                </Text>
+                <div className="flex flex-col gap-3.5 items-start justify-start w-full">
+                  <Text
+                    className="font-manrope font-semibold text-gray_900 text-left w-auto"
+                    variant="body4"
+                  >
+                    Blog
+                  </Text>
+                </div>
+              </div>
+              <div className="flex flex-1 flex-col gap-5 items-start justify-start w-full">
+                <Text
+                  className="font-bold font-manrope text-gray_900 text-left w-auto"
+                  variant="body3"
+                >
+                  Others
+                </Text>
                 <div className="flex flex-row gap-3 items-start justify-start w-full">
                   <div className="flex h-[30px] items-center justify-start w-[30px]">
-                    <Img
-                      src="/images/img_plus.svg"
-                      className="h-[30px] w-[30px]"
-                      alt="plus"
-                    />
+                    <a target="_blank" href="https://www.facebook.com/">
+                      <Img
+                        src="/images/img_plus.svg"
+                        className="h-[30px] w-[30px]"
+                        alt="plus"
+                      />
+                    </a>
                   </div>
                   <div className="flex h-[30px] items-center justify-start w-[30px]">
                     <Img
@@ -67,7 +117,7 @@ const LandingPageFooter = (props) => {
                   </div>
                   <Img
                     src="/images/img_instagram_orange_a700_30x30.svg"
-                    className="h-[30px] w-[30px]"
+                    className="h-[30px] w-[20px]"
                     alt="instagram"
                   />
                   <Img
@@ -82,162 +132,6 @@ const LandingPageFooter = (props) => {
                       alt="clock"
                     />
                   </div>
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-1 md:flex-col flex-row md:gap-10 gap-[77px] items-start justify-start w-full">
-              <div className="flex flex-1 flex-col gap-5 items-start justify-start w-full">
-                <Text
-                  className="font-bold font-manrope text-gray_900 text-left w-auto"
-                  variant="body3"
-                >
-                  Features
-                </Text>
-                <div className="flex flex-col gap-3.5 items-start justify-start w-full">
-                  <Text
-                    className="font-manrope font-semibold text-gray_900 text-left w-auto"
-                    variant="body4"
-                  >
-                    Home v1
-                  </Text>
-                  <Text
-                    className="font-manrope font-semibold text-gray_900 text-left w-auto"
-                    variant="body4"
-                  >
-                    Home v2
-                  </Text>
-                  <Text
-                    className="font-manrope font-semibold text-gray_900 text-left w-auto"
-                    variant="body4"
-                  >
-                    About
-                  </Text>
-                  <Text
-                    className="font-manrope font-semibold text-gray_900 text-left w-auto"
-                    variant="body4"
-                  >
-                    Contact
-                  </Text>
-                  <Text
-                    className="font-manrope font-semibold text-gray_900 text-left w-auto"
-                    variant="body4"
-                  >
-                    Search
-                  </Text>
-                </div>
-              </div>
-              <div className="flex flex-1 flex-col gap-5 items-start justify-start w-full">
-                <Text
-                  className="font-bold font-manrope text-gray_900 text-left w-auto"
-                  variant="body3"
-                >
-                  Information
-                </Text>
-                <div className="flex flex-col gap-3.5 items-start justify-start w-full">
-                  <Text
-                    className="font-manrope font-semibold text-gray_900 text-left w-auto"
-                    variant="body4"
-                  >
-                    Listing v1
-                  </Text>
-                  <Text
-                    className="font-manrope font-semibold text-gray_900 text-left w-auto"
-                    variant="body4"
-                  >
-                    Listing v2
-                  </Text>
-                  <Text
-                    className="font-manrope font-semibold text-gray_900 text-left w-auto"
-                    variant="body4"
-                  >
-                    Property Details
-                  </Text>
-                  <Text
-                    className="font-manrope font-semibold text-gray_900 text-left w-auto"
-                    variant="body4"
-                  >
-                    Agent List
-                  </Text>
-                  <Text
-                    className="font-manrope font-semibold text-gray_900 text-left w-auto"
-                    variant="body4"
-                  >
-                    Agent Profile
-                  </Text>
-                </div>
-              </div>
-              <div className="flex flex-1 flex-col gap-5 items-start justify-start w-full">
-                <Text
-                  className="font-bold font-manrope text-gray_900 text-left w-auto"
-                  variant="body3"
-                >
-                  Documentation{" "}
-                </Text>
-                <div className="flex flex-col gap-3.5 items-start justify-start w-full">
-                  <Text
-                    className="font-manrope font-semibold text-gray_900 text-left w-auto"
-                    variant="body4"
-                  >
-                    Blog
-                  </Text>
-                  <Text
-                    className="font-manrope font-semibold text-gray_900 text-left w-auto"
-                    variant="body4"
-                  >
-                    FAQ
-                  </Text>
-                  <Text
-                    className="font-manrope font-semibold text-gray_900 text-left w-auto"
-                    variant="body4"
-                  >
-                    Privacy Policy
-                  </Text>
-                  <Text
-                    className="font-manrope font-semibold text-gray_900 text-left w-auto"
-                    variant="body4"
-                  >
-                    License
-                  </Text>
-                </div>
-              </div>
-              <div className="flex flex-1 flex-col gap-5 items-start justify-start w-full">
-                <Text
-                  className="font-bold font-manrope text-gray_900 text-left w-auto"
-                  variant="body3"
-                >
-                  Others
-                </Text>
-                <div className="flex flex-col gap-3.5 items-start justify-start w-full">
-                  <Text
-                    className="font-manrope font-semibold text-gray_900 text-left w-auto"
-                    variant="body4"
-                  >
-                    Log in
-                  </Text>
-                  <Text
-                    className="font-manrope font-semibold text-gray_900 text-left w-auto"
-                    variant="body4"
-                  >
-                    Enter OTP
-                  </Text>
-                  <Text
-                    className="font-manrope font-semibold text-gray_900 text-left w-auto"
-                    variant="body4"
-                  >
-                    New Password
-                  </Text>
-                  <Text
-                    className="font-manrope font-semibold text-gray_900 text-left w-auto"
-                    variant="body4"
-                  >
-                    Reset Password
-                  </Text>
-                  <Text
-                    className="font-manrope font-semibold text-gray_900 text-left w-auto"
-                    variant="body4"
-                  >
-                    Create Account
-                  </Text>
                 </div>
               </div>
             </div>
