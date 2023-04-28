@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Img, Button } from "components";
 import AgentProfileAbout from "./AgentProfileAbout";
 import AgentProfileReview from "./AgentProfileReview";
-import AgentPropertyListing from "./AgentPropertyListing";
+import AgentPropertyListingSell from "./AgentPropertyListingSell";
+import AgentPropertyListingRent from "./AgentPropertyListingRent";
 
 function TabButton({ label, active, onClick }) {
   return (
@@ -27,11 +28,11 @@ const AgentTabSection = ({ agent }) => {
   const tabSections = [
     {
       tab: "rent",
-      component: <AgentPropertyListing />,
+      component: <AgentPropertyListingRent />,
     },
     {
       tab: "sale",
-      component: <AgentPropertyListing />,
+      component: <AgentPropertyListingSell />,
     },
     {
       tab: "about",

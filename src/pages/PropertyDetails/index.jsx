@@ -15,58 +15,103 @@ import {
   RightArrowIcon,
 } from "components/Icones";
 import LoginHeader from "components/LoginHeader";
+import EmiCalculator from "./EmiCalculator";
+function TabButton({ label, active, onClick }) {
+  return (
+    <button
+      className={`border w-full border-gray-600 border-solid cursor-pointer flex-1 font-semibold sm:px-5 px-[20px] py-3.5 rounded-[10px] text-base text-center ${
+        active ? "text-white_A700 bg-gray-900" : "text-gray-900"
+      }`}
+      onClick={onClick}
+    >
+      {label}
+    </button>
+  );
+}
 
 const PropertyDetailsPage = (props) => {
-  const [showMap, setShowMap] = useState(true);
-  const [showVideo, setShowVideo] = useState(false);
-  const [showPhotos, setShowPhotos] = useState(false);
-  const [show360, setShow360] = useState(false);
   const [propertyDetails, setPropertyDetails] = useState([]);
+  const [agentDetails, setAgentDetails] = useState([]);
+  const [activeTab, setActiveTab] = useState("map");
   const [mapLocation, setMapLocation] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const handleMapClick = () => {
-    setShowMap(true);
-    setShowVideo(false);
-    setShowPhotos(false);
-    setShow360(false);
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
   };
 
-  const handleVideoClick = () => {
-    setShowMap(false);
-    setShowVideo(true);
-    setShowPhotos(false);
-    setShow360(false);
-  };
-
-  const handlePhotosClick = () => {
-    setShowMap(false);
-    setShowVideo(false);
-    setShowPhotos(true);
-    setShow360(false);
-  };
-  const handle360Click = () => {
-    setShowMap(false);
-    setShowVideo(false);
-    setShowPhotos(false);
-    setShow360(true);
-  };
+  const Map = (
+    <div className="h-[400px] relative w-full">
+      <GoogleMap
+        className="h-[400px] m-auto rounded-[10px] w-full"
+        showMarker={false}
+      ></GoogleMap>
+      <Img
+        src="/images/img_frame1000001425.svg"
+        className="absolute h-[54px] inset-[0] m-auto w-[389px]"
+        alt="frame1000001425"
+      />
+    </div>
+  );
+  const Video = (
+    <div className="h-[400px] relative w-full">
+      <iframe
+        width="700"
+        height="415"
+        src="https://www.youtube.com/embed/watch?v=2b8xuMS1tc4"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      />
+    </div>
+  );
+  const View360 = (
+    <div className="h-[400px] relative w-full">
+      <iframe
+        style={{ width: "100%", height: "100%" }}
+        src="https://my.matterport.com/show/?m=roWLLMMmPL8"
+        className="vr-view"
+        allowFullScreen
+        allow="xr-spatial-tracking;"
+      ></iframe>
+    </div>
+  );
+  const Photos = (
+    <div className="h-[400px] relative w-full">
+      <img photos={propertyDetails.photos} />
+    </div>
+  );
+  const tabSections = [
+    { tab: "map", label: "Map", component: Map },
+    { tab: "video", label: "Video", component: Video },
+    { tab: "360 view", label: "360 View", component: View360 },
+    { tab: "photos", label: "Photos", component: Photos },
+  ];
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
+        const propertyResponse = await axios.get(
           `https://the-home-backend.onrender.com/api/properties/${id}`
         );
-        setPropertyDetails(response.data);
-        console.log(response.data);
+
+        setPropertyDetails(propertyResponse.data);
+
+        if (propertyResponse.data.agent) {
+          const agentResponse = await axios.get(
+            `https://the-home-backend.onrender.com/api/agents/${propertyResponse.data.agent}`
+          );
+          console.log("Agent Data:", agentResponse.data);
+          setAgentDetails(agentResponse.data);
+        }
       } catch (error) {
         console.error(error);
       }
     };
+
     fetchData();
   }, [id]);
+  console.log("Property Price:", propertyDetails.price);
   return (
     <>
       <div className="bg-gray_51 flex flex-col font-markoone sm:gap-10 md:gap-10 gap-[100px] items-start justify-start mx-auto self-stretch w-auto sm:w-full md:w-full">
@@ -151,91 +196,33 @@ const PropertyDetailsPage = (props) => {
                             Local Information
                           </Text>
                           <div className="gap-3 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-4 items-center justify-start md:pr-10 sm:pr-5 pr-[200px] w-full">
-                            <Button
-                              className="border border-bluegray_100 border-solid cursor-pointer flex-1 font-semibold sm:px-5 px-6 py-3.5 rounded-[10px] hover:bg-gray-800 hover:text-white_A700 text-base text-center text-gray_900 w-full"
-                              onClick={handleMapClick}
-                            >
-                              Map
-                            </Button>
-                            <Button
-                              className="border border-bluegray_100 border-solid cursor-pointer flex-1 font-semibold sm:px-5 px-6 py-3.5 rounded-[10px] hover:bg-gray-800 hover:text-white_A700 text-base text-center text-gray_900 w-full"
-                              onClick={handleVideoClick}
-                            >
-                              Video
-                            </Button>
-                            <Button
-                              className="border border-bluegray_100 border-solid cursor-pointer flex-1 font-semibold sm:px-5 px-6 py-3.5 rounded-[10px] hover:bg-gray-800 hover:text-white_A700 text-base text-center text-gray_900 w-full"
-                              onClick={handle360Click}
-                            >
-                              360 view
-                            </Button>
-                            <Button
-                              className="border border-bluegray_100 border-solid cursor-pointer flex-1 font-semibold px-4 py-3.5 rounded-[10px] hover:bg-gray-800 hover:text-white_A700 text-base text-center text-gray_900 w-full"
-                              onClick={handlePhotosClick}
-                            >
-                              Photos
-                            </Button>
+                            {tabSections.map(({ tab, component }) => (
+                              <TabButton
+                                key={tab}
+                                label={
+                                  tab.charAt(0).toUpperCase() + tab.slice(1)
+                                }
+                                active={activeTab === tab}
+                                onClick={() => handleTabClick(tab)}
+                              />
+                            ))}
                           </div>
                         </div>
                         <div className="h-[400px] relative w-full">
-                          {showMap && (
-                            <div className="h-[400px] relative w-full">
-                              <GoogleMap
-                                className="h-[400px] m-auto rounded-[10px] w-full"
-                                showMarker={false}
-                              ></GoogleMap>
-                              <Img
-                                src="/images/img_frame1000001425.svg"
-                                className="absolute h-[54px] inset-[0] m-auto w-[389px]"
-                                alt="frame1000001425"
-                              />
+                          {tabSections.map(({ tab, component }) => (
+                            <div
+                              key={tab}
+                              className="absolute top-0 left-0 w-full h-full"
+                              style={{
+                                opacity: activeTab === tab ? 1 : 0,
+                                transition: "opacity 0.5s ease-in-out",
+                                pointerEvents:
+                                  activeTab === tab ? "auto" : "none",
+                              }}
+                            >
+                              {component}
                             </div>
-                          )}
-                          {showVideo && (
-                            <div className="h-[400px] relative w-full">
-                              <iframe
-                                width="700"
-                                height="415"
-                                src="https://www.youtube.com/embed/watch?v=2b8xuMS1tc4"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen
-                              />
-                            </div>
-                          )}
-                          {show360 && (
-                            <div className="h-[400px] relative w-full">
-                              <iframe
-                                style={{ width: "100%", height: "100%" }}
-                                src="https://my.matterport.com/show/?m=roWLLMMmPL8"
-                                className="vr-view"
-                                allowFullScreen
-                                allow="xr-spatial-tracking;"
-                              ></iframe>
-                            </div>
-                          )}
-                          {showPhotos && (
-                            <div className="h-[400px] relative w-full">
-                              <iframe
-                                srcDoc={`
-        <html>
-          <body style="margin: 0;">
-            ${propertyDetails.photos
-              .map(
-                (photo) =>
-                  `<div style="margin-bottom: 20px;"><img src="${photo}" style="max-width: 100%;"/></div>`
-              )
-              .join("")}
-          </body>
-        </html>
-      `}
-                                style={{
-                                  width: "100%",
-                                  height: "100%",
-                                  border: "none",
-                                }}
-                              />
-                            </div>
-                          )}
+                          ))}
                         </div>
                       </div>
                     </div>
@@ -399,7 +386,7 @@ const PropertyDetailsPage = (props) => {
                             className="font-semibold text-gray_900 text-left tracking-[-0.40px] w-auto"
                             variant="body1"
                           >
-                            Bruno Fernandes
+                            {agentDetails.name}
                           </Text>
                           <div className="flex flex-row gap-3.5 items-center justify-start w-full">
                             <div className="flex flex-row gap-1 items-start justify-start self-stretch w-auto">
@@ -433,7 +420,7 @@ const PropertyDetailsPage = (props) => {
                               className="font-semibold text-gray_900 text-left w-auto"
                               variant="body4"
                             >
-                              4 review
+                              {agentDetails.review} review
                             </Text>
                           </div>
                           <div className="flex flex-row gap-2.5 items-center justify-start w-full">
@@ -446,7 +433,7 @@ const PropertyDetailsPage = (props) => {
                               className="font-medium text-gray_600 text-left w-auto"
                               variant="body4"
                             >
-                              bruno@relasto .com
+                              {agentDetails.email}
                             </Text>
                           </div>
                           <div className="flex flex-row gap-2.5 items-center justify-start w-full">
@@ -459,7 +446,7 @@ const PropertyDetailsPage = (props) => {
                               className="font-medium text-gray_600 text-left w-auto"
                               variant="body4"
                             >
-                              +65 0231 965 965
+                              {agentDetails.phone}
                             </Text>
                           </div>
                         </div>
@@ -521,9 +508,12 @@ const PropertyDetailsPage = (props) => {
                         </div>
                       </div>
                     </div>
-                    <Button className="bg-gray_900 cursor-pointer font-semibold sm:px-5 px-6 py-5 rounded-[10px] text-base text-center text-white_A700 w-full">
+                    <Button className="bg-gray_900 cursor-pointer font-semibold sm:px-5 px-6 py-5 rounded-[10px] text-base text-center text-white_A700 w-full hover:bg-blue-700 focus:outline-none focus:shadow-outline transform transition-all duration-200 ease-in-out hover:-translate-y-1 hover:shadow-md">
                       Send Request
                     </Button>
+                    {propertyDetails.price && (
+                      <EmiCalculator principal={propertyDetails.price} />
+                    )}
                   </div>
                 </div>
               </div>
