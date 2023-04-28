@@ -73,7 +73,7 @@ const LandingPagePage = () => {
   console.log(loggedin);
   return (
     <>
-      <div className="bg-white_A700 flex flex-col font-markoone sm:gap-10 md:gap-10 gap-[100px] items-center justify-start mx-auto self-stretch w-auto sm:w-full md:w-full">
+      <div className="bg-white_A700 flex flex-col font-markoone sm:gap-10 md:gap-10 gap-[50px] items-center justify-start mx-auto self-stretch w-auto sm:w-full md:w-full">
         <div className="flex flex-col items-start justify-start w-full">
           {loggedin ? (
             <LoginHeader />
@@ -279,7 +279,6 @@ const LandingPagePage = () => {
             </div>
           </div>
         </div>
-        <LandingPageCounter />
         <div className="flex font-manrope items-center justify-center md:px-10 sm:px-5 px-[120px] w-full">
           <div className="flex flex-col md:gap-10 gap-[60px] md:h-auto items-start justify-start max-w-[1200px] mx-auto w-full">
             <div className="flex flex-col gap-6 items-start justify-start w-full">
@@ -455,7 +454,7 @@ const LandingPagePage = () => {
                 </div>
                 <Button
                   className="common-pointer bg-gray_900 cursor-pointer font-semibold min-w-[134px] py-[13px] rounded-[10px] text-base text-center text-white_A700 w-auto"
-                  onClick={() => navigate("/listingmapview")}
+                  onClick={() => navigate("/listing")}
                 >
                   Learn more
                 </Button>
@@ -511,8 +510,9 @@ const LandingPagePage = () => {
                     </Text>
                     <div className="flex flex-row gap-2 items-center justify-start w-full sm:w-full">
                       <Text
-                        className="font-bold text-deep_orange_400 text-left w-auto"
+                        className="font-bold text-deep_orange_400 text-left w-auto cursor-pointer"
                         variant="body3"
+                        onClick={() => navigate("/blogdetails")}
                       >
                         Read the Article
                       </Text>
@@ -540,8 +540,9 @@ const LandingPagePage = () => {
                     </Text>
                     <div className="flex flex-row gap-2 items-center justify-start w-full sm:w-full">
                       <Text
-                        className="font-bold text-deep_orange_400 text-left w-auto"
+                        className="font-bold text-deep_orange_400 text-left w-auto cursor-pointer"
                         variant="body3"
+                        onClick={() => navigate("/blogdetails")}
                       >
                         Read the Article
                       </Text>
@@ -570,8 +571,9 @@ const LandingPagePage = () => {
                     </Text>
                     <div className="flex flex-row gap-2 items-center justify-start w-full sm:w-full">
                       <Text
-                        className="font-bold text-deep_orange_400 text-left w-auto"
+                        className="font-bold text-deep_orange_400 text-left w-auto cursor-pointer"
                         variant="body3"
+                        onClick={() => navigate("/blogdetails")}
                       >
                         Read the Article
                       </Text>

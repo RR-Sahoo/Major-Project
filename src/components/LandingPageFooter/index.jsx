@@ -11,7 +11,7 @@ const LandingPageFooter = (props) => {
     <>
       <footer className={props.className}>
         <div className="flex flex-col md:gap-10 items-start justify-start w-full">
-          <div className="flex md:flex-col flex-row md:gap-5 justify-start w-full">
+          <div className="flex md:flex-col h-24 flex-row md:gap-5 justify-start w-full">
             <div className="flex flex-col items-start justify-start w-[341px]">
               <div
                 className="common-pointer flex flex-row gap-[11px] h-10 md:h-auto items-center justify-start w-[341px]"
@@ -64,7 +64,7 @@ const LandingPageFooter = (props) => {
                   Get help
                 </Text>
                 <div
-                  className="flex flex-col gap-3.5 items-start justify-start w-full"
+                  className="flex flex-col gap-3.5 items-start justify-start w-full cursor-pointer"
                   onClick={() => navigate("/faq")}
                 >
                   <Text
@@ -82,7 +82,10 @@ const LandingPageFooter = (props) => {
                 >
                   Documentation
                 </Text>
-                <div className="flex flex-col gap-3.5 items-start justify-start w-full">
+                <div
+                  className="flex flex-col gap-3.5 items-start justify-start w-full cursor-pointer"
+                  onClick={() => navigate("/blogpage")}
+                >
                   <Text
                     className="font-manrope font-semibold text-gray_900 text-left w-auto"
                     variant="body4"
@@ -109,28 +112,34 @@ const LandingPageFooter = (props) => {
                     </a>
                   </div>
                   <div className="flex h-[30px] items-center justify-start w-[30px]">
-                    <Img
-                      src="/images/img_twitter.svg"
-                      className="h-[30px] w-[30px]"
-                      alt="twitter"
-                    />
+                    <a target="_blank" href="https://twitter.com/i/flow/login">
+                      <Img
+                        src="/images/img_twitter.svg"
+                        className="h-[30px] w-[30px]"
+                        alt="twitter"
+                      />
+                    </a>
                   </div>
-                  <Img
-                    src="/images/img_instagram_orange_a700_30x30.svg"
-                    className="h-[30px] w-[20px]"
-                    alt="instagram"
-                  />
-                  <Img
-                    src="/images/img_linkedin.svg"
-                    className="h-[30px] w-[30px]"
-                    alt="linkedin"
-                  />
                   <div className="flex h-[30px] items-center justify-start w-[30px]">
-                    <Img
-                      src="/images/img_clock_orange_a700.svg"
-                      className="h-[30px] w-[30px]"
-                      alt="clock"
-                    />
+                    <a
+                      target="_blank"
+                      href="https://www.instagram.com/accounts/login/"
+                    >
+                      <Img
+                        src="/images/img_instagram_orange_a700_30x30.svg"
+                        className="h-[30px] w-[30px]"
+                        alt="instagram"
+                      />
+                    </a>
+                  </div>
+                  <div className="flex h-[30px] items-center justify-start w-[30px]">
+                    <a target="_blank" href="https://www.linkedin.com/login">
+                      <Img
+                        src="/images/img_linkedin.svg"
+                        className="h-[30px] w-[30px]"
+                        alt="linkedin"
+                      />
+                    </a>
                   </div>
                 </div>
               </div>

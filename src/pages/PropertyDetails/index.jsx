@@ -5,7 +5,7 @@ import { Img, Button, Text, GoogleMap, List, Input } from "components";
 import LandingPageCard from "components/LandingPageCard";
 import LandingPageFooter from "components/LandingPageFooter";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { UserIcon } from "@heroicons/react/outline";
 import {
   ArrowIcon,
@@ -22,7 +22,9 @@ const PropertyDetailsPage = (props) => {
   const [showPhotos, setShowPhotos] = useState(false);
   const [show360, setShow360] = useState(false);
   const [propertyDetails, setPropertyDetails] = useState([]);
+  const [mapLocation, setMapLocation] = useState(null);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const handleMapClick = () => {
     setShowMap(true);
@@ -92,16 +94,6 @@ const PropertyDetailsPage = (props) => {
                       className="h-[263px] m-auto object-cover rounded-[10px] w-full"
                       alt="rectangle5612"
                     />
-                    <Button
-                      className="bg-white_A700 bottom-[0] cursor-pointer flex items-center justify-center min-w-[122px] px-4 py-2.5 right-[0] rounded-[10px] w-auto"
-                      leftIcon={
-                        <Img
-                          src="images/img_mail.svg"
-                          className="mb-px mr-1.5 bottom-[0] right-[2%] absolute"
-                          alt="mail"
-                        />
-                      }
-                    ></Button>
                   </div>
                 </div>
               </div>
@@ -223,7 +215,25 @@ const PropertyDetailsPage = (props) => {
                           )}
                           {showPhotos && (
                             <div className="h-[400px] relative w-full">
-                              <img photos={propertyDetails.photos} />
+                              <iframe
+                                srcDoc={`
+        <html>
+          <body style="margin: 0;">
+            ${propertyDetails.photos
+              .map(
+                (photo) =>
+                  `<div style="margin-bottom: 20px;"><img src="${photo}" style="max-width: 100%;"/></div>`
+              )
+              .join("")}
+          </body>
+        </html>
+      `}
+                                style={{
+                                  width: "100%",
+                                  height: "100%",
+                                  border: "none",
+                                }}
+                              />
                             </div>
                           )}
                         </div>
@@ -533,7 +543,10 @@ const PropertyDetailsPage = (props) => {
                   className="bg-transparent cursor-pointer flex items-center justify-center min-w-[124px] w-auto"
                   rightIcon={<RightArrowIcon />}
                 >
-                  <div className="font-bold text-left text-lg text-orange_A700">
+                  <div
+                    className="font-bold text-left text-lg text-orange_A700"
+                    onClick={() => navigate("/listing")}
+                  >
                     Explore All
                   </div>
                 </Button>

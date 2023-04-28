@@ -28,6 +28,12 @@ const LogInModal = (props) => {
     notification.style.color = "#fff";
     notification.style.borderRadius = "5px";
     notification.style.borderBottomColor = "red";
+    notification.style.fontFamily = "Arial, sans-serif";
+    notification.style.fontSize = "16px";
+    notification.style.boxShadow = "0 0 5px rgba(0, 0, 0, 0.3)";
+    notification.style.transition = "opacity 0.5s ease-in-out";
+    notification.style.opacity = "0.9";
+    notification.style.zIndex = "9999";
 
     // append the notification to the document body
     document.body.appendChild(notification);
@@ -38,7 +44,7 @@ const LogInModal = (props) => {
     }, 3000);
   };
 
-  const notify = () => toast("Logged in successfully");
+  const notify = () => toast("Logging in...");
 
   function handleOpenCreateAccountModal() {
     setCreateAccountModal(true);

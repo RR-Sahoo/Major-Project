@@ -5,6 +5,7 @@ import CallIcon from "../../../assets/images/img_call_gray_900.svg";
 import MailIcon from "../../../assets/images/img_mail_gray_900.svg";
 import starIconFill from "../../../assets/images/img_star.svg";
 import starIconEmpty from "../../../assets/images/img_star_gray_600.svg";
+import { useNavigate } from "react-router-dom";
 
 const AgentProfileHeader = ({ agent }) => {
   const reviewScore = agent?.review;
@@ -13,6 +14,7 @@ const AgentProfileHeader = ({ agent }) => {
   console.log(reviewScore);
   console.log("filledStars", filledStars);
   console.log("emptyStars", emptyStars);
+  const navigate = useNavigate();
 
   return (
     <div className="flex md:flex-col flex-row gap-[30px] items-end justify-start md:px-10 sm:px-5 px-[140px] w-full">
@@ -79,7 +81,10 @@ const AgentProfileHeader = ({ agent }) => {
             </div>
           </div>
         </div>
-        <Button className="bg-gray_900 cursor-pointer font-semibold min-w-[112px] sm:px-5 px-6 py-4 rounded-[10px] text-base text-center text-white_A700 w-auto">
+        <Button
+          className="bg-gray_900 cursor-pointer font-semibold min-w-[112px] sm:px-5 px-6 py-4 rounded-[10px] text-base text-center text-white_A700 w-auto"
+          onClick={() => navigate("/contactpage")}
+        >
           Contact
         </Button>
       </div>

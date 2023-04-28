@@ -40,39 +40,7 @@ const BlogPagePage = () => {
                   ))}
                 </div>
               </div>
-              <div className="flex sm:flex-col flex-row gap-5 items-center justify-between w-full">
-                <div className="flex flex-row gap-[5px] items-start justify-start self-stretch w-auto">
-                  <Button className="border border-gray_700 border-solid cursor-pointer font-semibold h-12 px-[18px] py-4 rounded-[10px] text-base text-center text-gray_900 w-12">
-                    1
-                  </Button>
-                  <Button className="border border-bluegray_102 border-solid cursor-pointer font-semibold h-12 px-[18px] py-4 rounded-[10px] text-base text-center text-gray_900 w-12">
-                    2
-                  </Button>
-                  <Button className="border border-bluegray_102 border-solid cursor-pointer font-semibold h-12 px-[18px] py-4 rounded-[10px] text-base text-center text-gray_900 w-12">
-                    3
-                  </Button>
-                  <Button className="border border-bluegray_102 border-solid cursor-pointer font-semibold h-12 px-[18px] py-4 rounded-[10px] text-base text-center text-gray_900 w-12">
-                    4
-                  </Button>
-                  <Button className="border border-bluegray_102 border-solid cursor-pointer font-semibold h-12 px-[18px] py-4 rounded-[10px] text-base text-center text-gray_900 w-12">
-                    5
-                  </Button>
-                </div>
-                <Button
-                  className="border border-bluegray_102 border-solid cursor-pointer flex items-center justify-center min-w-[134px] px-[18px] py-4 rounded-[10px] w-auto"
-                  rightIcon={
-                    <Img
-                      src="images/img_arrowright_gray_900.svg"
-                      className="mt-px mb-[5px] ml-1"
-                      alt="arrow_right"
-                    />
-                  }
-                >
-                  <div className="font-semibold text-base text-gray_900 text-left">
-                    Next Page
-                  </div>
-                </Button>
-              </div>
+              <br />
             </div>
           </div>
         </div>
