@@ -32,12 +32,21 @@ function TabButton({ label, active, onClick }) {
 const PropertyDetailsPage = (props) => {
   const [propertyDetails, setPropertyDetails] = useState([]);
   const [agentDetails, setAgentDetails] = useState([]);
+  const [allProperties, setAllProperties] = useState([]);
   const [activeTab, setActiveTab] = useState("map");
   const [mapLocation, setMapLocation] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
+<<<<<<< Updated upstream
   const [sliderState, setsliderState] = useState(0);
   const sliderRef = useRef(null);
+=======
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [date, setDate] = useState("");
+  const [message, setMessage] = useState("");
+>>>>>>> Stashed changes
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
@@ -150,6 +159,10 @@ const PropertyDetailsPage = (props) => {
           console.log("Agent Data:", agentResponse.data);
           setAgentDetails(agentResponse.data);
         }
+        const allPropertiesResponse = await axios.get(
+          `https://the-home-backend.onrender.com/api/properties/all-properties`
+        );
+        setAllProperties(allPropertiesResponse.data);
       } catch (error) {
         console.error(error);
       }
@@ -157,7 +170,31 @@ const PropertyDetailsPage = (props) => {
 
     fetchData();
   }, [id]);
-  console.log("Property Price:", propertyDetails.price);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const data = {
+      name: fullName,
+      email: email,
+      phone: phoneNumber,
+      date: date,
+      message: message,
+      propertyId: id,
+    };
+
+    try {
+      const response = await axios.post(
+        "https://the-home-backend.onrender.com/api/visitRequests/setvisit",
+        data
+      );
+      console.log(response.data);
+      alert("Visit request sent successfully!");
+    } catch (error) {
+      console.log(error);
+      alert("Oops! Something went wrong.");
+    }
+  };
+
   return (
     <>
       <div className="bg-gray_51 flex flex-col font-markoone sm:gap-10 md:gap-10 gap-[100px] items-start justify-start mx-auto self-stretch w-auto sm:w-full md:w-full">
@@ -502,61 +539,76 @@ const PropertyDetailsPage = (props) => {
                 </div>
                 <div className="bg-white_A700 border border-bluegray_100 border-solid flex sm:flex-1 items-start justify-start p-6 sm:px-5 rounded-[10px] self-stretch w-auto sm:w-full">
                   <div className="flex flex-col gap-10 items-start justify-start w-[336px]">
-                    <div className="flex flex-col gap-6 items-start justify-start w-full">
-                      <Text
-                        className="text-gray_900 text-left tracking-[-0.56px] w-auto"
-                        as="h4"
-                        variant="h4"
-                      >
-                        Request for Visit
-                      </Text>
-                      <div className="flex flex-col gap-3 h-[440px] md:h-auto items-start justify-start w-full">
-                        <Input
-                          wrapClassName="bg-white_A700 border border-bluegray_100 border-solid flex px-4 py-3.5 rounded-[10px] w-full"
-                          className="font-semibold p-0 placeholder:text-gray_600 text-gray_600 text-left text-lg w-full"
-                          type="text"
-                          name="textfieldlarge"
-                          placeholder="Full Name"
-                          prefix={
-                            <UserIcon className="h-6 items-center mr-2" />
-                          }
-                        ></Input>
-                        <Input
-                          wrapClassName="bg-white_A700 border border-bluegray_100 border-solid flex px-4 py-3.5 rounded-[10px] w-full"
-                          className="font-semibold p-0 placeholder:text-gray_600 text-gray_600 text-left text-lg w-full"
-                          type="email"
-                          name="textfieldlarge_One"
-                          placeholder="Email Address"
-                          prefix={<MailIcon className="mr-2 h-6" />}
-                        ></Input>
-                        <Input
-                          wrapClassName="bg-white_A700 border border-bluegray_100 border-solid flex px-4 py-3.5 rounded-[10px] w-full"
-                          className="font-semibold p-0 placeholder:text-gray_600 text-gray_600 text-left text-lg w-full"
-                          type="number"
-                          name="textfieldlarge_Two"
-                          placeholder="Phone Number"
-                          prefix={<PhoneIcon className="mr-2 h-6" />}
-                        ></Input>
-                        <Input
-                          wrapClassName="bg-white_A700 border border-bluegray_100 border-solid flex px-4 py-3.5 rounded-[10px] w-full"
-                          className="font-semibold p-0 placeholder:text-gray_600 text-gray_600 text-left text-lg w-full"
-                          name="textfieldlarge_Three"
-                          placeholder="Date"
-                          prefix={<DateIcon className="mr-2 h-6" />}
-                        ></Input>
-                        <div className="bg-white_A700 border border-bluegray_100 border-solid flex h-[152px] md:h-auto items-start justify-start px-[19px] py-3.5 rounded-[10px] w-full">
-                          <Text
-                            className="font-semibold text-gray_600 text-left w-auto"
-                            variant="body3"
-                          >
-                            Message
-                          </Text>
+                    <form onSubmit={handleSubmit}>
+                      <div className="flex flex-col gap-6 items-start justify-start w-full">
+                        <Text
+                          className="text-gray_900 text-left tracking-[-0.56px] w-auto"
+                          as="h4"
+                          variant="h4"
+                        >
+                          Request for Visit
+                        </Text>
+                        <div className="flex flex-col gap-3 h-[440px] md:h-auto items-start justify-start w-full">
+                          <Input
+                            wrapClassName="bg-white_A700 border border-bluegray_100 border-solid flex px-4 py-3.5 rounded-[10px] w-full"
+                            className="font-semibold p-0 placeholder:text-gray_600 text-gray_600 text-left text-lg w-full"
+                            type="text"
+                            name="textfieldlarge"
+                            placeholder="Full Name"
+                            prefix={
+                              <UserIcon className="h-6 items-center mr-2" />
+                            }
+                            value={fullName}
+                            onChange={(e) => setFullName(e.target.value)}
+                          />
+                          <Input
+                            wrapClassName="bg-white_A700 border border-bluegray_100 border-solid flex px-4 py-3.5 rounded-[10px] w-full"
+                            className="font-semibold p-0 placeholder:text-gray_600 text-gray_600 text-left text-lg w-full"
+                            type="email"
+                            name="textfieldlarge_One"
+                            placeholder="Email Address"
+                            prefix={<MailIcon className="mr-2 h-6" />}
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                          />
+                          <Input
+                            wrapClassName="bg-white_A700 border border-bluegray_100 border-solid flex px-4 py-3.5 rounded-[10px] w-full"
+                            className="font-semibold p-0 placeholder:text-gray_600 text-gray_600 text-left text-lg w-full"
+                            type="phone"
+                            name="textfieldlarge_Two"
+                            placeholder="Phone Number"
+                            prefix={<PhoneIcon className="mr-2 h-6" />}
+                            value={phoneNumber}
+                            onChange={(e) => setPhoneNumber(e.target.value)}
+                          />
+                          <Input
+                            wrapClassName="bg-white_A700 border border-bluegray_100 border-solid flex px-4 py-3.5 rounded-[10px] w-full"
+                            className="font-semibold p-0 placeholder:text-gray_600 text-gray_600 text-left text-lg w-full"
+                            name="textfieldlarge_Three"
+                            placeholder="Date"
+                            type="date"
+                            prefix={<DateIcon className="mr-2 h-6" />}
+                            value={date}
+                            onChange={(e) => setDate(e.target.value)}
+                          />
+                          <div className="bg-white_A700 border border-bluegray   border-solid flex h-[152px] md:h-auto items-start justify-start px-[19px] py-3.5 rounded-[10px] w-full">
+                            <textarea
+                              className="bg-transparent border-none flex-grow p-0 text-gray-600 text-left text-lg resize-none w-full"
+                              name="textarea"
+                              placeholder="Type your message here"
+                              value={message}
+                              onChange={(e) => setMessage(e.target.value)}
+                            ></textarea>
+                          </div>
                         </div>
+                        <Button
+                          className="bg-gray_900 cursor-pointer font-semibold sm:px-5 px-6 py-5 rounded-[10px] text-base text-center text-white_A700 w-full hover:bg-blue-700 focus:outline-none focus:shadow-outline transform transition-all duration-200 ease-in-out hover:-translate-y-1 hover:shadow-md"
+                          onClick={handleSubmit}
+                        >
+                          Send Request
+                        </Button>
                       </div>
-                    </div>
-                    <Button className="bg-gray_900 cursor-pointer font-semibold sm:px-5 px-6 py-5 rounded-[10px] text-base text-center text-white_A700 w-full hover:bg-blue-700 focus:outline-none focus:shadow-outline transform transition-all duration-200 ease-in-out hover:-translate-y-1 hover:shadow-md">
-                      Send Request
-                    </Button>
+                    </form>
                     {propertyDetails.price && (
                       <EmiCalculator principal={propertyDetails.price} />
                     )}
@@ -591,21 +643,24 @@ const PropertyDetailsPage = (props) => {
                 className="sm:flex-col flex-row gap-6 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-3 justify-start w-full"
                 orientation="horizontal"
               >
-                {/*{landingPageCardPropList.map((props, index) => (
-                  <React.Fragment key={`LandingPageCard${index}`}>
-                    <LandingPageCard
-                      className="flex flex-1 flex-col h-full items-start justify-start w-full"
-                      p286162ndaveoaklOne="2861 62nd Ave, Oakland, CA 94605"
-                      p3bedroom="3 Bed Room"
-                      bathcounter="1 Bath"
-                      sqftcounter="1,032 sqft"
-                      p1bath="Family"
-                      viewDetails="View Details"
-                      price="$649,900"
-                      {...props}
-                    />
-                  </React.Fragment>
-                ))}*/}
+                {allProperties
+                  .reverse()
+                  .slice(0, 3)
+                  .map((props, index) => (
+                    <React.Fragment key={`LandingPageCard${index}`}>
+                      <LandingPageCard
+                        className="flex flex-1 flex-col h-full items-start justify-start w-full"
+                        p286162ndaveoaklOne="2861 62nd Ave, Oakland, CA 94605"
+                        p3bedroom="3 Bed Room"
+                        bathcounter="1 Bath"
+                        sqftcounter="1,032 sqft"
+                        p1bath="Family"
+                        viewDetails="View Details"
+                        price="$649,900"
+                        {...props}
+                      />
+                    </React.Fragment>
+                  ))}
               </List>
             </div>
           </div>
