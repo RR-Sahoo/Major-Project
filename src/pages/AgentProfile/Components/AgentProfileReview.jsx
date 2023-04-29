@@ -11,6 +11,37 @@ const AgentProfileReview = () => {
   const [reviewData, setReviewData] = useState([]);
   const { id } = useParams();
   const [isLoading, setIsLoading] = useState(false);
+  const toast = (message) => {
+    // create a new element to hold the notification
+    const notification = document.createElement("div");
+
+    // set the notification text and style
+    notification.textContent = message;
+    notification.style.position = "fixed";
+    notification.style.bottom = "20px";
+    notification.style.right = "20px";
+    notification.style.padding = "10px";
+    notification.style.background = "#333";
+    notification.style.color = "#fff";
+    notification.style.borderRadius = "5px";
+    notification.style.borderBottomColor = "red";
+    notification.style.fontFamily = "Arial, sans-serif";
+    notification.style.fontSize = "16px";
+    notification.style.boxShadow = "0 0 5px rgba(0, 0, 0, 0.3)";
+    notification.style.transition = "opacity 0.5s ease-in-out";
+    notification.style.opacity = "0.9";
+    notification.style.zIndex = "9999";
+
+    // append the notification to the document body
+    document.body.appendChild(notification);
+
+    // remove the notification after 3 seconds
+    setTimeout(() => {
+      notification.remove();
+    }, 3000);
+  };
+
+  const notify = () => toast(" Review Sent Successfully");
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
@@ -108,7 +139,10 @@ const AgentProfileReview = () => {
                           <button
                             type="submit"
                             className="bg-gray-900 text-white font-bold py-2 px-4 rounded mr-2"
-                            onClick={handleSubmit}
+                            onClick={() => {
+                              handleSubmit();
+                              notify();
+                            }}
                           >
                             Submit
                           </button>

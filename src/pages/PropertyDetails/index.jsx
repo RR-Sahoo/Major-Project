@@ -44,6 +44,37 @@ const PropertyDetailsPage = (props) => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [date, setDate] = useState("");
   const [message, setMessage] = useState("");
+  const toast = (message) => {
+    // create a new element to hold the notification
+    const notification = document.createElement("div");
+
+    // set the notification text and style
+    notification.textContent = message;
+    notification.style.position = "fixed";
+    notification.style.bottom = "20px";
+    notification.style.right = "20px";
+    notification.style.padding = "10px";
+    notification.style.background = "#333";
+    notification.style.color = "#fff";
+    notification.style.borderRadius = "5px";
+    notification.style.borderBottomColor = "red";
+    notification.style.fontFamily = "Arial, sans-serif";
+    notification.style.fontSize = "16px";
+    notification.style.boxShadow = "0 0 5px rgba(0, 0, 0, 0.3)";
+    notification.style.transition = "opacity 0.5s ease-in-out";
+    notification.style.opacity = "0.9";
+    notification.style.zIndex = "9999";
+
+    // append the notification to the document body
+    document.body.appendChild(notification);
+
+    // remove the notification after 3 seconds
+    setTimeout(() => {
+      notification.remove();
+    }, 3000);
+  };
+
+  const notify = () => toast(" Visit Request Sent Successfully");
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
@@ -185,10 +216,8 @@ const PropertyDetailsPage = (props) => {
         data
       );
       console.log(response.data);
-      alert("Visit request sent successfully!");
     } catch (error) {
       console.log(error);
-      alert("Oops! Something went wrong.");
     }
   };
 
@@ -610,7 +639,10 @@ const PropertyDetailsPage = (props) => {
                         </div>
                         <Button
                           className="bg-gray_900 cursor-pointer font-semibold sm:px-5 px-6 py-5 rounded-[10px] text-base text-center text-white_A700 w-full hover:bg-blue-700 focus:outline-none focus:shadow-outline transform transition-all duration-200 ease-in-out hover:-translate-y-1 hover:shadow-md"
-                          onClick={handleSubmit}
+                          onClick={() => {
+                            handleSubmit();
+                            notify();
+                          }}
                         >
                           Send Request
                         </Button>

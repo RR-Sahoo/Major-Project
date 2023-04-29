@@ -215,22 +215,9 @@ const ListingPage = () => {
           ) : (
             <div className="flex font-manrope items-center justify-center md:px-10 sm:px-5 px-[120px] w-full">
               <div className="flex md:flex-col flex-row gap-6 items-start justify-center max-w-[1200px] mx-auto w-full">
-                <div className="h-[511px] relative w-[32%] md:w-full">
-                  <div className="h-[511px] m-auto w-full">
-                    <GoogleMap
-                      className="h-[511px] m-auto rounded-[10px] w-full"
-                      showMarker={false}
-                    ></GoogleMap>
-                    <Img
-                      src="images/img_group1000001533.svg"
-                      className="absolute h-[427px] inset-y-[0] my-auto right-[6%] w-auto"
-                      alt="group1000001533"
-                    />
-                  </div>
-                </div>
                 <div className="flex flex-1 flex-col md:gap-10 gap-[60px] items-start justify-start w-full">
                   <div className="flex items-start justify-start w-full">
-                    <div className="md:gap-5 gap-6 grid md:grid-cols-1 grid-cols-2 justify-center min-h-[auto] w-full">
+                    <div className="md:gap-5 gap-6 grid md:grid-cols-1 grid-cols-3 justify-center min-h-[auto] w-full">
                       {getPaginatedData().map((property, index) => (
                         <React.Fragment key={`LandingPageCard${index}`}>
                           <LandingPageCard
