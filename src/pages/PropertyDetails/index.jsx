@@ -37,16 +37,13 @@ const PropertyDetailsPage = (props) => {
   const [mapLocation, setMapLocation] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
-<<<<<<< Updated upstream
   const [sliderState, setsliderState] = useState(0);
   const sliderRef = useRef(null);
-=======
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [date, setDate] = useState("");
   const [message, setMessage] = useState("");
->>>>>>> Stashed changes
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
@@ -269,6 +266,16 @@ const PropertyDetailsPage = (props) => {
                           tool to work with when building a WordPress site.
                         </Text>
                       </div>
+                      {propertyDetails.tag === "sell" ? (
+                        <Button
+                          className="bg-gray_900 cursor-pointer font-semibold sm:px-5 px-6 py-5 rounded-[10px] text-base text-center text-white_A700 w-full hover:bg-blue-700 focus:outline-none focus:shadow-outline transform transition-all duration-200 ease-in-out hover:-translate-y-1 hover:shadow-md"
+                          onClick={() => {
+                            window.open("http://localhost:8000", "_blank");
+                          }}
+                        >
+                          Make Your Own Interior
+                        </Button>
+                      ) : null}
                       <div className="flex flex-col gap-6 items-start justify-start w-full">
                         <div className="flex flex-col gap-6 items-start justify-start w-full">
                           <Text
@@ -609,9 +616,9 @@ const PropertyDetailsPage = (props) => {
                         </Button>
                       </div>
                     </form>
-                    {propertyDetails.price && (
+                    {propertyDetails.tag === "sell" && propertyDetails.price ? (
                       <EmiCalculator principal={propertyDetails.price} />
-                    )}
+                    ) : null}
                   </div>
                 </div>
               </div>
@@ -646,18 +653,20 @@ const PropertyDetailsPage = (props) => {
                 {allProperties
                   .reverse()
                   .slice(0, 3)
-                  .map((props, index) => (
+                  .map((property, index) => (
                     <React.Fragment key={`LandingPageCard${index}`}>
                       <LandingPageCard
-                        className="flex flex-1 flex-col h-full items-start justify-start w-full"
-                        p286162ndaveoaklOne="2861 62nd Ave, Oakland, CA 94605"
-                        p3bedroom="3 Bed Room"
-                        bathcounter="1 Bath"
-                        sqftcounter="1,032 sqft"
+                        className="flex flex-1 flex-col h-[512px] md:h-auto items-start justify-start w-full"
+                        address={property.Location}
+                        bedroom={`${property.Bedrooms} Bed Room`}
+                        bathroom={`${property.Bathrooms} Bath`}
+                        sqftcounter={`${property.property_size} sqft`}
+                        tag={property.tag}
                         p1bath="Family"
                         viewDetails="View Details"
-                        price="$649,900"
-                        {...props}
+                        price={`₹${property.price}`}
+                        image={property.image}
+                        id={property._id}
                       />
                     </React.Fragment>
                   ))}

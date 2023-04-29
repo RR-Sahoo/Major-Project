@@ -89,7 +89,9 @@ const LogInModal = (props) => {
       .then((response) => {
         console.log("User logged in successfully!", response);
         const token = response.data.token;
+        const name = response.data.name;
         localStorage.setItem("token", token);
+        localStorage.setItem("userName", name);
         console.log("Token stored:", token);
         window.location.reload();
       })

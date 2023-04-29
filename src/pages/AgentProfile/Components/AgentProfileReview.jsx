@@ -1,15 +1,52 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Img, Text, Button, Line, List, SelectBox } from "components";
 import { XIcon } from "@heroicons/react/outline";
 import addIcon from "../../../assets/images/img_plus_white_a700.svg";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const AgentProfileReview = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [review, setReview] = useState("");
+  const [reviewData, setReviewData] = useState([]);
+  const { id } = useParams();
+  const [isLoading, setIsLoading] = useState(false);
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("Submitting review...");
-    setIsOpen(false);
+    axios
+      .post(
+        "https://the-home-backend.onrender.com/api/review/",
+        {
+          message: review,
+          agent: id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+        setIsOpen(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    window.location.reload();
   };
+  useEffect(() => {
+    setIsLoading(true);
+    axios
+      .get(`https://the-home-backend.onrender.com/api/review/${id}`)
+      .then((response) => {
+        console.log(response.data); // log the response data to the console
+        setReviewData(response.data);
+        setIsLoading(false);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
   return (
     <div className="flex font-manrope items-start justify-start md:px-10 sm:px-5 px-[120px] w-full">
       <div className="bg-white_A700 border border-bluegray_100 border-solid flex items-start justify-start max-w-[1200px] mx-auto md:px-5 py-[30px] rounded-[10px] w-full">
@@ -63,12 +100,15 @@ const AgentProfileReview = () => {
                             rows="5"
                             placeholder="Type your review here..."
                             className="w-full border border-gray-400 p-2 rounded"
+                            value={review}
+                            onChange={(event) => setReview(event.target.value)}
                           ></textarea>
                         </div>
                         <div className="flex justify-end">
                           <button
                             type="submit"
                             className="bg-gray-900 text-white font-bold py-2 px-4 rounded mr-2"
+                            onClick={handleSubmit}
                           >
                             Submit
                           </button>
@@ -109,24 +149,23 @@ const AgentProfileReview = () => {
                 className="flex-col gap-[25px] grid items-center w-full"
                 orientation="vertical"
               >
-                <div className="relative bg-white shadow-lg rounded-lg overflow-hidden border border-gray-300 hover:shadow-2xl transition duration-300 ease-in-out">
-                  <div className="p-6">
-                    <h5 className="font-semibold text-gray-600 text-lg leading-tight mb-4">
-                      Eget eu massa et consectetur. Mauris donec. Leo a, id sed
-                      duis proin sodales. Turpis viverra diam porttitor mattis
-                      morbi ac amet. Euismod commodo. We get you customer
-                      relationships that last.
-                    </h5>
-                    <div className="flex items-center justify-between">
-                      <p className="text-gray-500 text-sm font-medium">
-                        02 June 2022
-                      </p>
-                      <p className="text-gray-700 font-bold text-lg">
-                        Taylor Wilson
-                      </p>
+                {reviewData.map((review) => (
+                  <div className="relative bg-white shadow-lg rounded-lg overflow-hidden border border-gray-300 hover:shadow-2xl transition duration-300 ease-in-out">
+                    <div className="p-6">
+                      <h5 className="font-semibold text-gray-600 text-lg leading-tight mb-4">
+                        {review.message}
+                      </h5>
+                      <div className="flex items-center justify-between">
+                        <p className="text-gray-500 text-sm font-medium">
+                          {review.date}
+                        </p>
+                        <p className="text-gray-700 font-bold text-lg">
+                          {review.name}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
+                ))}
               </List>
             </div>
           </div>

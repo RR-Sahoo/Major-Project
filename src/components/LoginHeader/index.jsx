@@ -48,6 +48,7 @@ const LoginHeader = (props) => {
 
   const logout = () => {
     localStorage.setItem("token", "");
+    localStorage.setItem("userName", "");
     navigate("/");
     window.location.reload();
     notify();
@@ -135,20 +136,16 @@ const LoginHeader = (props) => {
             </List>
           </div>
           <section className="flex items-center">
-            <div>
-              <form className="flex flex-row items-center">
-                <UserIcon />
-                <h2 className="m-2">Subha</h2>
-                <select
-                  className="form-select w-0 border-none inset-20 bg-transparent"
-                  onChange={(e) => {
-                    if (e.target.value === "logout") logout();
-                  }}
-                >
-                  <option value=""></option>
-                  <option value="logout">Logout</option>
-                </select>
-              </form>
+            <div className="flex items-center">
+              <UserIcon />
+              <h2 className="m-2">{localStorage.getItem("userName")}</h2>
+              <Button
+                style={{ width: "100px" }}
+                className="bg-gray_900 cursor-pointer font-semibold sm:px-5 px-3 py-3 rounded-[10px] text-base text-center text-white_A700  hover:bg-blue-700 focus:outline-none focus:shadow-outline transform transition-all duration-200 ease-in-out hover:-translate-y-1 hover:shadow-md"
+                onClick={logout}
+              >
+                Log Out
+              </Button>
             </div>
           </section>
         </div>
